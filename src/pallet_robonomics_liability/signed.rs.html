@@ -1,7 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `robonomics/frame/liability/src/signed.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>signed.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings"></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../pallet_robonomics_liability/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" class="help-button">?</button>
-                <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `frame&#x2F;liability&#x2F;src&#x2F;signed.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>signed.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../pallet_robonomics_liability/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -230,8 +227,7 @@
 <span id="227">227</span>
 <span id="228">228</span>
 <span id="229">229</span>
-</pre><div class="example-wrap"><pre class="rust ">
-<span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+</pre><pre class="rust"><code><span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
 <span class="comment">//</span>
 <span class="comment">//  Copyright 2018-2021 Robonomics Network &lt;research@robonomics.network&gt;</span>
 <span class="comment">//</span>
@@ -255,17 +251,17 @@
     <span class="ident">dispatch</span>,
     <span class="ident">traits</span>::{<span class="ident">BalanceStatus</span>, <span class="ident">ReservableCurrency</span>},
 };
-<span class="kw">use</span> <span class="ident">frame_system</span>::<span class="ident">offchain</span>::<span class="ident">AppCrypto</span>;
+<span class="kw">use</span> <span class="ident">frame_system::offchain::AppCrypto</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">sp_core</span>::<span class="ident">crypto</span>::{<span class="ident">Pair</span>, <span class="ident">Public</span>};
+<span class="kw">use</span> <span class="ident">sp_core::crypto</span>::{<span class="ident">Pair</span>, <span class="ident">Public</span>};
 <span class="kw">use</span> <span class="ident">sp_runtime</span>::{
     <span class="ident">traits</span>::{<span class="ident">IdentifyAccount</span>, <span class="ident">Verify</span>},
     <span class="ident">DispatchResult</span>, <span class="ident">RuntimeDebug</span>,
 };
-<span class="kw">use</span> <span class="ident">sp_std</span>::<span class="ident">marker</span>::<span class="ident">PhantomData</span>;
+<span class="kw">use</span> <span class="ident">sp_std::marker::PhantomData</span>;
 
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">economics</span>::<span class="ident">SimpleMarket</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">traits</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::economics::SimpleMarket</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::traits</span>::<span class="kw-2">*</span>;
 
 <span class="doccomment">/// Agreement that could be proven by asymmetric cryptography.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Encode</span>, <span class="ident">Decode</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">RuntimeDebug</span>)]</span>
@@ -280,10 +276,10 @@
 
 <span class="comment">// No economical parameters for agreement.</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">A</span>, <span class="ident">S</span><span class="op">&gt;</span> <span class="ident">Processing</span> <span class="kw">for</span> <span class="ident">SignedAgreement</span><span class="op">&lt;</span><span class="ident">T</span>, (), <span class="ident">A</span>, <span class="ident">S</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">on_start</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DispatchResult</span> {
+    <span class="kw">fn</span> <span class="ident">on_start</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">DispatchResult</span> {
         <span class="prelude-val">Ok</span>(())
     }
-    <span class="kw">fn</span> <span class="ident">on_finish</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">_success</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DispatchResult</span> {
+    <span class="kw">fn</span> <span class="ident">on_finish</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">_success</span>: <span class="ident">bool</span>) -&gt; <span class="ident">DispatchResult</span> {
         <span class="prelude-val">Ok</span>(())
     }
 }
@@ -292,21 +288,21 @@
 <span class="kw">where</span>
     <span class="ident">C</span>: <span class="ident">ReservableCurrency</span><span class="op">&lt;</span><span class="ident">A</span><span class="op">&gt;</span>,
 {
-    <span class="kw">fn</span> <span class="ident">on_start</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DispatchResult</span> {
-        <span class="ident">C</span>::<span class="ident">reserve</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">promisee</span>, <span class="self">self</span>.<span class="ident">economics</span>.<span class="number">0</span>)
+    <span class="kw">fn</span> <span class="ident">on_start</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">DispatchResult</span> {
+        <span class="ident">C::reserve</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">promisee</span>, <span class="self">self</span>.<span class="ident">economics</span>.<span class="number">0</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">on_finish</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">success</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DispatchResult</span> {
+    <span class="kw">fn</span> <span class="ident">on_finish</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">success</span>: <span class="ident">bool</span>) -&gt; <span class="ident">DispatchResult</span> {
         <span class="kw">if</span> <span class="ident">success</span> {
-            <span class="ident">C</span>::<span class="ident">repatriate_reserved</span>(
+            <span class="ident">C::repatriate_reserved</span>(
                 <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">promisee</span>,
                 <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">promisor</span>,
                 <span class="self">self</span>.<span class="ident">economics</span>.<span class="number">0</span>,
-                <span class="ident">BalanceStatus</span>::<span class="ident">Free</span>,
+                <span class="ident">BalanceStatus::Free</span>,
             )
             .<span class="ident">map</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> ())
         } <span class="kw">else</span> {
-            <span class="kw">if</span> <span class="ident">C</span>::<span class="ident">unreserve</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">promisee</span>, <span class="self">self</span>.<span class="ident">economics</span>.<span class="number">0</span>) <span class="op">=</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">economics</span>.<span class="number">0</span> {
+            <span class="kw">if</span> <span class="ident">C::unreserve</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">promisee</span>, <span class="self">self</span>.<span class="ident">economics</span>.<span class="number">0</span>) <span class="op">==</span> <span class="self">self</span>.<span class="ident">economics</span>.<span class="number">0</span> {
                 <span class="prelude-val">Ok</span>(())
             } <span class="kw">else</span> {
                 <span class="prelude-val">Err</span>(<span class="string">&quot;reserved less than expected&quot;</span>)<span class="question-mark">?</span>
@@ -318,31 +314,31 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">E</span>, <span class="ident">A</span>, <span class="ident">V</span>, <span class="ident">I</span><span class="op">&gt;</span> <span class="ident">Agreement</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">SignedAgreement</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">E</span>, <span class="ident">I</span>, <span class="ident">V</span><span class="op">&gt;</span>
 <span class="kw">where</span>
     <span class="ident">A</span>: <span class="ident">IdentifyAccount</span><span class="op">&lt;</span><span class="ident">AccountId</span> <span class="op">=</span> <span class="ident">I</span><span class="op">&gt;</span>,
-    <span class="ident">V</span>: <span class="ident">Verify</span><span class="op">&lt;</span><span class="ident">Signer</span> <span class="op">=</span> <span class="ident">A</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">dispatch</span>::<span class="ident">Parameter</span>,
-    <span class="ident">I</span>: <span class="ident">dispatch</span>::<span class="ident">Parameter</span>,
-    <span class="ident">T</span>: <span class="ident">dispatch</span>::<span class="ident">Parameter</span>,
-    <span class="ident">E</span>: <span class="ident">dispatch</span>::<span class="ident">Parameter</span>,
+    <span class="ident">V</span>: <span class="ident">Verify</span><span class="op">&lt;</span><span class="ident">Signer</span> <span class="op">=</span> <span class="ident">A</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">dispatch::Parameter</span>,
+    <span class="ident">I</span>: <span class="ident">dispatch::Parameter</span>,
+    <span class="ident">T</span>: <span class="ident">dispatch::Parameter</span>,
+    <span class="ident">E</span>: <span class="ident">dispatch::Parameter</span>,
 {
     <span class="kw">type</span> <span class="ident">Technical</span> <span class="op">=</span> <span class="ident">T</span>;
     <span class="kw">type</span> <span class="ident">Economical</span> <span class="op">=</span> <span class="ident">E</span>;
 
-    <span class="kw">fn</span> <span class="ident">technical</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">Technical</span> {
+    <span class="kw">fn</span> <span class="ident">technical</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident"><span class="self">Self</span>::Technical</span> {
         <span class="self">self</span>.<span class="ident">technics</span>.<span class="ident">clone</span>()
     }
 
-    <span class="kw">fn</span> <span class="ident">economical</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">Economical</span> {
+    <span class="kw">fn</span> <span class="ident">economical</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident"><span class="self">Self</span>::Economical</span> {
         <span class="self">self</span>.<span class="ident">economics</span>.<span class="ident">clone</span>()
     }
 
-    <span class="kw">fn</span> <span class="ident">promisee</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">I</span> {
+    <span class="kw">fn</span> <span class="ident">promisee</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">I</span> {
         <span class="self">self</span>.<span class="ident">promisee</span>.<span class="ident">clone</span>()
     }
 
-    <span class="kw">fn</span> <span class="ident">promisor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">I</span> {
+    <span class="kw">fn</span> <span class="ident">promisor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">I</span> {
         <span class="self">self</span>.<span class="ident">promisor</span>.<span class="ident">clone</span>()
     }
 
-    <span class="kw">fn</span> <span class="ident">verify</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">verify</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
         (<span class="self">self</span>.<span class="ident">technics</span>.<span class="ident">clone</span>(), <span class="self">self</span>.<span class="ident">economics</span>.<span class="ident">clone</span>()).<span class="ident">using_encoded</span>(<span class="op">|</span><span class="ident">encoded</span><span class="op">|</span> {
             <span class="self">self</span>.<span class="ident">promisee_signature</span>.<span class="ident">verify</span>(<span class="ident">encoded</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">promisee</span>)
                 <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">promisor_signature</span>.<span class="ident">verify</span>(<span class="ident">encoded</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">promisor</span>)
@@ -360,7 +356,7 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">I</span>, <span class="ident">A</span>, <span class="ident">S</span>, <span class="ident">M</span><span class="op">&gt;</span> <span class="ident">RealWorldOracle</span> <span class="kw">for</span> <span class="ident">SignedReport</span><span class="op">&lt;</span><span class="ident">I</span>, <span class="ident">A</span>, <span class="ident">S</span>, <span class="ident">M</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">is_confirmed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">is_confirmed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
         <span class="comment">// Confirm all by default</span>
         <span class="prelude-val">Some</span>(<span class="bool-val">true</span>)
     }
@@ -368,23 +364,23 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">Index</span>, <span class="ident">A</span>, <span class="ident">V</span>, <span class="ident">I</span>, <span class="ident">M</span><span class="op">&gt;</span> <span class="ident">Report</span><span class="op">&lt;</span><span class="ident">Index</span>, <span class="ident">I</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">SignedReport</span><span class="op">&lt;</span><span class="ident">Index</span>, <span class="ident">I</span>, <span class="ident">V</span>, <span class="ident">M</span><span class="op">&gt;</span>
 <span class="kw">where</span>
-    <span class="ident">Index</span>: <span class="ident">dispatch</span>::<span class="ident">Parameter</span>,
+    <span class="ident">Index</span>: <span class="ident">dispatch::Parameter</span>,
     <span class="ident">A</span>: <span class="ident">IdentifyAccount</span><span class="op">&lt;</span><span class="ident">AccountId</span> <span class="op">=</span> <span class="ident">I</span><span class="op">&gt;</span>,
-    <span class="ident">V</span>: <span class="ident">Verify</span><span class="op">&lt;</span><span class="ident">Signer</span> <span class="op">=</span> <span class="ident">A</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">dispatch</span>::<span class="ident">Parameter</span>,
-    <span class="ident">M</span>: <span class="ident">dispatch</span>::<span class="ident">Parameter</span>,
-    <span class="ident">I</span>: <span class="ident">dispatch</span>::<span class="ident">Parameter</span>,
+    <span class="ident">V</span>: <span class="ident">Verify</span><span class="op">&lt;</span><span class="ident">Signer</span> <span class="op">=</span> <span class="ident">A</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">dispatch::Parameter</span>,
+    <span class="ident">M</span>: <span class="ident">dispatch::Parameter</span>,
+    <span class="ident">I</span>: <span class="ident">dispatch::Parameter</span>,
 {
     <span class="kw">type</span> <span class="ident">Message</span> <span class="op">=</span> <span class="ident">M</span>;
 
-    <span class="kw">fn</span> <span class="ident">index</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Index</span> {
+    <span class="kw">fn</span> <span class="ident">index</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Index</span> {
         <span class="self">self</span>.<span class="ident">index</span>.<span class="ident">clone</span>()
     }
 
-    <span class="kw">fn</span> <span class="ident">sender</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">I</span> {
+    <span class="kw">fn</span> <span class="ident">sender</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">I</span> {
         <span class="self">self</span>.<span class="ident">sender</span>.<span class="ident">clone</span>()
     }
 
-    <span class="kw">fn</span> <span class="ident">verify</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">verify</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
         (<span class="self">self</span>.<span class="ident">index</span>.<span class="ident">clone</span>(), <span class="self">self</span>.<span class="ident">payload</span>.<span class="ident">clone</span>())
             .<span class="ident">using_encoded</span>(<span class="op">|</span><span class="ident">encoded</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">signature</span>.<span class="ident">verify</span>(<span class="ident">encoded</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">sender</span>))
     }
@@ -400,12 +396,12 @@
     <span class="ident">A</span>: <span class="ident">IdentifyAccount</span><span class="op">&lt;</span><span class="ident">AccountId</span> <span class="op">=</span> <span class="ident">AccountId</span><span class="op">&gt;</span>,
     <span class="ident">Signature</span>: <span class="ident">Verify</span><span class="op">&lt;</span><span class="ident">Signer</span> <span class="op">=</span> <span class="ident">A</span><span class="op">&gt;</span>,
     <span class="ident">AccountId</span>: <span class="ident">Clone</span>,
-    <span class="ident">T</span>: <span class="ident">codec</span>::<span class="ident">Encode</span>,
-    <span class="ident">E</span>: <span class="ident">codec</span>::<span class="ident">Encode</span>,
+    <span class="ident">T</span>: <span class="ident">codec::Encode</span>,
+    <span class="ident">E</span>: <span class="ident">codec::Encode</span>,
 {
-    <span class="kw">fn</span> <span class="ident">proof</span>(<span class="ident">technics</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>, <span class="ident">economics</span>: <span class="kw-2">&amp;</span><span class="ident">E</span>, <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">AccountId</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Signature</span> {
+    <span class="kw">fn</span> <span class="ident">proof</span>(<span class="ident">technics</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>, <span class="ident">economics</span>: <span class="kw-2">&amp;</span><span class="ident">E</span>, <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">AccountId</span>) -&gt; <span class="ident">Signature</span> {
         (<span class="ident">technics</span>, <span class="ident">economics</span>)
-            .<span class="ident">using_encoded</span>(<span class="op">|</span><span class="ident">params</span><span class="op">|</span> <span class="ident">AppSigner</span>::<span class="ident">sign</span>(<span class="ident">params</span>, <span class="ident">sender</span>.<span class="ident">clone</span>()))
+            .<span class="ident">using_encoded</span>(<span class="op">|</span><span class="ident">params</span><span class="op">|</span> <span class="ident">AppSigner::sign</span>(<span class="ident">params</span>, <span class="ident">sender</span>.<span class="ident">clone</span>()))
             .<span class="ident">expect</span>(<span class="string">&quot;unable to sign using runtime application key&quot;</span>)
     }
 }
@@ -417,31 +413,31 @@
     <span class="ident">A</span>: <span class="ident">IdentifyAccount</span><span class="op">&lt;</span><span class="ident">AccountId</span> <span class="op">=</span> <span class="ident">AccountId</span><span class="op">&gt;</span>,
     <span class="ident">Signature</span>: <span class="ident">Verify</span><span class="op">&lt;</span><span class="ident">Signer</span> <span class="op">=</span> <span class="ident">A</span><span class="op">&gt;</span>,
     <span class="ident">AccountId</span>: <span class="ident">Clone</span>,
-    <span class="ident">Index</span>: <span class="ident">codec</span>::<span class="ident">Encode</span>,
-    <span class="ident">M</span>: <span class="ident">codec</span>::<span class="ident">Encode</span>,
+    <span class="ident">Index</span>: <span class="ident">codec::Encode</span>,
+    <span class="ident">M</span>: <span class="ident">codec::Encode</span>,
 {
-    <span class="kw">fn</span> <span class="ident">proof</span>(<span class="ident">index</span>: <span class="kw-2">&amp;</span><span class="ident">Index</span>, <span class="ident">message</span>: <span class="kw-2">&amp;</span><span class="ident">M</span>, <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">AccountId</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Signature</span> {
+    <span class="kw">fn</span> <span class="ident">proof</span>(<span class="ident">index</span>: <span class="kw-2">&amp;</span><span class="ident">Index</span>, <span class="ident">message</span>: <span class="kw-2">&amp;</span><span class="ident">M</span>, <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">AccountId</span>) -&gt; <span class="ident">Signature</span> {
         (<span class="ident">index</span>, <span class="ident">message</span>)
-            .<span class="ident">using_encoded</span>(<span class="op">|</span><span class="ident">params</span><span class="op">|</span> <span class="ident">AppSigner</span>::<span class="ident">sign</span>(<span class="ident">params</span>, <span class="ident">sender</span>.<span class="ident">clone</span>()))
+            .<span class="ident">using_encoded</span>(<span class="op">|</span><span class="ident">params</span><span class="op">|</span> <span class="ident">AppSigner::sign</span>(<span class="ident">params</span>, <span class="ident">sender</span>.<span class="ident">clone</span>()))
             .<span class="ident">expect</span>(<span class="string">&quot;unable to sign using runtime application key&quot;</span>)
     }
 }
 
 <span class="doccomment">/// Core crypto proof builder.</span>
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ProofSigner</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">std</span>::<span class="ident">marker</span>::<span class="ident">PhantomData</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ProofSigner</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">std::marker::PhantomData</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">E</span>, <span class="ident">Account</span>, <span class="ident">AccountId</span>, <span class="ident">Signature</span>, <span class="ident">TPair</span><span class="op">&gt;</span> <span class="ident">AgreementProofBuilder</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">E</span>, <span class="ident">TPair</span>, <span class="ident">Signature</span><span class="op">&gt;</span>
     <span class="kw">for</span> <span class="ident">ProofSigner</span><span class="op">&lt;</span><span class="ident">TPair</span><span class="op">&gt;</span>
 <span class="kw">where</span>
-    <span class="ident">T</span>: <span class="ident">codec</span>::<span class="ident">Encode</span>,
-    <span class="ident">E</span>: <span class="ident">codec</span>::<span class="ident">Encode</span>,
+    <span class="ident">T</span>: <span class="ident">codec::Encode</span>,
+    <span class="ident">E</span>: <span class="ident">codec::Encode</span>,
     <span class="ident">TPair</span>: <span class="ident">Pair</span><span class="op">&lt;</span><span class="ident">Public</span> <span class="op">=</span> <span class="ident">Account</span>, <span class="ident">Signature</span> <span class="op">=</span> <span class="ident">Signature</span><span class="op">&gt;</span>,
-    <span class="ident">Account</span>: <span class="ident">IdentifyAccount</span><span class="op">&lt;</span><span class="ident">AccountId</span> <span class="op">=</span> <span class="ident">AccountId</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Public</span> <span class="op">+</span> <span class="ident">std</span>::<span class="ident">hash</span>::<span class="ident">Hash</span>,
+    <span class="ident">Account</span>: <span class="ident">IdentifyAccount</span><span class="op">&lt;</span><span class="ident">AccountId</span> <span class="op">=</span> <span class="ident">AccountId</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Public</span> <span class="op">+</span> <span class="ident">std::hash::Hash</span>,
     <span class="ident">Signature</span>: <span class="ident">Verify</span><span class="op">&lt;</span><span class="ident">Signer</span> <span class="op">=</span> <span class="ident">Account</span><span class="op">&gt;</span>,
 {
-    <span class="kw">fn</span> <span class="ident">proof</span>(<span class="ident">technics</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>, <span class="ident">economics</span>: <span class="kw-2">&amp;</span><span class="ident">E</span>, <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">TPair</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Signature</span> {
+    <span class="kw">fn</span> <span class="ident">proof</span>(<span class="ident">technics</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>, <span class="ident">economics</span>: <span class="kw-2">&amp;</span><span class="ident">E</span>, <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">TPair</span>) -&gt; <span class="ident">Signature</span> {
         (<span class="ident">technics</span>, <span class="ident">economics</span>).<span class="ident">using_encoded</span>(<span class="op">|</span><span class="ident">params</span><span class="op">|</span> <span class="ident">sender</span>.<span class="ident">sign</span>(<span class="ident">params</span>))
     }
 }
@@ -450,16 +446,17 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">Index</span>, <span class="ident">Account</span>, <span class="ident">AccountId</span>, <span class="ident">Signature</span>, <span class="ident">TPair</span>, <span class="ident">M</span><span class="op">&gt;</span> <span class="ident">ReportProofBuilder</span><span class="op">&lt;</span><span class="ident">Index</span>, <span class="ident">M</span>, <span class="ident">TPair</span>, <span class="ident">Signature</span><span class="op">&gt;</span>
     <span class="kw">for</span> <span class="ident">ProofSigner</span><span class="op">&lt;</span><span class="ident">TPair</span><span class="op">&gt;</span>
 <span class="kw">where</span>
-    <span class="ident">Index</span>: <span class="ident">codec</span>::<span class="ident">Encode</span>,
+    <span class="ident">Index</span>: <span class="ident">codec::Encode</span>,
     <span class="ident">TPair</span>: <span class="ident">Pair</span><span class="op">&lt;</span><span class="ident">Public</span> <span class="op">=</span> <span class="ident">Account</span>, <span class="ident">Signature</span> <span class="op">=</span> <span class="ident">Signature</span><span class="op">&gt;</span>,
-    <span class="ident">Account</span>: <span class="ident">IdentifyAccount</span><span class="op">&lt;</span><span class="ident">AccountId</span> <span class="op">=</span> <span class="ident">AccountId</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Public</span> <span class="op">+</span> <span class="ident">std</span>::<span class="ident">hash</span>::<span class="ident">Hash</span>,
+    <span class="ident">Account</span>: <span class="ident">IdentifyAccount</span><span class="op">&lt;</span><span class="ident">AccountId</span> <span class="op">=</span> <span class="ident">AccountId</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Public</span> <span class="op">+</span> <span class="ident">std::hash::Hash</span>,
     <span class="ident">Signature</span>: <span class="ident">Verify</span><span class="op">&lt;</span><span class="ident">Signer</span> <span class="op">=</span> <span class="ident">Account</span><span class="op">&gt;</span>,
-    <span class="ident">M</span>: <span class="ident">codec</span>::<span class="ident">Encode</span>,
+    <span class="ident">M</span>: <span class="ident">codec::Encode</span>,
 {
-    <span class="kw">fn</span> <span class="ident">proof</span>(<span class="ident">index</span>: <span class="kw-2">&amp;</span><span class="ident">Index</span>, <span class="ident">message</span>: <span class="kw-2">&amp;</span><span class="ident">M</span>, <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">TPair</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Signature</span> {
+    <span class="kw">fn</span> <span class="ident">proof</span>(<span class="ident">index</span>: <span class="kw-2">&amp;</span><span class="ident">Index</span>, <span class="ident">message</span>: <span class="kw-2">&amp;</span><span class="ident">M</span>, <span class="ident">sender</span>: <span class="kw-2">&amp;</span><span class="ident">TPair</span>) -&gt; <span class="ident">Signature</span> {
         (<span class="ident">index</span>, <span class="ident">message</span>).<span class="ident">using_encoded</span>(<span class="op">|</span><span class="ident">params</span><span class="op">|</span> <span class="ident">sender</span>.<span class="ident">sign</span>(<span class="ident">params</span>))
     }
 }
-</pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="pallet_robonomics_liability" data-search-js="../../search-index.js"></div>
-    <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script></body></html>
+</code></pre></div>
+</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="pallet_robonomics_liability" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+    <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script>
+</body></html>

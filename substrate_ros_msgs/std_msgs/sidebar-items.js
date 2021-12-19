@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["Bool",""],["String",""],["Time",""],["UInt64",""]]});

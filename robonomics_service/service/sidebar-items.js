@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["full_base","Creates a full service from the configuration."],["new_partial",""]],"mod":[["robonomics","Robonomics chain services."]],"trait":[["RuntimeApiCollection","A set of APIs that robonomics-like runtimes must implement."]]});

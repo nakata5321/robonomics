@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["Error","Robonomics sensors errors."]],"type":[["Result","Sensor Result typedef."]]});

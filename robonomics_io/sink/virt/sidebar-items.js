@@ -1,1 +1,0 @@
-initSidebarItems({"fn":[["datalog","Submit signed data record into blockchain."],["ipfs","Upload some data into IPFS network."],["launch","Submit signed launch request into blockchain."],["pubsub","Publish data into PubSub topic."],["stdout","Print on standard console output."]]});

@@ -1,7 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `robonomics/frame/rws/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings"></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../pallet_robonomics_rws/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" class="help-button">?</button>
-                <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `frame&#x2F;rws&#x2F;src&#x2F;lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../pallet_robonomics_rws/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -480,23 +477,7 @@
 <span id="477">477</span>
 <span id="478">478</span>
 <span id="479">479</span>
-<span id="480">480</span>
-<span id="481">481</span>
-<span id="482">482</span>
-<span id="483">483</span>
-<span id="484">484</span>
-<span id="485">485</span>
-<span id="486">486</span>
-<span id="487">487</span>
-<span id="488">488</span>
-<span id="489">489</span>
-<span id="490">490</span>
-<span id="491">491</span>
-<span id="492">492</span>
-<span id="493">493</span>
-<span id="494">494</span>
-</pre><div class="example-wrap"><pre class="rust ">
-<span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+</pre><pre class="rust"><code><span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
 <span class="comment">//</span>
 <span class="comment">//  Copyright 2018-2021 Robonomics Network &lt;research@robonomics.network&gt;</span>
 <span class="comment">//</span>
@@ -513,103 +494,230 @@
 <span class="comment">//  limitations under the License.</span>
 <span class="comment">//</span>
 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
-<span class="doccomment">//! Robonomics Web Services runtime module. This can be compiled with `#[no_std]`, ready for Wasm.</span>
+<span class="doccomment">//! Robonomics Web Services runtime module.</span>
+
+<span class="comment">// This can be compiled with `#[no_std]`, ready for Wasm.</span>
 <span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>), <span class="ident">no_std</span>)]</span>
+
+<span class="kw">use</span> <span class="ident">codec</span>::{<span class="ident">Decode</span>, <span class="ident">Encode</span>, <span class="ident">HasCompact</span>};
+<span class="kw">use</span> <span class="ident">frame_support::pallet_prelude::Weight</span>;
+<span class="kw">use</span> <span class="ident">sp_runtime::RuntimeDebug</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
+<span class="kw">mod</span> <span class="ident">tests</span>;
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">pallet</span>::<span class="kw-2">*</span>;
 
-<span class="attribute">#[<span class="ident">frame_support</span>::<span class="ident">pallet</span>]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Clone</span>, <span class="ident">Encode</span>, <span class="ident">Decode</span>, <span class="ident">RuntimeDebug</span>)]</span>
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Subscription</span> {
+    <span class="doccomment">/// Lifetime subscription.</span>
+    <span class="ident">Lifetime</span> {
+        <span class="doccomment">/// How much Transactions Per Second this subscription gives (in uTPS).</span>
+        <span class="attribute">#[<span class="ident">codec</span>(<span class="ident">compact</span>)]</span>
+        <span class="ident">tps</span>: <span class="ident">u32</span>,
+    },
+    <span class="doccomment">/// Daily subscription (each daily subscription have 1 TPS).</span>
+    <span class="ident">Daily</span> {
+        <span class="doccomment">/// How long days this subscription active.</span>
+        <span class="attribute">#[<span class="ident">codec</span>(<span class="ident">compact</span>)]</span>
+        <span class="ident">days</span>: <span class="ident">u32</span>,
+    },
+}
+
+<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Subscription</span> {
+    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
+        <span class="ident">Subscription::Daily</span> { <span class="ident">days</span>: <span class="number">0</span> }
+    }
+}
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Clone</span>, <span class="ident">Default</span>, <span class="ident">Encode</span>, <span class="ident">Decode</span>, <span class="ident">RuntimeDebug</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AuctionLedger</span><span class="op">&lt;</span><span class="ident">AccountId</span>, <span class="ident">Balance</span>: <span class="ident">HasCompact</span><span class="op">&gt;</span> {
+    <span class="doccomment">/// Auction winner address.</span>
+    <span class="kw">pub</span> <span class="ident">winner</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">AccountId</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Current best price.</span>
+    <span class="attribute">#[<span class="ident">codec</span>(<span class="ident">compact</span>)]</span>
+    <span class="kw">pub</span> <span class="ident">best_price</span>: <span class="ident">Balance</span>,
+    <span class="doccomment">/// Kind of subscription for this auction</span>
+    <span class="kw">pub</span> <span class="ident">kind</span>: <span class="ident">Subscription</span>,
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">AccountId</span>, <span class="ident">Balance</span>: <span class="ident">HasCompact</span> <span class="op">+</span> <span class="ident">Default</span><span class="op">&gt;</span> <span class="ident">AuctionLedger</span><span class="op">&lt;</span><span class="ident">AccountId</span>, <span class="ident">Balance</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">kind</span>: <span class="ident">Subscription</span>) -&gt; <span class="self">Self</span> {
+        <span class="self">Self</span> {
+            <span class="ident">winner</span>: <span class="prelude-val">None</span>,
+            <span class="ident">best_price</span>: <span class="ident">Default::default</span>(),
+            <span class="ident">kind</span>,
+        }
+    }
+}
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Clone</span>, <span class="ident">Encode</span>, <span class="ident">Decode</span>, <span class="ident">RuntimeDebug</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SubscriptionLedger</span><span class="op">&lt;</span><span class="ident">Moment</span>: <span class="ident">HasCompact</span><span class="op">&gt;</span> {
+    <span class="doccomment">/// Free execution weights accumulator.</span>
+    <span class="attribute">#[<span class="ident">codec</span>(<span class="ident">compact</span>)]</span>
+    <span class="ident">free_weight</span>: <span class="ident">Weight</span>,
+    <span class="doccomment">/// Subscription creation timestamp.</span>
+    <span class="attribute">#[<span class="ident">codec</span>(<span class="ident">compact</span>)]</span>
+    <span class="ident">issue_time</span>: <span class="ident">Moment</span>,
+    <span class="doccomment">/// Moment of time for last subscription update (used for TPS estimation).</span>
+    <span class="attribute">#[<span class="ident">codec</span>(<span class="ident">compact</span>)]</span>
+    <span class="ident">last_update</span>: <span class="ident">Moment</span>,
+    <span class="doccomment">/// Kind of subscription (lifetime, daily, etc).</span>
+    <span class="ident">kind</span>: <span class="ident">Subscription</span>,
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">Moment</span>: <span class="ident">HasCompact</span> <span class="op">+</span> <span class="ident">Clone</span><span class="op">&gt;</span> <span class="ident">SubscriptionLedger</span><span class="op">&lt;</span><span class="ident">Moment</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">last_update</span>: <span class="ident">Moment</span>, <span class="ident">kind</span>: <span class="ident">Subscription</span>) -&gt; <span class="self">Self</span> {
+        <span class="self">Self</span> {
+            <span class="ident">free_weight</span>: <span class="ident">Default::default</span>(),
+            <span class="ident">issue_time</span>: <span class="ident">last_update</span>.<span class="ident">clone</span>(),
+            <span class="ident">last_update</span>,
+            <span class="ident">kind</span>,
+        }
+    }
+}
+
+<span class="attribute">#[<span class="ident">frame_support::pallet</span>]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">pallet</span> {
+    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
     <span class="kw">use</span> <span class="ident">frame_support</span>::{
         <span class="ident">pallet_prelude</span>::<span class="kw-2">*</span>,
-        <span class="ident">traits</span>::{<span class="ident">Time</span>, <span class="ident">UnfilteredDispatchable</span>},
-        <span class="ident">weights</span>::<span class="ident">GetDispatchInfo</span>,
+        <span class="ident">traits</span>::{<span class="ident">Currency</span>, <span class="ident">Imbalance</span>, <span class="ident">ReservableCurrency</span>, <span class="ident">Time</span>, <span class="ident">UnfilteredDispatchable</span>},
+        <span class="ident">weights::GetDispatchInfo</span>,
     };
-    <span class="kw">use</span> <span class="ident">frame_system</span>::<span class="ident">pallet_prelude</span>::<span class="kw-2">*</span>;
+    <span class="kw">use</span> <span class="ident">frame_system::pallet_prelude</span>::<span class="kw-2">*</span>;
+    <span class="kw">use</span> <span class="ident">pallet_robonomics_staking::OnBondHandler</span>;
     <span class="kw">use</span> <span class="ident">sp_runtime</span>::{
-        <span class="ident">traits</span>::{<span class="ident">SaturatedConversion</span>, <span class="ident">StaticLookup</span>},
-        <span class="ident">DispatchResult</span>, <span class="ident">Perbill</span>,
+        <span class="ident">traits</span>::{<span class="ident">AtLeast32Bit</span>, <span class="ident">StaticLookup</span>},
+        <span class="ident">DispatchResult</span>,
     };
-    <span class="kw">use</span> <span class="ident">sp_std</span>::<span class="ident">prelude</span>::<span class="kw-2">*</span>;
+    <span class="kw">use</span> <span class="ident">sp_std::prelude</span>::<span class="kw-2">*</span>;
 
-    <span class="doccomment">/// One call cost in quota points (points for 1 sec).</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CALL_COST</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1_000_000_000</span>;
+    <span class="kw">type</span> <span class="ident">BalanceOf</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="op">=</span> <span class="op">&lt;</span><span class="op">&lt;</span><span class="ident">T</span> <span class="kw">as</span> <span class="ident">Config</span><span class="op">&gt;</span><span class="ident">::AuctionCurrency</span> <span class="kw">as</span> <span class="ident">Currency</span><span class="op">&lt;</span>
+        <span class="op">&lt;</span><span class="ident">T</span> <span class="kw">as</span> <span class="ident">frame_system::Config</span><span class="op">&gt;</span><span class="ident">::AccountId</span>,
+    <span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::Balance</span>;
 
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">config</span>]</span>
-    <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Config</span>: <span class="ident">frame_system</span>::<span class="ident">Config</span> {
+    <span class="kw">const</span> <span class="ident">DAYS_TO_MS</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">24</span> <span class="op">*</span> <span class="number">60</span> <span class="op">*</span> <span class="number">60</span> <span class="op">*</span> <span class="number">1000</span>;
+
+    <span class="attribute">#[<span class="ident">pallet::config</span>]</span>
+    <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Config</span>: <span class="ident">frame_system::Config</span> {
         <span class="doccomment">/// Call subscription method.</span>
-        <span class="kw">type</span> <span class="ident">Call</span>: <span class="ident">Parameter</span> <span class="op">+</span> <span class="ident">UnfilteredDispatchable</span><span class="op">&lt;</span><span class="ident">Origin</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">Origin</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">GetDispatchInfo</span>;
+        <span class="kw">type</span> <span class="ident">Call</span>: <span class="ident">Parameter</span> <span class="op">+</span> <span class="ident">UnfilteredDispatchable</span><span class="op">&lt;</span><span class="ident">Origin</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::Origin</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">GetDispatchInfo</span>;
         <span class="doccomment">/// Current time source.</span>
-        <span class="kw">type</span> <span class="ident">Time</span>: <span class="ident">Time</span>;
+        <span class="kw">type</span> <span class="ident">Time</span>: <span class="ident">Time</span><span class="op">&lt;</span><span class="ident">Moment</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::Moment</span><span class="op">&gt;</span>;
+        <span class="doccomment">/// Time should be aligned to weights for TPS calculations.</span>
+        <span class="kw">type</span> <span class="ident">Moment</span>: <span class="ident">Parameter</span> <span class="op">+</span> <span class="ident">AtLeast32Bit</span> <span class="op">+</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Weight</span><span class="op">&gt;</span>;
+        <span class="doccomment">/// The auction index value.</span>
+        <span class="kw">type</span> <span class="ident">AuctionIndex</span>: <span class="ident">Parameter</span> <span class="op">+</span> <span class="ident">AtLeast32Bit</span> <span class="op">+</span> <span class="ident">Default</span>;
+        <span class="doccomment">/// The auction bid currency.</span>
+        <span class="kw">type</span> <span class="ident">AuctionCurrency</span>: <span class="ident">ReservableCurrency</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::AccountId</span><span class="op">&gt;</span>;
         <span class="doccomment">/// The overarching event type.</span>
-        <span class="kw">type</span> <span class="ident">Event</span>: <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">IsType</span><span class="op">&lt;</span><span class="op">&lt;</span><span class="self">Self</span> <span class="kw">as</span> <span class="ident">frame_system</span>::<span class="ident">Config</span><span class="op">&gt;</span>::<span class="ident">Event</span><span class="op">&gt;</span>;
-        <span class="doccomment">/// The top limit weight for signle call.</span>
-        <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">constant</span>]</span>
+        <span class="kw">type</span> <span class="ident">Event</span>: <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">IsType</span><span class="op">&lt;</span><span class="op">&lt;</span><span class="self">Self</span> <span class="kw">as</span> <span class="ident">frame_system::Config</span><span class="op">&gt;</span><span class="ident">::Event</span><span class="op">&gt;</span>;
+        <span class="doccomment">/// Reference call weight, general transaction consumes this weight.</span>
+        <span class="attribute">#[<span class="ident">pallet::constant</span>]</span>
+        <span class="kw">type</span> <span class="ident">ReferenceCallWeight</span>: <span class="ident">Get</span><span class="op">&lt;</span><span class="ident">Weight</span><span class="op">&gt;</span>;
+        <span class="doccomment">/// Subscription weight accumulator limit.</span>
+        <span class="attribute">#[<span class="ident">pallet::constant</span>]</span>
         <span class="kw">type</span> <span class="ident">WeightLimit</span>: <span class="ident">Get</span><span class="op">&lt;</span><span class="ident">Weight</span><span class="op">&gt;</span>;
-        <span class="doccomment">/// Transactions bandwidth allocated for subscription (in TPS).</span>
-        <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">constant</span>]</span>
-        <span class="kw">type</span> <span class="ident">TotalBandwidth</span>: <span class="ident">Get</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>;
-        <span class="doccomment">/// Limit for quota points accumulation.</span>
-        <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">constant</span>]</span>
-        <span class="kw">type</span> <span class="ident">PointsLimit</span>: <span class="ident">Get</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>;
+        <span class="doccomment">/// Subscription auction duration in blocks.</span>
+        <span class="attribute">#[<span class="ident">pallet::constant</span>]</span>
+        <span class="kw">type</span> <span class="ident">AuctionDuration</span>: <span class="ident">Get</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::BlockNumber</span><span class="op">&gt;</span>;
+        <span class="doccomment">/// How much token should be bonded to launch new auction.</span>
+        <span class="attribute">#[<span class="ident">pallet::constant</span>]</span>
+        <span class="kw">type</span> <span class="ident">AuctionCost</span>: <span class="ident">Get</span><span class="op">&lt;</span><span class="ident">BalanceOf</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span><span class="op">&gt;</span>;
+        <span class="doccomment">/// Minimal auction bid.</span>
+        <span class="attribute">#[<span class="ident">pallet::constant</span>]</span>
+        <span class="kw">type</span> <span class="ident">MinimalBid</span>: <span class="ident">Get</span><span class="op">&lt;</span><span class="ident">BalanceOf</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span><span class="op">&gt;</span>;
     }
 
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">error</span>]</span>
+    <span class="attribute">#[<span class="ident">pallet::error</span>]</span>
     <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Error</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-        <span class="doccomment">/// The origin account have no enough quota to process these call.</span>
-        <span class="ident">NoQuota</span>,
-        <span class="doccomment">/// The call does not meet the requirements.</span>
-        <span class="ident">BadCall</span>,
+        <span class="doccomment">/// Auction is not ongoing.</span>
+        <span class="ident">NotLiveAuction</span>,
+        <span class="doccomment">/// Auction with the index doesn&#39;t exist.</span>
+        <span class="ident">NotExistAuction</span>,
+        <span class="doccomment">/// The bid is too small.</span>
+        <span class="ident">TooSmallBid</span>,
         <span class="doccomment">/// Subscription is not registered.</span>
         <span class="ident">NoSubscription</span>,
-        <span class="doccomment">/// Subscription is not assigned to sender account.</span>
-        <span class="ident">BadSubscription</span>,
+        <span class="doccomment">/// Devices isn&#39;t assigned to this subscription.</span>
+        <span class="ident">NotLinkedDevice</span>,
+        <span class="doccomment">/// The origin account have no enough free weight to process these call: [free_weight, required_weight].</span>
+        <span class="ident">FreeWeightIsNotEnough</span>,
         <span class="doccomment">/// This call is for oracle only.</span>
         <span class="ident">OracleOnlyCall</span>,
     }
 
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">event</span>]</span>
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">generate_deposit</span>(<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">deposit_event</span>)]</span>
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">metadata</span>(<span class="ident">T</span>::<span class="ident">AccountId</span> <span class="op">=</span> <span class="string">&quot;AccountId&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">pallet::event</span>]</span>
+    <span class="attribute">#[<span class="ident">pallet::generate_deposit</span>(<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">deposit_event</span>)]</span>
+    <span class="attribute">#[<span class="ident">pallet::metadata</span>(<span class="ident">T::AuctionIndex</span> <span class="op">=</span> <span class="string">&quot;AuctionIndex&quot;</span>, <span class="ident">T::AccountId</span> <span class="op">=</span> <span class="string">&quot;AccountId&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Event</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> {
-        <span class="doccomment">/// Updated bandwidth for an account.</span>
-        <span class="ident">Bandwidth</span>(<span class="ident">T</span>::<span class="ident">AccountId</span>, <span class="ident">Perbill</span>),
-        <span class="doccomment">/// Registered RWS subscription.</span>
-        <span class="ident">Subscription</span>(<span class="ident">T</span>::<span class="ident">AccountId</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">T</span>::<span class="ident">AccountId</span><span class="op">&gt;</span>),
+        <span class="doccomment">/// New subscription auction bid received.</span>
+        <span class="ident">NewBid</span>(<span class="ident">T::AuctionIndex</span>, <span class="ident">T::AccountId</span>, <span class="ident">BalanceOf</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>),
         <span class="doccomment">/// Runtime method executed using RWS subscription.</span>
-        <span class="ident">NewCall</span>(<span class="ident">T</span>::<span class="ident">AccountId</span>, <span class="ident">DispatchResult</span>),
+        <span class="ident">NewCall</span>(<span class="ident">T::AccountId</span>, <span class="ident">DispatchResult</span>),
+        <span class="doccomment">/// Registered RWS subscription devices.</span>
+        <span class="ident">NewDevices</span>(<span class="ident">T::AccountId</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">T::AccountId</span><span class="op">&gt;</span>),
+        <span class="doccomment">/// Registered new RWS subscription.</span>
+        <span class="ident">NewSubscription</span>(<span class="ident">T::AccountId</span>, <span class="ident">Subscription</span>),
     }
 
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">hooks</span>]</span>
-    <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="ident">Hooks</span><span class="op">&lt;</span><span class="ident">BlockNumberFor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Pallet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {}
+    <span class="attribute">#[<span class="ident">pallet::storage</span>]</span>
+    <span class="attribute">#[<span class="ident">pallet::getter</span>(<span class="kw">fn</span> <span class="ident">oracle</span>)]</span>
+    <span class="doccomment">/// The `AccountId` of Ethereum RWS oracle.</span>
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">type</span> <span class="ident">Oracle</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">StorageValue</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">T::AccountId</span><span class="op">&gt;</span>;
 
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">storage</span>]</span>
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">getter</span>(<span class="kw">fn</span> <span class="ident">oracle</span>)]</span>
-    <span class="doccomment">/// The `AccountId` of Ethereum oracle.</span>
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">type</span> <span class="ident">Oracle</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">StorageValue</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">T</span>::<span class="ident">AccountId</span><span class="op">&gt;</span>;
+    <span class="attribute">#[<span class="ident">pallet::storage</span>]</span>
+    <span class="attribute">#[<span class="ident">pallet::getter</span>(<span class="kw">fn</span> <span class="ident">ledger</span>)]</span>
+    <span class="doccomment">/// RWS subscriptions storage.</span>
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">type</span> <span class="ident">Ledger</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="op">=</span>
+        <span class="ident">StorageMap</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Twox64Concat</span>, <span class="ident">T::AccountId</span>, <span class="ident">SubscriptionLedger</span><span class="op">&lt;</span><span class="op">&lt;</span><span class="ident">T::Time</span> <span class="kw">as</span> <span class="ident">Time</span><span class="op">&gt;</span><span class="ident">::Moment</span><span class="op">&gt;</span><span class="op">&gt;</span>;
 
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">storage</span>]</span>
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">getter</span>(<span class="kw">fn</span> <span class="ident">bandwidth</span>)]</span>
-    <span class="doccomment">/// Bandwidth allocation for account.</span>
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">type</span> <span class="ident">Bandwidth</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">StorageMap</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Twox64Concat</span>, <span class="ident">T</span>::<span class="ident">AccountId</span>, <span class="ident">Perbill</span><span class="op">&gt;</span>;
+    <span class="attribute">#[<span class="ident">pallet::storage</span>]</span>
+    <span class="attribute">#[<span class="ident">pallet::getter</span>(<span class="kw">fn</span> <span class="ident">devices</span>)]</span>
+    <span class="doccomment">/// Subscription linked devices.</span>
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">type</span> <span class="ident">Devices</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="op">=</span>
+        <span class="ident">StorageMap</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Twox64Concat</span>, <span class="ident">T::AccountId</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">T::AccountId</span><span class="op">&gt;</span>, <span class="ident">ValueQuery</span><span class="op">&gt;</span>;
 
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">storage</span>]</span>
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">getter</span>(<span class="kw">fn</span> <span class="ident">quota</span>)]</span>
-    <span class="doccomment">/// Quota acconting, transaction quota grown while account idle.</span>
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">type</span> <span class="ident">Quota</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="op">=</span>
-        <span class="ident">StorageMap</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Twox64Concat</span>, <span class="ident">T</span>::<span class="ident">AccountId</span>, (<span class="op">&lt;</span><span class="ident">T</span>::<span class="ident">Time</span> <span class="kw">as</span> <span class="ident">Time</span><span class="op">&gt;</span>::<span class="ident">Moment</span>, <span class="ident">u64</span>)<span class="op">&gt;</span>;
+    <span class="doccomment">/// Ongoing subscription auctions.</span>
+    <span class="attribute">#[<span class="ident">pallet::storage</span>]</span>
+    <span class="attribute">#[<span class="ident">pallet::getter</span>(<span class="kw">fn</span> <span class="ident">auction_queue</span>)]</span>
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">type</span> <span class="ident">AuctionQueue</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">StorageValue</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">T::AuctionIndex</span><span class="op">&gt;</span>, <span class="ident">ValueQuery</span><span class="op">&gt;</span>;
 
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">storage</span>]</span>
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">getter</span>(<span class="kw">fn</span> <span class="ident">share_of</span>)]</span>
-    <span class="doccomment">/// Share account quota between multiple accounts.</span>
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">type</span> <span class="ident">Subscription</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="op">=</span>
-        <span class="ident">StorageMap</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Twox64Concat</span>, <span class="ident">T</span>::<span class="ident">AccountId</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">T</span>::<span class="ident">AccountId</span><span class="op">&gt;</span><span class="op">&gt;</span>;
+    <span class="doccomment">/// Next auction index.</span>
+    <span class="attribute">#[<span class="ident">pallet::storage</span>]</span>
+    <span class="attribute">#[<span class="ident">pallet::getter</span>(<span class="kw">fn</span> <span class="ident">auction_next</span>)]</span>
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">type</span> <span class="ident">AuctionNext</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">StorageValue</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">T::AuctionIndex</span>, <span class="ident">ValueQuery</span><span class="op">&gt;</span>;
 
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">pallet</span>]</span>
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">generate_store</span>(<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">trait</span> <span class="ident">Store</span>)]</span>
+    <span class="attribute">#[<span class="ident">pallet::storage</span>]</span>
+    <span class="attribute">#[<span class="ident">pallet::getter</span>(<span class="kw">fn</span> <span class="ident">auction</span>)]</span>
+    <span class="doccomment">/// Indexed auction ledger.</span>
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">type</span> <span class="ident">Auction</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="op">=</span>
+        <span class="ident">StorageMap</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Twox64Concat</span>, <span class="ident">T::AuctionIndex</span>, <span class="ident">AuctionLedger</span><span class="op">&lt;</span><span class="ident">T::AccountId</span>, <span class="ident">BalanceOf</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>;
+
+    <span class="doccomment">/// This is intermediate value used to escape bonded value loss.</span>
+    <span class="doccomment">/// For each bond if value is not enough to issue new subscription then bonded value will</span>
+    <span class="doccomment">/// be written here.</span>
+    <span class="attribute">#[<span class="ident">pallet::storage</span>]</span>
+    <span class="attribute">#[<span class="ident">pallet::getter</span>(<span class="kw">fn</span> <span class="ident">unspend_bond_value</span>)]</span>
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">type</span> <span class="ident">UnspendBondValue</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">StorageValue</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">BalanceOf</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">ValueQuery</span><span class="op">&gt;</span>;
+
+    <span class="attribute">#[<span class="ident">pallet::pallet</span>]</span>
+    <span class="attribute">#[<span class="ident">pallet::generate_store</span>(<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">trait</span> <span class="ident">Store</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Pallet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">PhantomData</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
 
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">call</span>]</span>
+    <span class="attribute">#[<span class="ident">pallet::hooks</span>]</span>
+    <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="ident">Hooks</span><span class="op">&lt;</span><span class="ident">BlockNumberFor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Pallet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+        <span class="kw">fn</span> <span class="ident">on_initialize</span>(<span class="ident">now</span>: <span class="ident">T::BlockNumber</span>) -&gt; <span class="ident">Weight</span> {
+            <span class="kw">if</span> <span class="ident">now</span> <span class="op">%</span> <span class="ident">T::AuctionDuration::get</span>() <span class="op">==</span> <span class="number">0u32</span>.<span class="ident">into</span>() {
+                <span class="ident"><span class="self">Self</span>::rotate_auctions</span>()
+            } <span class="kw">else</span> {
+                <span class="number">1</span> <span class="kw">as</span> <span class="ident">Weight</span>
+            }
+        }
+    }
+
+    <span class="attribute">#[<span class="ident">pallet::call</span>]</span>
     <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="ident">Pallet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
         <span class="doccomment">/// Authenticates the RWS staker and dispatches a free function call.</span>
         <span class="doccomment">///</span>
@@ -619,51 +727,98 @@
         <span class="doccomment">/// - Dependes of call method.</span>
         <span class="doccomment">/// - Basically this sould be free by concept.</span>
         <span class="doccomment">/// # &lt;/weight&gt;</span>
-        <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">weight</span>((<span class="number">0</span>, <span class="ident">call</span>.<span class="ident">get_dispatch_info</span>().<span class="ident">class</span>, <span class="ident">Pays</span>::<span class="ident">No</span>))]</span>
+        <span class="attribute">#[<span class="ident">pallet::weight</span>((<span class="number">0</span>, <span class="ident">call</span>.<span class="ident">get_dispatch_info</span>().<span class="ident">class</span>, <span class="ident">Pays::No</span>))]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">call</span>(
             <span class="ident">origin</span>: <span class="ident">OriginFor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>,
-            <span class="ident">subscription</span>: <span class="op">&lt;</span><span class="ident">T</span>::<span class="ident">Lookup</span> <span class="kw">as</span> <span class="ident">StaticLookup</span><span class="op">&gt;</span>::<span class="ident">Source</span>,
-            <span class="ident">call</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="op">&lt;</span><span class="ident">T</span> <span class="kw">as</span> <span class="ident">Config</span><span class="op">&gt;</span>::<span class="ident">Call</span><span class="op">&gt;</span>,
-        ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DispatchResultWithPostInfo</span> {
+            <span class="ident">subscription_id</span>: <span class="ident">T::AccountId</span>,
+            <span class="ident">call</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="op">&lt;</span><span class="ident">T</span> <span class="kw">as</span> <span class="ident">Config</span><span class="op">&gt;</span><span class="ident">::Call</span><span class="op">&gt;</span>,
+        ) -&gt; <span class="ident">DispatchResultWithPostInfo</span> {
             <span class="comment">// This is a public call, so we ensure that the origin is some signed account.</span>
             <span class="kw">let</span> <span class="ident">sender</span> <span class="op">=</span> <span class="ident">ensure_signed</span>(<span class="ident">origin</span>)<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">subscription</span> <span class="op">=</span> <span class="ident">T</span>::<span class="ident">Lookup</span>::<span class="ident">lookup</span>(<span class="ident">subscription</span>)<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">devices</span> <span class="op">=</span>
-                <span class="op">&lt;</span><span class="ident">Subscription</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span>::<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">subscription</span>).<span class="ident">ok_or</span>(<span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>::<span class="ident">NoSubscription</span>)<span class="question-mark">?</span>;
-            <span class="macro">ensure</span><span class="macro">!</span>(
-                <span class="ident">devices</span>.<span class="ident">iter</span>().<span class="ident">any</span>(<span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">i</span> <span class="op">=</span><span class="op">=</span> <span class="ident">sender</span>),
-                <span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>::<span class="ident">BadSubscription</span>
+
+            <span class="kw">let</span> <span class="ident">devices</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::devices</span>(<span class="kw-2">&amp;</span><span class="ident">subscription_id</span>);
+            <span class="macro">ensure!</span>(
+                <span class="ident">devices</span>.<span class="ident">iter</span>().<span class="ident">any</span>(<span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">i</span> <span class="op">==</span> <span class="ident">sender</span>),
+                <span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::NotLinkedDevice</span>,
             );
-            <span class="macro">ensure</span><span class="macro">!</span>(<span class="self">Self</span>::<span class="ident">check_quota</span>(<span class="ident">subscription</span>), <span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>::<span class="ident">NoQuota</span>);
-            <span class="macro">ensure</span><span class="macro">!</span>(<span class="self">Self</span>::<span class="ident">check_call</span>(<span class="ident">call</span>.<span class="ident">clone</span>()), <span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>::<span class="ident">BadCall</span>);
+
+            <span class="kw">let</span> <span class="ident">subscription</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::update_subscription</span>(<span class="kw-2">&amp;</span><span class="ident">subscription_id</span>)<span class="question-mark">?</span>;
+            <span class="kw">let</span> <span class="ident">call_info</span> <span class="op">=</span> <span class="ident">call</span>.<span class="ident">get_dispatch_info</span>();
+            <span class="macro">ensure!</span>(
+                <span class="ident">subscription</span>.<span class="ident">free_weight</span> <span class="op">&gt;</span> <span class="ident">call_info</span>.<span class="ident">weight</span>,
+                <span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::FreeWeightIsNotEnough</span>,
+            );
 
             <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span>
-                <span class="ident">call</span>.<span class="ident">dispatch_bypass_filter</span>(<span class="ident">frame_system</span>::<span class="ident">RawOrigin</span>::<span class="ident">Signed</span>(<span class="ident">sender</span>.<span class="ident">clone</span>()).<span class="ident">into</span>());
-            <span class="self">Self</span>::<span class="ident">deposit_event</span>(<span class="ident">Event</span>::<span class="ident">NewCall</span>(<span class="ident">sender</span>, <span class="ident">res</span>.<span class="ident">map</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> ()).<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">e</span>.<span class="ident">error</span>)));
+                <span class="ident">call</span>.<span class="ident">dispatch_bypass_filter</span>(<span class="ident">frame_system::RawOrigin::Signed</span>(<span class="ident">sender</span>.<span class="ident">clone</span>()).<span class="ident">into</span>());
+
+            <span class="ident"><span class="self">Self</span>::deposit_event</span>(<span class="ident">Event::NewCall</span>(<span class="ident">sender</span>, <span class="ident">res</span>.<span class="ident">map</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> ()).<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">e</span>.<span class="ident">error</span>)));
             <span class="ident">res</span>
         }
 
-        <span class="doccomment">/// Change RWS subscription parameters.</span>
+        <span class="doccomment">/// Plasce a bid for live subscription auction.</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// # &lt;weight&gt;</span>
+        <span class="doccomment">/// - reads auction &amp; auction_queue</span>
+        <span class="doccomment">/// - writes auction bid</span>
+        <span class="doccomment">/// - AuctionCurrency reserve &amp; unreserve</span>
+        <span class="doccomment">/// # &lt;/weight&gt;</span>
+        <span class="attribute">#[<span class="ident">pallet::weight</span>(<span class="number">100_000</span>)]</span>
+        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bid</span>(
+            <span class="ident">origin</span>: <span class="ident">OriginFor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>,
+            <span class="ident">index</span>: <span class="ident">T::AuctionIndex</span>,
+            <span class="attribute">#[<span class="ident">pallet::compact</span>]</span> <span class="ident">amount</span>: <span class="ident">BalanceOf</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>,
+        ) -&gt; <span class="ident">DispatchResultWithPostInfo</span> {
+            <span class="comment">// This is a public call, so we ensure that the origin is some signed account.</span>
+            <span class="kw">let</span> <span class="ident">sender</span> <span class="op">=</span> <span class="ident">ensure_signed</span>(<span class="ident">origin</span>)<span class="question-mark">?</span>;
+
+            <span class="kw">let</span> <span class="ident">queue</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::auction_queue</span>();
+            <span class="macro">ensure!</span>(
+                <span class="ident">queue</span>.<span class="ident">iter</span>().<span class="ident">any</span>(<span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">i</span> <span class="op">==</span> <span class="ident">index</span>),
+                <span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::NotLiveAuction</span>,
+            );
+
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">auction</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::auction</span>(<span class="kw-2">&amp;</span><span class="ident">index</span>).<span class="ident">ok_or</span>(<span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::NotExistAuction</span>)<span class="question-mark">?</span>;
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">winner</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">auction</span>.<span class="ident">winner</span> {
+                <span class="macro">ensure!</span>(<span class="ident">auction</span>.<span class="ident">best_price</span> <span class="op">&lt;</span> <span class="ident">amount</span>, <span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::TooSmallBid</span>);
+
+                <span class="ident">T::AuctionCurrency::reserve</span>(<span class="kw-2">&amp;</span><span class="ident">sender</span>, <span class="ident">amount</span>.<span class="ident">clone</span>())<span class="question-mark">?</span>;
+                <span class="ident">T::AuctionCurrency::unreserve</span>(<span class="kw-2">&amp;</span><span class="ident">winner</span>, <span class="ident">auction</span>.<span class="ident">best_price</span>);
+                <span class="ident">auction</span>.<span class="ident">winner</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">sender</span>.<span class="ident">clone</span>());
+                <span class="ident">auction</span>.<span class="ident">best_price</span> <span class="op">=</span> <span class="ident">amount</span>.<span class="ident">clone</span>();
+            } <span class="kw">else</span> {
+                <span class="macro">ensure!</span>(<span class="ident">T::MinimalBid::get</span>() <span class="op">&lt;</span> <span class="ident">amount</span>, <span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::TooSmallBid</span>);
+
+                <span class="ident">T::AuctionCurrency::reserve</span>(<span class="kw-2">&amp;</span><span class="ident">sender</span>, <span class="ident">amount</span>.<span class="ident">clone</span>())<span class="question-mark">?</span>;
+                <span class="ident">auction</span>.<span class="ident">winner</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">sender</span>.<span class="ident">clone</span>());
+                <span class="ident">auction</span>.<span class="ident">best_price</span> <span class="op">=</span> <span class="ident">amount</span>.<span class="ident">clone</span>();
+            }
+            <span class="op">&lt;</span><span class="ident">Auction</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::insert</span>(<span class="kw-2">&amp;</span><span class="ident">index</span>, <span class="ident">auction</span>);
+
+            <span class="ident"><span class="self">Self</span>::deposit_event</span>(<span class="ident">Event::NewBid</span>(<span class="ident">index</span>, <span class="ident">sender</span>, <span class="ident">amount</span>));
+            <span class="prelude-val">Ok</span>(().<span class="ident">into</span>())
+        }
+
+        <span class="doccomment">/// Set RWS subscription devices.</span>
         <span class="doccomment">///</span>
         <span class="doccomment">/// # &lt;weight&gt;</span>
         <span class="doccomment">/// - O(1).</span>
         <span class="doccomment">/// - Limited storage reads.</span>
         <span class="doccomment">/// - One DB change.</span>
         <span class="doccomment">/// # &lt;/weight&gt;</span>
-        <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">weight</span>(<span class="number">10_000</span>)]</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_subscription</span>(
+        <span class="attribute">#[<span class="ident">pallet::weight</span>(<span class="number">100_000</span>)]</span>
+        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_devices</span>(
             <span class="ident">origin</span>: <span class="ident">OriginFor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>,
-            <span class="ident">subscription</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">T</span>::<span class="ident">AccountId</span><span class="op">&gt;</span>,
-        ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DispatchResultWithPostInfo</span> {
+            <span class="ident">devices</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">T::AccountId</span><span class="op">&gt;</span>,
+        ) -&gt; <span class="ident">DispatchResultWithPostInfo</span> {
             <span class="kw">let</span> <span class="ident">sender</span> <span class="op">=</span> <span class="ident">ensure_signed</span>(<span class="ident">origin</span>)<span class="question-mark">?</span>;
-            <span class="op">&lt;</span><span class="ident">Subscription</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span>::<span class="ident">insert</span>(<span class="ident">sender</span>.<span class="ident">clone</span>(), <span class="ident">subscription</span>.<span class="ident">clone</span>());
-            <span class="self">Self</span>::<span class="ident">deposit_event</span>(<span class="ident">Event</span>::<span class="ident">Subscription</span>(<span class="ident">sender</span>, <span class="ident">subscription</span>));
+            <span class="op">&lt;</span><span class="ident">Devices</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::insert</span>(<span class="ident">sender</span>.<span class="ident">clone</span>(), <span class="ident">devices</span>.<span class="ident">clone</span>());
+            <span class="ident"><span class="self">Self</span>::deposit_event</span>(<span class="ident">Event::NewDevices</span>(<span class="ident">sender</span>, <span class="ident">devices</span>));
             <span class="prelude-val">Ok</span>(().<span class="ident">into</span>())
         }
 
         <span class="doccomment">/// Change account bandwidth share rate by authority.</span>
         <span class="doccomment">///</span>
-
         <span class="doccomment">/// Change RWS oracle account.</span>
         <span class="doccomment">///</span>
         <span class="doccomment">/// The dispatch origin for this call must be _Root_.</span>
@@ -673,13 +828,13 @@
         <span class="doccomment">/// - Limited storage reads.</span>
         <span class="doccomment">/// - One DB change.</span>
         <span class="doccomment">/// # &lt;/weight&gt;</span>
-        <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">weight</span>(<span class="number">0</span>)]</span>
+        <span class="attribute">#[<span class="ident">pallet::weight</span>(<span class="number">100_000</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_oracle</span>(
             <span class="ident">origin</span>: <span class="ident">OriginFor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>,
-            <span class="ident">new</span>: <span class="op">&lt;</span><span class="ident">T</span>::<span class="ident">Lookup</span> <span class="kw">as</span> <span class="ident">StaticLookup</span><span class="op">&gt;</span>::<span class="ident">Source</span>,
-        ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DispatchResultWithPostInfo</span> {
+            <span class="ident">new</span>: <span class="op">&lt;</span><span class="ident">T::Lookup</span> <span class="kw">as</span> <span class="ident">StaticLookup</span><span class="op">&gt;</span><span class="ident">::Source</span>,
+        ) -&gt; <span class="ident">DispatchResultWithPostInfo</span> {
             <span class="ident">ensure_root</span>(<span class="ident">origin</span>)<span class="question-mark">?</span>;
-            <span class="op">&lt;</span><span class="ident">Oracle</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span>::<span class="ident">put</span>(<span class="ident">T</span>::<span class="ident">Lookup</span>::<span class="ident">lookup</span>(<span class="ident">new</span>)<span class="question-mark">?</span>);
+            <span class="op">&lt;</span><span class="ident">Oracle</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::put</span>(<span class="ident">T::Lookup::lookup</span>(<span class="ident">new</span>)<span class="question-mark">?</span>);
             <span class="prelude-val">Ok</span>(().<span class="ident">into</span>())
         }
 
@@ -692,304 +847,116 @@
         <span class="doccomment">/// - Limited storage reads.</span>
         <span class="doccomment">/// - One DB change.</span>
         <span class="doccomment">/// # &lt;/weight&gt;</span>
-        <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">weight</span>(<span class="number">0</span>)]</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_bandwidth</span>(
+        <span class="attribute">#[<span class="ident">pallet::weight</span>(<span class="number">100_000</span>)]</span>
+        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_subscription</span>(
             <span class="ident">origin</span>: <span class="ident">OriginFor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>,
-            <span class="ident">source</span>: <span class="op">&lt;</span><span class="ident">T</span>::<span class="ident">Lookup</span> <span class="kw">as</span> <span class="ident">StaticLookup</span><span class="op">&gt;</span>::<span class="ident">Source</span>,
-            <span class="ident">share</span>: <span class="ident">Perbill</span>,
-        ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DispatchResultWithPostInfo</span> {
+            <span class="ident">target</span>: <span class="ident">T::AccountId</span>,
+            <span class="ident">subscription</span>: <span class="ident">Subscription</span>,
+        ) -&gt; <span class="ident">DispatchResultWithPostInfo</span> {
             <span class="kw">let</span> <span class="ident">sender</span> <span class="op">=</span> <span class="ident">ensure_signed</span>(<span class="ident">origin</span>)<span class="question-mark">?</span>;
-            <span class="macro">ensure</span><span class="macro">!</span>(
-                <span class="prelude-val">Some</span>(<span class="ident">sender</span>) <span class="op">=</span><span class="op">=</span> <span class="op">&lt;</span><span class="ident">Oracle</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span>::<span class="ident">get</span>(),
-                <span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>::<span class="ident">OracleOnlyCall</span>
+            <span class="macro">ensure!</span>(
+                <span class="prelude-val">Some</span>(<span class="ident">sender</span>) <span class="op">==</span> <span class="op">&lt;</span><span class="ident">Oracle</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::get</span>(),
+                <span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::OracleOnlyCall</span>
             );
-            <span class="kw">let</span> <span class="ident">account</span> <span class="op">=</span> <span class="ident">T</span>::<span class="ident">Lookup</span>::<span class="ident">lookup</span>(<span class="ident">source</span>)<span class="question-mark">?</span>;
-            <span class="op">&lt;</span><span class="ident">Bandwidth</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span>::<span class="ident">insert</span>(<span class="ident">account</span>.<span class="ident">clone</span>(), <span class="ident">share</span>);
-            <span class="self">Self</span>::<span class="ident">deposit_event</span>(<span class="ident">Event</span>::<span class="ident">Bandwidth</span>(<span class="ident">account</span>, <span class="ident">share</span>));
+            <span class="op">&lt;</span><span class="ident">Ledger</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::insert</span>(
+                <span class="ident">target</span>.<span class="ident">clone</span>(),
+                <span class="ident">SubscriptionLedger::new</span>(<span class="ident">T::Time::now</span>(), <span class="ident">subscription</span>.<span class="ident">clone</span>()),
+            );
+            <span class="ident"><span class="self">Self</span>::deposit_event</span>(<span class="ident">Event::NewSubscription</span>(<span class="ident">target</span>, <span class="ident">subscription</span>));
             <span class="prelude-val">Ok</span>(().<span class="ident">into</span>())
         }
     }
 
     <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="ident">Pallet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-        <span class="doccomment">/// Check staker quota for execute call.</span>
-        <span class="kw">fn</span> <span class="ident">check_quota</span>(<span class="ident">staker</span>: <span class="ident">T</span>::<span class="ident">AccountId</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">share</span>) <span class="op">=</span> <span class="op">&lt;</span><span class="ident">Bandwidth</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span>::<span class="ident">get</span>(<span class="ident">staker</span>.<span class="ident">clone</span>()) {
-                <span class="kw">let</span> <span class="ident">now</span> <span class="op">=</span> <span class="ident">T</span>::<span class="ident">Time</span>::<span class="ident">now</span>();
+        <span class="doccomment">/// Create new auction.</span>
+        <span class="kw">fn</span> <span class="ident">new_auction</span>(<span class="ident">kind</span>: <span class="ident">Subscription</span>) {
+            <span class="comment">// get next index and increment</span>
+            <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::auction_next</span>();
+            <span class="op">&lt;</span><span class="ident">AuctionNext</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::mutate</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="number">1u8</span>.<span class="ident">into</span>());
 
-                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>((<span class="ident">last_active</span>, <span class="ident">points</span>)) <span class="op">=</span> <span class="op">&lt;</span><span class="ident">Quota</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span>::<span class="ident">get</span>(<span class="ident">staker</span>.<span class="ident">clone</span>()) {
-                    <span class="kw">let</span> <span class="ident">delta</span> <span class="op">=</span> <span class="ident">now</span> <span class="op">-</span> <span class="ident">last_active</span>;
-                    <span class="kw">let</span> <span class="ident">new_points</span> <span class="op">=</span>
-                        <span class="self">Self</span>::<span class="ident">estimate_points</span>(<span class="ident">share</span>, <span class="ident">delta</span>.<span class="ident">saturated_into</span>::<span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>(), <span class="ident">points</span>);
-                    <span class="kw">if</span> <span class="ident">new_points</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">CALL_COST</span> {
-                        <span class="comment">// Enough quota points for the call, permit to call.</span>
-                        <span class="op">&lt;</span><span class="ident">Quota</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span>::<span class="ident">insert</span>(<span class="ident">staker</span>, (<span class="ident">now</span>, <span class="ident">new_points</span> <span class="op">-</span> <span class="ident">CALL_COST</span>));
-                        <span class="kw">return</span> <span class="bool-val">true</span>;
-                    }
-                } <span class="kw">else</span> {
-                    <span class="comment">// Quota points initialized, permit to call one time.</span>
-                    <span class="op">&lt;</span><span class="ident">Quota</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span>::<span class="ident">insert</span>(<span class="ident">staker</span>, (<span class="ident">now</span>, <span class="number">0</span>));
-                    <span class="kw">return</span> <span class="bool-val">true</span>;
+            <span class="comment">// insert auction ledger</span>
+            <span class="op">&lt;</span><span class="ident">Auction</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::insert</span>(<span class="kw-2">&amp;</span><span class="ident">index</span>, <span class="ident">AuctionLedger::new</span>(<span class="ident">kind</span>));
+
+            <span class="comment">// insert auction into queue</span>
+            <span class="op">&lt;</span><span class="ident">AuctionQueue</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::mutate</span>(<span class="op">|</span><span class="ident">queue</span><span class="op">|</span> <span class="ident">queue</span>.<span class="ident">push</span>(<span class="ident">index</span>));
+        }
+
+        <span class="doccomment">/// Rotate current auctions, register subscriptions and queue next.</span>
+        <span class="kw">fn</span> <span class="ident">rotate_auctions</span>() -&gt; <span class="ident">Weight</span> {
+            <span class="kw">let</span> <span class="ident">queue</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::auction_queue</span>();
+            <span class="kw">let</span> (<span class="ident">finished</span>, <span class="ident">next</span>): (<span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span>) <span class="op">=</span> <span class="ident">queue</span>
+                .<span class="ident">iter</span>()
+                .<span class="ident">map</span>(<span class="op">|</span><span class="ident">index</span><span class="op">|</span> (<span class="ident">index</span>.<span class="ident">clone</span>(), <span class="ident"><span class="self">Self</span>::auction</span>(<span class="ident">index</span>).<span class="ident">unwrap_or_default</span>()))
+                .<span class="ident">partition</span>(<span class="op">|</span>(<span class="kw">_</span>, <span class="ident">auction</span>)<span class="op">|</span> <span class="ident">auction</span>.<span class="ident">winner</span>.<span class="ident">is_some</span>());
+
+            <span class="comment">// store auction indexes without bids to queue</span>
+            <span class="op">&lt;</span><span class="ident">AuctionQueue</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::put</span>(<span class="ident">next</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">i</span>, <span class="kw">_</span>)<span class="op">|</span> <span class="ident">i</span>).<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span><span class="op">&gt;</span>());
+
+            <span class="kw">for</span> (<span class="kw">_</span>, <span class="ident">auction</span>) <span class="kw">in</span> <span class="ident">finished</span>.<span class="ident">iter</span>() {
+                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">subscription_id</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">auction</span>.<span class="ident">winner</span> {
+                    <span class="comment">// transfer reserve to reward pool</span>
+                    <span class="kw">let</span> (<span class="ident">slash</span>, <span class="kw">_</span>) <span class="op">=</span>
+                        <span class="ident">T::AuctionCurrency::slash_reserved</span>(<span class="kw-2">&amp;</span><span class="ident">subscription_id</span>, <span class="ident">auction</span>.<span class="ident">best_price</span>);
+                    <span class="ident">T::AuctionCurrency::burn</span>(<span class="ident">slash</span>.<span class="ident">peek</span>());
+                    <span class="comment">// register subscription</span>
+                    <span class="op">&lt;</span><span class="ident">Ledger</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::insert</span>(
+                        <span class="ident">subscription_id</span>,
+                        <span class="ident">SubscriptionLedger::new</span>(<span class="ident">T::Time::now</span>(), <span class="ident">auction</span>.<span class="ident">kind</span>.<span class="ident">clone</span>()),
+                    );
                 }
             }
-            <span class="comment">// Cancel execution by default</span>
-            <span class="bool-val">false</span>
-        }
 
-        <span class="doccomment">/// Check call to be executed via RWS.</span>
-        <span class="kw">fn</span> <span class="ident">check_call</span>(<span class="ident">call</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="op">&lt;</span><span class="ident">T</span> <span class="kw">as</span> <span class="ident">Config</span><span class="op">&gt;</span>::<span class="ident">Call</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-            <span class="comment">// RWS calls weight should be lower than limit</span>
-            <span class="ident">call</span>.<span class="ident">get_dispatch_info</span>().<span class="ident">weight</span> <span class="op">&lt;</span> <span class="ident">T</span>::<span class="ident">WeightLimit</span>::<span class="ident">get</span>()
-            <span class="comment">// TODO: call internals filtering</span>
+            <span class="kw">let</span> <span class="ident">db</span> <span class="op">=</span> <span class="ident">T::DbWeight::get</span>();
+            <span class="ident">db</span>.<span class="ident">reads</span>(<span class="number">1</span> <span class="op">+</span> <span class="ident">queue</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u64</span>) <span class="op">+</span> <span class="ident">db</span>.<span class="ident">writes</span>(<span class="number">1</span> <span class="op">+</span> <span class="number">2</span> <span class="op">*</span> <span class="ident">finished</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u64</span>)
         }
+        <span class="doccomment">/// Update subscription internals and return updated ledger.</span>
+        <span class="kw">fn</span> <span class="ident">update_subscription</span>(
+            <span class="ident">subscription_id</span>: <span class="kw-2">&amp;</span><span class="ident">T::AccountId</span>,
+        ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">SubscriptionLedger</span><span class="op">&lt;</span><span class="op">&lt;</span><span class="ident">T::Time</span> <span class="kw">as</span> <span class="ident">Time</span><span class="op">&gt;</span><span class="ident">::Moment</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">subscription</span> <span class="op">=</span>
+                <span class="ident"><span class="self">Self</span>::ledger</span>(<span class="ident">subscription_id</span>).<span class="ident">ok_or</span>(<span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::NoSubscription</span>)<span class="question-mark">?</span>;
 
-        <span class="doccomment">/// Estimate quota points for given share rate, timedelta and previous value.</span>
-        <span class="kw">fn</span> <span class="ident">estimate_points</span>(<span class="ident">share</span>: <span class="ident">Perbill</span>, <span class="ident">delta</span>: <span class="ident">u64</span>, <span class="ident">points</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span> {
-            <span class="comment">// Simple filter to prevent excessive point accumulation.</span>
-            <span class="kw">if</span> <span class="ident">points</span> <span class="op">&gt;</span> <span class="ident">T</span>::<span class="ident">PointsLimit</span>::<span class="ident">get</span>() {
-                <span class="ident">points</span>
-            } <span class="kw">else</span> {
-                <span class="ident">points</span> <span class="op">+</span> <span class="ident">share</span>.<span class="ident">mul_ceil</span>(<span class="self">Self</span>::<span class="ident">total_points_ms</span>() <span class="op">*</span> <span class="ident">delta</span>)
+            <span class="kw">let</span> <span class="ident">now</span> <span class="op">=</span> <span class="ident">T::Time::now</span>();
+            <span class="kw">let</span> <span class="ident">utps</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">subscription</span>.<span class="ident">kind</span> {
+                <span class="ident">Subscription::Lifetime</span> { <span class="ident">tps</span> } =&gt; <span class="ident">tps</span>,
+                <span class="ident">Subscription::Daily</span> { <span class="ident">days</span> } =&gt; {
+                    <span class="kw">let</span> <span class="ident">duration_ms</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">T::Time</span> <span class="kw">as</span> <span class="ident">Time</span><span class="op">&gt;</span><span class="ident">::Moment::from</span>(<span class="ident">days</span> <span class="op">*</span> <span class="ident">DAYS_TO_MS</span>);
+                    <span class="comment">// If subscription active then 1 TPS else 0 TPS</span>
+                    <span class="kw">if</span> <span class="ident">now</span> <span class="op">&gt;</span> <span class="ident">subscription</span>.<span class="ident">issue_time</span>.<span class="ident">clone</span>() <span class="op">+</span> <span class="ident">duration_ms</span> {
+                        <span class="number">0u32</span>
+                    } <span class="kw">else</span> {
+                        <span class="number">1_000_000u32</span> <span class="comment">// uTPS</span>
+                    }
+                }
+            };
+
+            <span class="kw">let</span> <span class="ident">delta</span>: <span class="ident">Weight</span> <span class="op">=</span> (<span class="ident">now</span>.<span class="ident">clone</span>() <span class="op">-</span> <span class="ident">subscription</span>.<span class="ident">last_update</span>).<span class="ident">into</span>();
+            <span class="comment">// Reference call weight * TPS * secons passed from last update</span>
+            <span class="ident">subscription</span>.<span class="ident">free_weight</span> <span class="op">+</span><span class="op">=</span>
+                <span class="ident">T::ReferenceCallWeight::get</span>() <span class="op">*</span> (<span class="ident">utps</span> <span class="kw">as</span> <span class="ident">Weight</span>) <span class="op">*</span> <span class="ident">delta</span> <span class="op">/</span> <span class="number">1_000_000_000</span>;
+            <span class="ident">subscription</span>.<span class="ident">last_update</span> <span class="op">=</span> <span class="ident">now</span>;
+            <span class="op">&lt;</span><span class="ident">Ledger</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::insert</span>(<span class="ident">subscription_id</span>, <span class="ident">subscription</span>.<span class="ident">clone</span>());
+
+            <span class="prelude-val">Ok</span>(<span class="ident">subscription</span>)
+        }
+    }
+
+    <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="ident">OnBondHandler</span><span class="op">&lt;</span><span class="ident">BalanceOf</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Pallet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
+        <span class="kw">fn</span> <span class="ident">on_bond</span>(<span class="ident">value</span>: <span class="ident">BalanceOf</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) {
+            <span class="kw">let</span> <span class="ident">cost</span> <span class="op">=</span> <span class="ident">T::AuctionCost::get</span>();
+            <span class="kw">let</span> <span class="ident">bond_value</span> <span class="op">=</span> <span class="ident">value</span> <span class="op">+</span> <span class="ident"><span class="self">Self</span>::unspend_bond_value</span>();
+            <span class="op">&lt;</span><span class="ident">UnspendBondValue</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::put</span>(<span class="ident">bond_value</span> <span class="op">%</span> <span class="ident">cost</span>);
+
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">auction_num</span> <span class="op">=</span> <span class="ident">bond_value</span> <span class="op">/</span> <span class="ident">cost</span>;
+            <span class="kw">while</span> <span class="ident">auction_num</span> <span class="op">&gt;</span> <span class="number">0u32</span>.<span class="ident">into</span>() {
+                <span class="comment">// XXX: start monthly auctions by default</span>
+                <span class="ident"><span class="self">Self</span>::new_auction</span>(<span class="ident">Subscription::Daily</span> { <span class="ident">days</span>: <span class="number">30</span> });
+                <span class="ident">auction_num</span> <span class="op">-</span><span class="op">=</span> <span class="number">1u32</span>.<span class="ident">into</span>();
             }
         }
-
-        <span class="doccomment">/// Total quota points in ms</span>
-        <span class="kw">fn</span> <span class="ident">total_points_ms</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span> {
-            <span class="comment">// 1_000_000_000 points per sec</span>
-            <span class="ident">T</span>::<span class="ident">TotalBandwidth</span>::<span class="ident">get</span>() <span class="op">*</span> <span class="number">1_000_000</span>
-        }
     }
 }
-
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">crate</span>::{<span class="self">self</span> <span class="kw">as</span> <span class="ident">rws</span>, <span class="kw-2">*</span>};
-    <span class="kw">use</span> <span class="ident">frame_support</span>::{<span class="ident">assert_err</span>, <span class="ident">assert_ok</span>, <span class="ident">parameter_types</span>, <span class="ident">weights</span>::<span class="ident">Weight</span>};
-    <span class="kw">use</span> <span class="ident">pallet_robonomics_datalog</span> <span class="kw">as</span> <span class="ident">datalog</span>;
-    <span class="kw">use</span> <span class="ident">sp_core</span>::<span class="ident">H256</span>;
-    <span class="kw">use</span> <span class="ident">sp_runtime</span>::{<span class="ident">testing</span>::<span class="ident">Header</span>, <span class="ident">traits</span>::<span class="ident">IdentityLookup</span>, <span class="ident">DispatchError</span>, <span class="ident">Perbill</span>};
-
-    <span class="kw">type</span> <span class="ident">UncheckedExtrinsic</span> <span class="op">=</span> <span class="ident">frame_system</span>::<span class="ident">mocking</span>::<span class="ident">MockUncheckedExtrinsic</span><span class="op">&lt;</span><span class="ident">Runtime</span><span class="op">&gt;</span>;
-    <span class="kw">type</span> <span class="ident">Block</span> <span class="op">=</span> <span class="ident">frame_system</span>::<span class="ident">mocking</span>::<span class="ident">MockBlock</span><span class="op">&lt;</span><span class="ident">Runtime</span><span class="op">&gt;</span>;
-
-    <span class="ident">frame_support</span>::<span class="macro">construct_runtime</span><span class="macro">!</span>(
-        <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Runtime</span> <span class="kw">where</span>
-            <span class="ident">Block</span> <span class="op">=</span> <span class="ident">Block</span>,
-            <span class="ident">NodeBlock</span> <span class="op">=</span> <span class="ident">Block</span>,
-            <span class="ident">UncheckedExtrinsic</span> <span class="op">=</span> <span class="ident">UncheckedExtrinsic</span>,
-        {
-            <span class="ident">System</span>: <span class="ident">frame_system</span>::{<span class="ident">Pallet</span>, <span class="ident">Call</span>, <span class="ident">Config</span>, <span class="ident">Storage</span>, <span class="ident">Event</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>},
-            <span class="ident">Timestamp</span>: <span class="ident">pallet_timestamp</span>::{<span class="ident">Pallet</span>, <span class="ident">Storage</span>},
-            <span class="ident">Datalog</span>: <span class="ident">datalog</span>::{<span class="ident">Pallet</span>, <span class="ident">Call</span>, <span class="ident">Storage</span>, <span class="ident">Event</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>},
-            <span class="ident">RWS</span>: <span class="ident">rws</span>::{<span class="ident">Pallet</span>, <span class="ident">Call</span>, <span class="ident">Storage</span>, <span class="ident">Event</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>},
-        }
-    );
-
-    <span class="macro">parameter_types</span><span class="macro">!</span> {
-        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BlockHashCount</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">250</span>;
-    }
-
-    <span class="kw">impl</span> <span class="ident">frame_system</span>::<span class="ident">Config</span> <span class="kw">for</span> <span class="ident">Runtime</span> {
-        <span class="kw">type</span> <span class="ident">Origin</span> <span class="op">=</span> <span class="ident">Origin</span>;
-        <span class="kw">type</span> <span class="ident">Index</span> <span class="op">=</span> <span class="ident">u64</span>;
-        <span class="kw">type</span> <span class="ident">BlockNumber</span> <span class="op">=</span> <span class="ident">u64</span>;
-        <span class="kw">type</span> <span class="ident">Call</span> <span class="op">=</span> <span class="ident">Call</span>;
-        <span class="kw">type</span> <span class="ident">Hash</span> <span class="op">=</span> <span class="ident">H256</span>;
-        <span class="kw">type</span> <span class="ident">Hashing</span> <span class="op">=</span> <span class="ident">sp_runtime</span>::<span class="ident">traits</span>::<span class="ident">BlakeTwo256</span>;
-        <span class="kw">type</span> <span class="ident">AccountId</span> <span class="op">=</span> <span class="ident">u64</span>;
-        <span class="kw">type</span> <span class="ident">Lookup</span> <span class="op">=</span> <span class="ident">IdentityLookup</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">AccountId</span><span class="op">&gt;</span>;
-        <span class="kw">type</span> <span class="ident">Header</span> <span class="op">=</span> <span class="ident">Header</span>;
-        <span class="kw">type</span> <span class="ident">Event</span> <span class="op">=</span> <span class="ident">Event</span>;
-        <span class="kw">type</span> <span class="ident">BlockHashCount</span> <span class="op">=</span> <span class="ident">BlockHashCount</span>;
-        <span class="kw">type</span> <span class="ident">Version</span> <span class="op">=</span> ();
-        <span class="kw">type</span> <span class="ident">AccountData</span> <span class="op">=</span> ();
-        <span class="kw">type</span> <span class="ident">OnNewAccount</span> <span class="op">=</span> ();
-        <span class="kw">type</span> <span class="ident">OnKilledAccount</span> <span class="op">=</span> ();
-        <span class="kw">type</span> <span class="ident">DbWeight</span> <span class="op">=</span> ();
-        <span class="kw">type</span> <span class="ident">BaseCallFilter</span> <span class="op">=</span> ();
-        <span class="kw">type</span> <span class="ident">SystemWeightInfo</span> <span class="op">=</span> ();
-        <span class="kw">type</span> <span class="ident">BlockWeights</span> <span class="op">=</span> ();
-        <span class="kw">type</span> <span class="ident">BlockLength</span> <span class="op">=</span> ();
-        <span class="kw">type</span> <span class="ident">SS58Prefix</span> <span class="op">=</span> ();
-        <span class="kw">type</span> <span class="ident">PalletInfo</span> <span class="op">=</span> <span class="ident">PalletInfo</span>;
-        <span class="kw">type</span> <span class="ident">OnSetCode</span> <span class="op">=</span> ();
-    }
-
-    <span class="macro">parameter_types</span><span class="macro">!</span> {
-        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MinimumPeriod</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">5</span>;
-    }
-
-    <span class="kw">impl</span> <span class="ident">pallet_timestamp</span>::<span class="ident">Config</span> <span class="kw">for</span> <span class="ident">Runtime</span> {
-        <span class="kw">type</span> <span class="ident">Moment</span> <span class="op">=</span> <span class="ident">u64</span>;
-        <span class="kw">type</span> <span class="ident">OnTimestampSet</span> <span class="op">=</span> ();
-        <span class="kw">type</span> <span class="ident">MinimumPeriod</span> <span class="op">=</span> ();
-        <span class="kw">type</span> <span class="ident">WeightInfo</span> <span class="op">=</span> ();
-    }
-    <span class="macro">parameter_types</span><span class="macro">!</span> {
-        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">WindowSize</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">128</span>;
-        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MaximumMessageSize</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">512</span>;
-    }
-
-    <span class="kw">impl</span> <span class="ident">datalog</span>::<span class="ident">Config</span> <span class="kw">for</span> <span class="ident">Runtime</span> {
-        <span class="kw">type</span> <span class="ident">Record</span> <span class="op">=</span> <span class="ident">bool</span>;
-        <span class="kw">type</span> <span class="ident">Event</span> <span class="op">=</span> <span class="ident">Event</span>;
-        <span class="kw">type</span> <span class="ident">Time</span> <span class="op">=</span> <span class="ident">Timestamp</span>;
-        <span class="kw">type</span> <span class="ident">WindowSize</span> <span class="op">=</span> <span class="ident">WindowSize</span>;
-        <span class="kw">type</span> <span class="ident">MaximumMessageSize</span> <span class="op">=</span> <span class="ident">MaximumMessageSize</span>;
-        <span class="kw">type</span> <span class="ident">WeightInfo</span> <span class="op">=</span> ();
-    }
-
-    <span class="macro">parameter_types</span><span class="macro">!</span> {
-        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">WeightLimit</span>: <span class="ident">Weight</span> <span class="op">=</span> <span class="number">1_000_000_000_000</span>;
-        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TotalBandwidth</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">100</span>;
-        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PointsLimit</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1_000_000_000_000_000</span>;
-    }
-
-    <span class="kw">impl</span> <span class="ident">Config</span> <span class="kw">for</span> <span class="ident">Runtime</span> {
-        <span class="kw">type</span> <span class="ident">TotalBandwidth</span> <span class="op">=</span> <span class="ident">TotalBandwidth</span>;
-        <span class="kw">type</span> <span class="ident">WeightLimit</span> <span class="op">=</span> <span class="ident">WeightLimit</span>;
-        <span class="kw">type</span> <span class="ident">PointsLimit</span> <span class="op">=</span> <span class="ident">PointsLimit</span>;
-        <span class="kw">type</span> <span class="ident">Time</span> <span class="op">=</span> <span class="ident">Timestamp</span>;
-        <span class="kw">type</span> <span class="ident">Event</span> <span class="op">=</span> <span class="ident">Event</span>;
-        <span class="kw">type</span> <span class="ident">Call</span> <span class="op">=</span> <span class="ident">Call</span>;
-    }
-
-    <span class="kw">fn</span> <span class="ident">new_test_ext</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">sp_io</span>::<span class="ident">TestExternalities</span> {
-        <span class="kw">let</span> <span class="ident">storage</span> <span class="op">=</span> <span class="ident">frame_system</span>::<span class="ident">GenesisConfig</span>::<span class="ident">default</span>()
-            .<span class="ident">build_storage</span>::<span class="op">&lt;</span><span class="ident">Runtime</span><span class="op">&gt;</span>()
-            .<span class="ident">unwrap</span>();
-        <span class="ident">storage</span>.<span class="ident">into</span>()
-    }
-
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_set_oracle</span>() {
-        <span class="kw">let</span> <span class="ident">oracle</span> <span class="op">=</span> <span class="number">1</span>;
-        <span class="ident">new_test_ext</span>().<span class="ident">execute_with</span>(<span class="op">|</span><span class="op">|</span> {
-            <span class="macro">assert_err</span><span class="macro">!</span>(
-                <span class="ident">RWS</span>::<span class="ident">set_oracle</span>(<span class="ident">Origin</span>::<span class="ident">none</span>(), <span class="ident">oracle</span>),
-                <span class="ident">DispatchError</span>::<span class="ident">BadOrigin</span>
-            );
-
-            <span class="macro">assert_err</span><span class="macro">!</span>(
-                <span class="ident">RWS</span>::<span class="ident">set_oracle</span>(<span class="ident">Origin</span>::<span class="ident">signed</span>(<span class="ident">oracle</span>), <span class="ident">oracle</span>),
-                <span class="ident">DispatchError</span>::<span class="ident">BadOrigin</span>
-            );
-
-            <span class="macro">assert_ok</span><span class="macro">!</span>(<span class="ident">RWS</span>::<span class="ident">set_oracle</span>(<span class="ident">Origin</span>::<span class="ident">root</span>(), <span class="ident">oracle</span>),);
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">RWS</span>::<span class="ident">oracle</span>(), <span class="prelude-val">Some</span>(<span class="ident">oracle</span>));
-        })
-    }
-
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_set_bandwidth</span>() {
-        <span class="kw">let</span> <span class="ident">oracle</span> <span class="op">=</span> <span class="number">1</span>;
-        <span class="kw">let</span> <span class="ident">alice</span> <span class="op">=</span> <span class="number">2</span>;
-        <span class="ident">new_test_ext</span>().<span class="ident">execute_with</span>(<span class="op">|</span><span class="op">|</span> {
-            <span class="macro">assert_ok</span><span class="macro">!</span>(<span class="ident">RWS</span>::<span class="ident">set_oracle</span>(<span class="ident">Origin</span>::<span class="ident">root</span>(), <span class="ident">oracle</span>));
-
-            <span class="macro">assert_err</span><span class="macro">!</span>(
-                <span class="ident">RWS</span>::<span class="ident">set_bandwidth</span>(<span class="ident">Origin</span>::<span class="ident">none</span>(), <span class="ident">alice</span>, <span class="ident">Default</span>::<span class="ident">default</span>()),
-                <span class="ident">DispatchError</span>::<span class="ident">BadOrigin</span>,
-            );
-
-            <span class="macro">assert_ok</span><span class="macro">!</span>(<span class="ident">RWS</span>::<span class="ident">set_bandwidth</span>(
-                <span class="ident">Origin</span>::<span class="ident">signed</span>(<span class="ident">oracle</span>),
-                <span class="ident">alice</span>,
-                <span class="ident">Perbill</span>::<span class="ident">from_percent</span>(<span class="number">1</span>),
-            ));
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">RWS</span>::<span class="ident">bandwidth</span>(<span class="ident">alice</span>), <span class="prelude-val">Some</span>(<span class="ident">Perbill</span>::<span class="ident">from_percent</span>(<span class="number">1</span>)));
-        })
-    }
-
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_subscription</span>() {
-        <span class="kw">let</span> <span class="ident">oracle</span> <span class="op">=</span> <span class="number">1</span>;
-        <span class="kw">let</span> <span class="ident">alice</span> <span class="op">=</span> <span class="number">2</span>;
-        <span class="kw">let</span> <span class="ident">bob</span> <span class="op">=</span> <span class="number">3</span>;
-
-        <span class="ident">new_test_ext</span>().<span class="ident">execute_with</span>(<span class="op">|</span><span class="op">|</span> {
-            <span class="ident">Timestamp</span>::<span class="ident">set_timestamp</span>(<span class="number">1600438152000</span>);
-
-            <span class="macro">assert_ok</span><span class="macro">!</span>(<span class="ident">RWS</span>::<span class="ident">set_oracle</span>(<span class="ident">Origin</span>::<span class="ident">root</span>(), <span class="ident">oracle</span>));
-
-            <span class="kw">let</span> <span class="ident">call</span> <span class="op">=</span> <span class="ident">Call</span>::<span class="ident">from</span>(<span class="ident">datalog</span>::<span class="ident">Call</span>::<span class="ident">record</span>(<span class="bool-val">true</span>));
-
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">RWS</span>::<span class="ident">quota</span>(<span class="ident">alice</span>), <span class="prelude-val">None</span>);
-            <span class="macro">assert_err</span><span class="macro">!</span>(
-                <span class="ident">RWS</span>::<span class="ident">call</span>(<span class="ident">Origin</span>::<span class="ident">signed</span>(<span class="ident">bob</span>), <span class="ident">alice</span>, <span class="ident">call</span>.<span class="ident">clone</span>().<span class="ident">into</span>()),
-                <span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">Runtime</span><span class="op">&gt;</span>::<span class="ident">NoSubscription</span>,
-            );
-
-            <span class="macro">assert_ok</span><span class="macro">!</span>(<span class="ident">RWS</span>::<span class="ident">set_subscription</span>(<span class="ident">Origin</span>::<span class="ident">signed</span>(<span class="ident">alice</span>), <span class="macro">vec</span><span class="macro">!</span>[<span class="ident">bob</span>]));
-            <span class="macro">assert_err</span><span class="macro">!</span>(
-                <span class="ident">RWS</span>::<span class="ident">call</span>(<span class="ident">Origin</span>::<span class="ident">signed</span>(<span class="ident">bob</span>), <span class="ident">alice</span>, <span class="ident">call</span>.<span class="ident">clone</span>().<span class="ident">into</span>()),
-                <span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">Runtime</span><span class="op">&gt;</span>::<span class="ident">NoQuota</span>,
-            );
-
-            <span class="macro">assert_ok</span><span class="macro">!</span>(<span class="ident">RWS</span>::<span class="ident">set_bandwidth</span>(
-                <span class="ident">Origin</span>::<span class="ident">signed</span>(<span class="ident">oracle</span>),
-                <span class="ident">alice</span>,
-                <span class="ident">Perbill</span>::<span class="ident">from_percent</span>(<span class="number">1</span>),
-            ),);
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">RWS</span>::<span class="ident">quota</span>(<span class="ident">alice</span>), <span class="prelude-val">None</span>);
-            <span class="macro">assert_ok</span><span class="macro">!</span>(<span class="ident">RWS</span>::<span class="ident">call</span>(<span class="ident">Origin</span>::<span class="ident">signed</span>(<span class="ident">bob</span>), <span class="ident">alice</span>, <span class="ident">call</span>.<span class="ident">clone</span>().<span class="ident">into</span>()));
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">RWS</span>::<span class="ident">quota</span>(<span class="ident">alice</span>), <span class="prelude-val">Some</span>((<span class="number">1600438152000</span>, <span class="number">0</span>)));
-        })
-    }
-
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_transaction</span>() {
-        <span class="kw">let</span> <span class="ident">oracle</span> <span class="op">=</span> <span class="number">1</span>;
-        <span class="kw">let</span> <span class="ident">alice</span> <span class="op">=</span> <span class="number">2</span>;
-
-        <span class="ident">new_test_ext</span>().<span class="ident">execute_with</span>(<span class="op">|</span><span class="op">|</span> {
-            <span class="ident">Timestamp</span>::<span class="ident">set_timestamp</span>(<span class="number">1600438152000</span>);
-
-            <span class="macro">assert_ok</span><span class="macro">!</span>(<span class="ident">RWS</span>::<span class="ident">set_oracle</span>(<span class="ident">Origin</span>::<span class="ident">root</span>(), <span class="ident">oracle</span>));
-
-            <span class="kw">let</span> <span class="ident">call</span> <span class="op">=</span> <span class="ident">Call</span>::<span class="ident">from</span>(<span class="ident">datalog</span>::<span class="ident">Call</span>::<span class="ident">record</span>(<span class="bool-val">true</span>));
-
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">RWS</span>::<span class="ident">quota</span>(<span class="ident">alice</span>), <span class="prelude-val">None</span>);
-            <span class="macro">assert_err</span><span class="macro">!</span>(
-                <span class="ident">RWS</span>::<span class="ident">call</span>(<span class="ident">Origin</span>::<span class="ident">signed</span>(<span class="ident">alice</span>), <span class="ident">alice</span>, <span class="ident">call</span>.<span class="ident">clone</span>().<span class="ident">into</span>()),
-                <span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">Runtime</span><span class="op">&gt;</span>::<span class="ident">NoSubscription</span>,
-            );
-
-            <span class="macro">assert_ok</span><span class="macro">!</span>(<span class="ident">RWS</span>::<span class="ident">set_subscription</span>(<span class="ident">Origin</span>::<span class="ident">signed</span>(<span class="ident">alice</span>), <span class="macro">vec</span><span class="macro">!</span>[<span class="ident">alice</span>]));
-            <span class="macro">assert_err</span><span class="macro">!</span>(
-                <span class="ident">RWS</span>::<span class="ident">call</span>(<span class="ident">Origin</span>::<span class="ident">signed</span>(<span class="ident">alice</span>), <span class="ident">alice</span>, <span class="ident">call</span>.<span class="ident">clone</span>().<span class="ident">into</span>()),
-                <span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">Runtime</span><span class="op">&gt;</span>::<span class="ident">NoQuota</span>,
-            );
-
-            <span class="macro">assert_ok</span><span class="macro">!</span>(<span class="ident">RWS</span>::<span class="ident">set_bandwidth</span>(
-                <span class="ident">Origin</span>::<span class="ident">signed</span>(<span class="ident">oracle</span>),
-                <span class="ident">alice</span>,
-                <span class="ident">Perbill</span>::<span class="ident">from_percent</span>(<span class="number">1</span>),
-            ),);
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">RWS</span>::<span class="ident">quota</span>(<span class="ident">alice</span>), <span class="prelude-val">None</span>);
-            <span class="macro">assert_ok</span><span class="macro">!</span>(<span class="ident">RWS</span>::<span class="ident">call</span>(<span class="ident">Origin</span>::<span class="ident">signed</span>(<span class="ident">alice</span>), <span class="ident">alice</span>, <span class="ident">call</span>.<span class="ident">clone</span>().<span class="ident">into</span>()));
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">RWS</span>::<span class="ident">quota</span>(<span class="ident">alice</span>), <span class="prelude-val">Some</span>((<span class="number">1600438152000</span>, <span class="number">0</span>)));
-
-            <span class="ident">Timestamp</span>::<span class="ident">set_timestamp</span>(<span class="number">1600438156000</span>);
-
-            <span class="macro">assert_ok</span><span class="macro">!</span>(<span class="ident">RWS</span>::<span class="ident">call</span>(<span class="ident">Origin</span>::<span class="ident">signed</span>(<span class="ident">alice</span>), <span class="ident">alice</span>, <span class="ident">call</span>.<span class="ident">clone</span>().<span class="ident">into</span>()));
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">RWS</span>::<span class="ident">quota</span>(<span class="ident">alice</span>), <span class="prelude-val">Some</span>((<span class="number">1600438156000</span>, <span class="number">3</span> <span class="op">*</span> <span class="ident">CALL_COST</span>)));
-
-            <span class="macro">assert_ok</span><span class="macro">!</span>(<span class="ident">RWS</span>::<span class="ident">call</span>(<span class="ident">Origin</span>::<span class="ident">signed</span>(<span class="ident">alice</span>), <span class="ident">alice</span>, <span class="ident">call</span>.<span class="ident">clone</span>().<span class="ident">into</span>()));
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">RWS</span>::<span class="ident">quota</span>(<span class="ident">alice</span>), <span class="prelude-val">Some</span>((<span class="number">1600438156000</span>, <span class="number">2</span> <span class="op">*</span> <span class="ident">CALL_COST</span>)));
-
-            <span class="macro">assert_ok</span><span class="macro">!</span>(<span class="ident">RWS</span>::<span class="ident">call</span>(<span class="ident">Origin</span>::<span class="ident">signed</span>(<span class="ident">alice</span>), <span class="ident">alice</span>, <span class="ident">call</span>.<span class="ident">clone</span>().<span class="ident">into</span>()));
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">RWS</span>::<span class="ident">quota</span>(<span class="ident">alice</span>), <span class="prelude-val">Some</span>((<span class="number">1600438156000</span>, <span class="number">1</span> <span class="op">*</span> <span class="ident">CALL_COST</span>)));
-
-            <span class="macro">assert_ok</span><span class="macro">!</span>(<span class="ident">RWS</span>::<span class="ident">call</span>(<span class="ident">Origin</span>::<span class="ident">signed</span>(<span class="ident">alice</span>), <span class="ident">alice</span>, <span class="ident">call</span>.<span class="ident">clone</span>().<span class="ident">into</span>()));
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">RWS</span>::<span class="ident">quota</span>(<span class="ident">alice</span>), <span class="prelude-val">Some</span>((<span class="number">1600438156000</span>, <span class="number">0</span>)));
-
-            <span class="macro">assert_err</span><span class="macro">!</span>(
-                <span class="ident">RWS</span>::<span class="ident">call</span>(<span class="ident">Origin</span>::<span class="ident">signed</span>(<span class="ident">alice</span>), <span class="ident">alice</span>, <span class="ident">call</span>.<span class="ident">into</span>()),
-                <span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">Runtime</span><span class="op">&gt;</span>::<span class="ident">NoQuota</span>,
-            );
-        })
-    }
-}
-</pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="pallet_robonomics_rws" data-search-js="../../search-index.js"></div>
-    <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script></body></html>
+</code></pre></div>
+</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="pallet_robonomics_rws" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+    <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script>
+</body></html>

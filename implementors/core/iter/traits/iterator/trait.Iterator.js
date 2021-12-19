@@ -1,3 +1,0 @@
-(function() {var implementors = {};
-implementors["robonomics_protocol"] = [{"text":"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/iter/traits/iterator/trait.Iterator.html\" title=\"trait core::iter::traits::iterator::Iterator\">Iterator</a> for <a class=\"struct\" href=\"robonomics_protocol/subxt/pallet_datalog/struct.RingBufferIterator.html\" title=\"struct robonomics_protocol::subxt::pallet_datalog::RingBufferIterator\">RingBufferIterator</a>&lt;'_&gt;","synthetic":false,"types":["robonomics_protocol::subxt::pallet_datalog::RingBufferIterator"]}];
-if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

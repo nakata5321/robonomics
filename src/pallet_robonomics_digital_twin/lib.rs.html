@@ -1,7 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `robonomics/frame/digital-twin/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings"></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../pallet_robonomics_digital_twin/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" class="help-button">?</button>
-                <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `frame&#x2F;digital-twin&#x2F;src&#x2F;lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../pallet_robonomics_digital_twin/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -219,8 +216,7 @@
 <span id="216">216</span>
 <span id="217">217</span>
 <span id="218">218</span>
-</pre><div class="example-wrap"><pre class="rust ">
-<span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+</pre><pre class="rust"><code><span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
 <span class="comment">//</span>
 <span class="comment">//  Copyright 2018-2021 Robonomics Network &lt;research@robonomics.network&gt;</span>
 <span class="comment">//</span>
@@ -242,87 +238,87 @@
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">pallet</span>::<span class="kw-2">*</span>;
 
-<span class="attribute">#[<span class="ident">frame_support</span>::<span class="ident">pallet</span>]</span>
+<span class="attribute">#[<span class="ident">frame_support::pallet</span>]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">pallet</span> {
-    <span class="kw">use</span> <span class="ident">frame_support</span>::<span class="ident">pallet_prelude</span>::<span class="kw-2">*</span>;
-    <span class="kw">use</span> <span class="ident">frame_system</span>::<span class="ident">pallet_prelude</span>::<span class="kw-2">*</span>;
-    <span class="kw">use</span> <span class="ident">sp_core</span>::<span class="ident">H256</span>;
-    <span class="kw">use</span> <span class="ident">sp_std</span>::<span class="ident">collections</span>::<span class="ident">btree_map</span>::<span class="ident">BTreeMap</span>;
+    <span class="kw">use</span> <span class="ident">frame_support::pallet_prelude</span>::<span class="kw-2">*</span>;
+    <span class="kw">use</span> <span class="ident">frame_system::pallet_prelude</span>::<span class="kw-2">*</span>;
+    <span class="kw">use</span> <span class="ident">sp_core::H256</span>;
+    <span class="kw">use</span> <span class="ident">sp_std::collections::btree_map::BTreeMap</span>;
 
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">config</span>]</span>
-    <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Config</span>: <span class="ident">frame_system</span>::<span class="ident">Config</span> {
+    <span class="attribute">#[<span class="ident">pallet::config</span>]</span>
+    <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Config</span>: <span class="ident">frame_system::Config</span> {
         <span class="doccomment">/// The overarching event type.</span>
-        <span class="kw">type</span> <span class="ident">Event</span>: <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">IsType</span><span class="op">&lt;</span><span class="op">&lt;</span><span class="self">Self</span> <span class="kw">as</span> <span class="ident">frame_system</span>::<span class="ident">Config</span><span class="op">&gt;</span>::<span class="ident">Event</span><span class="op">&gt;</span>;
+        <span class="kw">type</span> <span class="ident">Event</span>: <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">IsType</span><span class="op">&lt;</span><span class="op">&lt;</span><span class="self">Self</span> <span class="kw">as</span> <span class="ident">frame_system::Config</span><span class="op">&gt;</span><span class="ident">::Event</span><span class="op">&gt;</span>;
     }
 
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">event</span>]</span>
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">generate_deposit</span>(<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">deposit_event</span>)]</span>
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">metadata</span>(<span class="ident">T</span>::<span class="ident">AccountId</span> <span class="op">=</span> <span class="string">&quot;AccountId&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">pallet::event</span>]</span>
+    <span class="attribute">#[<span class="ident">pallet::generate_deposit</span>(<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">deposit_event</span>)]</span>
+    <span class="attribute">#[<span class="ident">pallet::metadata</span>(<span class="ident">T::AccountId</span> <span class="op">=</span> <span class="string">&quot;AccountId&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Event</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> {
         <span class="doccomment">/// New digital twin was registered: [sender, id].</span>
-        <span class="ident">NewDigitalTwin</span>(<span class="ident">T</span>::<span class="ident">AccountId</span>, <span class="ident">u32</span>),
+        <span class="ident">NewDigitalTwin</span>(<span class="ident">T::AccountId</span>, <span class="ident">u32</span>),
         <span class="doccomment">/// Digital twin topic was changed: [sender, id, topic, source]</span>
-        <span class="ident">TopicChanged</span>(<span class="ident">T</span>::<span class="ident">AccountId</span>, <span class="ident">u32</span>, <span class="ident">H256</span>, <span class="ident">T</span>::<span class="ident">AccountId</span>),
+        <span class="ident">TopicChanged</span>(<span class="ident">T::AccountId</span>, <span class="ident">u32</span>, <span class="ident">H256</span>, <span class="ident">T::AccountId</span>),
     }
 
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">hooks</span>]</span>
+    <span class="attribute">#[<span class="ident">pallet::hooks</span>]</span>
     <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="ident">Hooks</span><span class="op">&lt;</span><span class="ident">BlockNumberFor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Pallet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {}
 
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">storage</span>]</span>
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">getter</span>(<span class="kw">fn</span> <span class="ident">total</span>)]</span>
+    <span class="attribute">#[<span class="ident">pallet::storage</span>]</span>
+    <span class="attribute">#[<span class="ident">pallet::getter</span>(<span class="kw">fn</span> <span class="ident">total</span>)]</span>
     <span class="doccomment">/// Total count of registered digital twins.</span>
     <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">type</span> <span class="ident">Total</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">StorageValue</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>;
 
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">storage</span>]</span>
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">getter</span>(<span class="kw">fn</span> <span class="ident">owner</span>)]</span>
+    <span class="attribute">#[<span class="ident">pallet::storage</span>]</span>
+    <span class="attribute">#[<span class="ident">pallet::getter</span>(<span class="kw">fn</span> <span class="ident">owner</span>)]</span>
     <span class="doccomment">/// Get owner of digital twin with given id.</span>
     <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">type</span> <span class="ident">Owner</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="op">=</span>
-        <span class="ident">StorageMap</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Twox64Concat</span>, <span class="ident">u32</span>, <span class="op">&lt;</span><span class="ident">T</span> <span class="kw">as</span> <span class="ident">frame_system</span>::<span class="ident">Config</span><span class="op">&gt;</span>::<span class="ident">AccountId</span><span class="op">&gt;</span>;
+        <span class="ident">StorageMap</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Twox64Concat</span>, <span class="ident">u32</span>, <span class="op">&lt;</span><span class="ident">T</span> <span class="kw">as</span> <span class="ident">frame_system::Config</span><span class="op">&gt;</span><span class="ident">::AccountId</span><span class="op">&gt;</span>;
 
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">storage</span>]</span>
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">getter</span>(<span class="kw">fn</span> <span class="ident">digital_twin</span>)]</span>
+    <span class="attribute">#[<span class="ident">pallet::storage</span>]</span>
+    <span class="attribute">#[<span class="ident">pallet::getter</span>(<span class="kw">fn</span> <span class="ident">digital_twin</span>)]</span>
     <span class="doccomment">/// Get internal structure of difital twin in format: topic hash -&gt; source account.</span>
     <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">type</span> <span class="ident">DigitalTwin</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="op">=</span>
-        <span class="ident">StorageMap</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Twox64Concat</span>, <span class="ident">u32</span>, <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">H256</span>, <span class="op">&lt;</span><span class="ident">T</span> <span class="kw">as</span> <span class="ident">frame_system</span>::<span class="ident">Config</span><span class="op">&gt;</span>::<span class="ident">AccountId</span><span class="op">&gt;</span><span class="op">&gt;</span>;
+        <span class="ident">StorageMap</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Twox64Concat</span>, <span class="ident">u32</span>, <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">H256</span>, <span class="op">&lt;</span><span class="ident">T</span> <span class="kw">as</span> <span class="ident">frame_system::Config</span><span class="op">&gt;</span><span class="ident">::AccountId</span><span class="op">&gt;</span><span class="op">&gt;</span>;
 
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">pallet</span>]</span>
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">generate_store</span>(<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">trait</span> <span class="ident">Store</span>)]</span>
+    <span class="attribute">#[<span class="ident">pallet::pallet</span>]</span>
+    <span class="attribute">#[<span class="ident">pallet::generate_store</span>(<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">trait</span> <span class="ident">Store</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Pallet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">PhantomData</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
 
-    <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">call</span>]</span>
+    <span class="attribute">#[<span class="ident">pallet::call</span>]</span>
     <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> <span class="ident">Pallet</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
         <span class="doccomment">/// Create new digital twin.</span>
-        <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">weight</span>(<span class="number">50_000</span>)]</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create</span>(<span class="ident">origin</span>: <span class="ident">OriginFor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DispatchResultWithPostInfo</span> {
+        <span class="attribute">#[<span class="ident">pallet::weight</span>(<span class="number">50_000</span>)]</span>
+        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create</span>(<span class="ident">origin</span>: <span class="ident">OriginFor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) -&gt; <span class="ident">DispatchResultWithPostInfo</span> {
             <span class="kw">let</span> <span class="ident">sender</span> <span class="op">=</span> <span class="ident">ensure_signed</span>(<span class="ident">origin</span>)<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">Total</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span>::<span class="ident">get</span>().<span class="ident">unwrap_or</span>(<span class="number">0</span>);
-            <span class="op">&lt;</span><span class="ident">Total</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span>::<span class="ident">put</span>(<span class="ident">id</span> <span class="op">+</span> <span class="number">1</span>);
-            <span class="op">&lt;</span><span class="ident">Owner</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span>::<span class="ident">insert</span>(<span class="ident">id</span>, <span class="ident">sender</span>.<span class="ident">clone</span>());
-            <span class="self">Self</span>::<span class="ident">deposit_event</span>(<span class="ident">Event</span>::<span class="ident">NewDigitalTwin</span>(<span class="ident">sender</span>, <span class="ident">id</span>));
+            <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">Total</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::get</span>().<span class="ident">unwrap_or</span>(<span class="number">0</span>);
+            <span class="op">&lt;</span><span class="ident">Total</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::put</span>(<span class="ident">id</span> <span class="op">+</span> <span class="number">1</span>);
+            <span class="op">&lt;</span><span class="ident">Owner</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::insert</span>(<span class="ident">id</span>, <span class="ident">sender</span>.<span class="ident">clone</span>());
+            <span class="ident"><span class="self">Self</span>::deposit_event</span>(<span class="ident">Event::NewDigitalTwin</span>(<span class="ident">sender</span>, <span class="ident">id</span>));
             <span class="prelude-val">Ok</span>(().<span class="ident">into</span>())
         }
 
         <span class="doccomment">/// Set data source account for difital twin.</span>
-        <span class="attribute">#[<span class="ident">pallet</span>::<span class="ident">weight</span>(<span class="number">50_000</span>)]</span>
+        <span class="attribute">#[<span class="ident">pallet::weight</span>(<span class="number">50_000</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_source</span>(
             <span class="ident">origin</span>: <span class="ident">OriginFor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>,
             <span class="ident">id</span>: <span class="ident">u32</span>,
             <span class="ident">topic</span>: <span class="ident">H256</span>,
-            <span class="ident">source</span>: <span class="ident">T</span>::<span class="ident">AccountId</span>,
-        ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DispatchResultWithPostInfo</span> {
+            <span class="ident">source</span>: <span class="ident">T::AccountId</span>,
+        ) -&gt; <span class="ident">DispatchResultWithPostInfo</span> {
             <span class="kw">let</span> <span class="ident">sender</span> <span class="op">=</span> <span class="ident">ensure_signed</span>(<span class="ident">origin</span>)<span class="question-mark">?</span>;
-            <span class="macro">ensure</span><span class="macro">!</span>(
-                <span class="op">&lt;</span><span class="ident">Owner</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span>::<span class="ident">get</span>(<span class="ident">id</span>) <span class="op">=</span><span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">sender</span>.<span class="ident">clone</span>()),
+            <span class="macro">ensure!</span>(
+                <span class="op">&lt;</span><span class="ident">Owner</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::get</span>(<span class="ident">id</span>) <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="ident">sender</span>.<span class="ident">clone</span>()),
                 <span class="string">&quot;sender should be a twin owner&quot;</span>
             );
-            <span class="self">Self</span>::<span class="ident">deposit_event</span>(<span class="ident">Event</span>::<span class="ident">TopicChanged</span>(<span class="ident">sender</span>, <span class="ident">id</span>, <span class="ident">topic</span>, <span class="ident">source</span>.<span class="ident">clone</span>()));
-            <span class="op">&lt;</span><span class="ident">DigitalTwin</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span>::<span class="ident">mutate</span>(<span class="ident">id</span>, <span class="op">|</span><span class="ident">m</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">m</span> {
-                <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">map</span> <span class="op">=</span> <span class="ident">BTreeMap</span>::<span class="ident">new</span>();
+            <span class="ident"><span class="self">Self</span>::deposit_event</span>(<span class="ident">Event::TopicChanged</span>(<span class="ident">sender</span>, <span class="ident">id</span>, <span class="ident">topic</span>, <span class="ident">source</span>.<span class="ident">clone</span>()));
+            <span class="op">&lt;</span><span class="ident">DigitalTwin</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::mutate</span>(<span class="ident">id</span>, <span class="op">|</span><span class="ident">m</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">m</span> {
+                <span class="prelude-val">None</span> =&gt; {
+                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">map</span> <span class="op">=</span> <span class="ident">BTreeMap::new</span>();
                     <span class="ident">map</span>.<span class="ident">insert</span>(<span class="ident">topic</span>, <span class="ident">source</span>);
                     <span class="kw-2">*</span><span class="ident">m</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">map</span>);
                 }
-                <span class="prelude-val">Some</span>(<span class="ident">map</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="prelude-val">Some</span>(<span class="ident">map</span>) =&gt; {
                     <span class="ident">map</span>.<span class="ident">insert</span>(<span class="ident">topic</span>, <span class="ident">source</span>);
                 }
             });
@@ -336,12 +332,12 @@
     <span class="kw">use</span> <span class="kw">crate</span>::{<span class="self">self</span> <span class="kw">as</span> <span class="ident">digital_twin</span>, <span class="kw-2">*</span>};
 
     <span class="kw">use</span> <span class="ident">frame_support</span>::{<span class="ident">assert_err</span>, <span class="ident">assert_ok</span>, <span class="ident">parameter_types</span>};
-    <span class="kw">use</span> <span class="ident">sp_runtime</span>::{<span class="ident">testing</span>::<span class="ident">Header</span>, <span class="ident">traits</span>::<span class="ident">IdentityLookup</span>, <span class="ident">DispatchError</span>};
+    <span class="kw">use</span> <span class="ident">sp_runtime</span>::{<span class="ident">testing::Header</span>, <span class="ident">traits::IdentityLookup</span>, <span class="ident">DispatchError</span>};
 
-    <span class="kw">type</span> <span class="ident">UncheckedExtrinsic</span> <span class="op">=</span> <span class="ident">frame_system</span>::<span class="ident">mocking</span>::<span class="ident">MockUncheckedExtrinsic</span><span class="op">&lt;</span><span class="ident">Runtime</span><span class="op">&gt;</span>;
-    <span class="kw">type</span> <span class="ident">Block</span> <span class="op">=</span> <span class="ident">frame_system</span>::<span class="ident">mocking</span>::<span class="ident">MockBlock</span><span class="op">&lt;</span><span class="ident">Runtime</span><span class="op">&gt;</span>;
+    <span class="kw">type</span> <span class="ident">UncheckedExtrinsic</span> <span class="op">=</span> <span class="ident">frame_system::mocking::MockUncheckedExtrinsic</span><span class="op">&lt;</span><span class="ident">Runtime</span><span class="op">&gt;</span>;
+    <span class="kw">type</span> <span class="ident">Block</span> <span class="op">=</span> <span class="ident">frame_system::mocking::MockBlock</span><span class="op">&lt;</span><span class="ident">Runtime</span><span class="op">&gt;</span>;
 
-    <span class="ident">frame_support</span>::<span class="macro">construct_runtime</span><span class="macro">!</span>(
+    <span class="macro">frame_support::construct_runtime!</span>(
         <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Runtime</span> <span class="kw">where</span>
             <span class="ident">Block</span> <span class="op">=</span> <span class="ident">Block</span>,
             <span class="ident">NodeBlock</span> <span class="op">=</span> <span class="ident">Block</span>,
@@ -352,19 +348,19 @@
         }
     );
 
-    <span class="macro">parameter_types</span><span class="macro">!</span> {
+    <span class="macro">parameter_types!</span> {
         <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BlockHashCount</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">250</span>;
     }
 
-    <span class="kw">impl</span> <span class="ident">frame_system</span>::<span class="ident">Config</span> <span class="kw">for</span> <span class="ident">Runtime</span> {
+    <span class="kw">impl</span> <span class="ident">frame_system::Config</span> <span class="kw">for</span> <span class="ident">Runtime</span> {
         <span class="kw">type</span> <span class="ident">Origin</span> <span class="op">=</span> <span class="ident">Origin</span>;
         <span class="kw">type</span> <span class="ident">Index</span> <span class="op">=</span> <span class="ident">u64</span>;
         <span class="kw">type</span> <span class="ident">BlockNumber</span> <span class="op">=</span> <span class="ident">u64</span>;
         <span class="kw">type</span> <span class="ident">Call</span> <span class="op">=</span> <span class="ident">Call</span>;
-        <span class="kw">type</span> <span class="ident">Hash</span> <span class="op">=</span> <span class="ident">sp_core</span>::<span class="ident">H256</span>;
-        <span class="kw">type</span> <span class="ident">Hashing</span> <span class="op">=</span> <span class="ident">sp_runtime</span>::<span class="ident">traits</span>::<span class="ident">BlakeTwo256</span>;
+        <span class="kw">type</span> <span class="ident">Hash</span> <span class="op">=</span> <span class="ident">sp_core::H256</span>;
+        <span class="kw">type</span> <span class="ident">Hashing</span> <span class="op">=</span> <span class="ident">sp_runtime::traits::BlakeTwo256</span>;
         <span class="kw">type</span> <span class="ident">AccountId</span> <span class="op">=</span> <span class="ident">u64</span>;
-        <span class="kw">type</span> <span class="ident">Lookup</span> <span class="op">=</span> <span class="ident">IdentityLookup</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">AccountId</span><span class="op">&gt;</span>;
+        <span class="kw">type</span> <span class="ident">Lookup</span> <span class="op">=</span> <span class="ident">IdentityLookup</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::AccountId</span><span class="op">&gt;</span>;
         <span class="kw">type</span> <span class="ident">Header</span> <span class="op">=</span> <span class="ident">Header</span>;
         <span class="kw">type</span> <span class="ident">Event</span> <span class="op">=</span> <span class="ident">Event</span>;
         <span class="kw">type</span> <span class="ident">BlockHashCount</span> <span class="op">=</span> <span class="ident">BlockHashCount</span>;
@@ -386,8 +382,8 @@
         <span class="kw">type</span> <span class="ident">Event</span> <span class="op">=</span> <span class="ident">Event</span>;
     }
 
-    <span class="kw">fn</span> <span class="ident">new_test_ext</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">sp_io</span>::<span class="ident">TestExternalities</span> {
-        <span class="kw">let</span> <span class="ident">storage</span> <span class="op">=</span> <span class="ident">frame_system</span>::<span class="ident">GenesisConfig</span>::<span class="ident">default</span>()
+    <span class="kw">fn</span> <span class="ident">new_test_ext</span>() -&gt; <span class="ident">sp_io::TestExternalities</span> {
+        <span class="kw">let</span> <span class="ident">storage</span> <span class="op">=</span> <span class="ident">frame_system::GenesisConfig::default</span>()
             .<span class="ident">build_storage</span>::<span class="op">&lt;</span><span class="ident">Runtime</span><span class="op">&gt;</span>()
             .<span class="ident">unwrap</span>();
         <span class="ident">storage</span>.<span class="ident">into</span>()
@@ -396,11 +392,11 @@
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_create</span>() {
         <span class="ident">new_test_ext</span>().<span class="ident">execute_with</span>(<span class="op">|</span><span class="op">|</span> {
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">DigitalTwin</span>::<span class="ident">total</span>(), <span class="prelude-val">None</span>);
+            <span class="macro">assert_eq!</span>(<span class="ident">DigitalTwin::total</span>(), <span class="prelude-val">None</span>);
             <span class="kw">let</span> <span class="ident">sender</span> <span class="op">=</span> <span class="number">1</span>;
-            <span class="macro">assert_ok</span><span class="macro">!</span>(<span class="ident">DigitalTwin</span>::<span class="ident">create</span>(<span class="ident">Origin</span>::<span class="ident">signed</span>(<span class="ident">sender</span>)));
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">DigitalTwin</span>::<span class="ident">total</span>(), <span class="prelude-val">Some</span>(<span class="number">1</span>));
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">DigitalTwin</span>::<span class="ident">owner</span>(<span class="number">0</span>), <span class="prelude-val">Some</span>(<span class="ident">sender</span>));
+            <span class="macro">assert_ok!</span>(<span class="ident">DigitalTwin::create</span>(<span class="ident">Origin::signed</span>(<span class="ident">sender</span>)));
+            <span class="macro">assert_eq!</span>(<span class="ident">DigitalTwin::total</span>(), <span class="prelude-val">Some</span>(<span class="number">1</span>));
+            <span class="macro">assert_eq!</span>(<span class="ident">DigitalTwin::owner</span>(<span class="number">0</span>), <span class="prelude-val">Some</span>(<span class="ident">sender</span>));
         })
     }
 
@@ -409,20 +405,20 @@
         <span class="ident">new_test_ext</span>().<span class="ident">execute_with</span>(<span class="op">|</span><span class="op">|</span> {
             <span class="kw">let</span> <span class="ident">sender</span> <span class="op">=</span> <span class="number">1</span>;
             <span class="kw">let</span> <span class="ident">bad_sender</span> <span class="op">=</span> <span class="number">2</span>;
-            <span class="macro">assert_ok</span><span class="macro">!</span>(<span class="ident">DigitalTwin</span>::<span class="ident">create</span>(<span class="ident">Origin</span>::<span class="ident">signed</span>(<span class="ident">sender</span>)));
-            <span class="macro">assert_err</span><span class="macro">!</span>(
-                <span class="ident">DigitalTwin</span>::<span class="ident">set_source</span>(
-                    <span class="ident">Origin</span>::<span class="ident">signed</span>(<span class="ident">bad_sender</span>),
+            <span class="macro">assert_ok!</span>(<span class="ident">DigitalTwin::create</span>(<span class="ident">Origin::signed</span>(<span class="ident">sender</span>)));
+            <span class="macro">assert_err!</span>(
+                <span class="ident">DigitalTwin::set_source</span>(
+                    <span class="ident">Origin::signed</span>(<span class="ident">bad_sender</span>),
                     <span class="number">0</span>,
-                    <span class="ident">Default</span>::<span class="ident">default</span>(),
+                    <span class="ident">Default::default</span>(),
                     <span class="ident">bad_sender</span>
                 ),
-                <span class="ident">DispatchError</span>::<span class="ident">Other</span>(<span class="string">&quot;sender should be a twin owner&quot;</span>)
+                <span class="ident">DispatchError::Other</span>(<span class="string">&quot;sender should be a twin owner&quot;</span>)
             );
-            <span class="macro">assert_ok</span><span class="macro">!</span>(<span class="ident">DigitalTwin</span>::<span class="ident">set_source</span>(
-                <span class="ident">Origin</span>::<span class="ident">signed</span>(<span class="ident">sender</span>),
+            <span class="macro">assert_ok!</span>(<span class="ident">DigitalTwin::set_source</span>(
+                <span class="ident">Origin::signed</span>(<span class="ident">sender</span>),
                 <span class="number">0</span>,
-                <span class="ident">Default</span>::<span class="ident">default</span>(),
+                <span class="ident">Default::default</span>(),
                 <span class="ident">bad_sender</span>
             ));
         })
@@ -431,13 +427,14 @@
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_bad_origin</span>() {
         <span class="ident">new_test_ext</span>().<span class="ident">execute_with</span>(<span class="op">|</span><span class="op">|</span> {
-            <span class="macro">assert_err</span><span class="macro">!</span>(
-                <span class="ident">DigitalTwin</span>::<span class="ident">create</span>(<span class="ident">Origin</span>::<span class="ident">none</span>()),
-                <span class="ident">DispatchError</span>::<span class="ident">BadOrigin</span>
+            <span class="macro">assert_err!</span>(
+                <span class="ident">DigitalTwin::create</span>(<span class="ident">Origin::none</span>()),
+                <span class="ident">DispatchError::BadOrigin</span>
             );
         })
     }
 }
-</pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="pallet_robonomics_digital_twin" data-search-js="../../search-index.js"></div>
-    <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script></body></html>
+</code></pre></div>
+</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="pallet_robonomics_digital_twin" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+    <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script>
+</body></html>

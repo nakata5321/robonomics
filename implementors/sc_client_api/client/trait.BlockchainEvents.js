@@ -1,3 +1,0 @@
-(function() {var implementors = {};
-implementors["substrate_ros_api"] = [{"text":"impl&lt;Client, Block&gt; BlockchainEvents&lt;Block&gt; for <a class=\"struct\" href=\"substrate_ros_api/chain/struct.FullChain.html\" title=\"struct substrate_ros_api::chain::FullChain\">FullChain</a>&lt;Client, Block&gt; <span class=\"where fmt-newline\">where<br>&nbsp;&nbsp;&nbsp;&nbsp;Block: Block&lt;Hash = H256&gt; + 'static,<br>&nbsp;&nbsp;&nbsp;&nbsp;Client: BlockchainEvents&lt;Block&gt; + 'static,&nbsp;</span>","synthetic":false,"types":["substrate_ros_api::chain::FullChain"]}];
-if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

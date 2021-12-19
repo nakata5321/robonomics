@@ -1,1 +1,0 @@
-initSidebarItems({"fn":[["listen","Listen for incoming launch requests."],["submit","Send launch request using remote Robonomics node."]]});

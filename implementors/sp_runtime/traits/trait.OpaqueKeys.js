@@ -1,4 +1,6 @@
 (function() {var implementors = {};
-implementors["node_runtime"] = [{"text":"impl OpaqueKeys for <a class=\"struct\" href=\"node_runtime/struct.SessionKeys.html\" title=\"struct node_runtime::SessionKeys\">SessionKeys</a>","synthetic":false,"types":["node_runtime::SessionKeys"]}];
-implementors["parachain_runtime"] = [{"text":"impl OpaqueKeys for <a class=\"struct\" href=\"parachain_runtime/struct.SessionKeys.html\" title=\"struct parachain_runtime::SessionKeys\">SessionKeys</a>","synthetic":false,"types":["parachain_runtime::SessionKeys"]}];
+implementors["alpha_runtime"] = [{"text":"impl OpaqueKeys for <a class=\"struct\" href=\"alpha_runtime/struct.SessionKeys.html\" title=\"struct alpha_runtime::SessionKeys\">SessionKeys</a>","synthetic":false,"types":["alpha_runtime::SessionKeys"]}];
+implementors["ipci_runtime"] = [{"text":"impl OpaqueKeys for <a class=\"struct\" href=\"ipci_runtime/struct.SessionKeys.html\" title=\"struct ipci_runtime::SessionKeys\">SessionKeys</a>","synthetic":false,"types":["ipci_runtime::SessionKeys"]}];
+implementors["local_runtime"] = [{"text":"impl OpaqueKeys for <a class=\"struct\" href=\"local_runtime/struct.SessionKeys.html\" title=\"struct local_runtime::SessionKeys\">SessionKeys</a>","synthetic":false,"types":["local_runtime::SessionKeys"]}];
+implementors["main_runtime"] = [{"text":"impl OpaqueKeys for <a class=\"struct\" href=\"main_runtime/struct.SessionKeys.html\" title=\"struct main_runtime::SessionKeys\">SessionKeys</a>","synthetic":false,"types":["main_runtime::SessionKeys"]}];
 if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

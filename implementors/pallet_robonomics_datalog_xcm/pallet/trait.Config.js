@@ -1,3 +1,0 @@
-(function() {var implementors = {};
-implementors["parachain_runtime"] = [{"text":"impl <a class=\"trait\" href=\"pallet_robonomics_datalog_xcm/pallet/trait.Config.html\" title=\"trait pallet_robonomics_datalog_xcm::pallet::Config\">Config</a> for <a class=\"struct\" href=\"parachain_runtime/struct.Runtime.html\" title=\"struct parachain_runtime::Runtime\">Runtime</a>","synthetic":false,"types":["parachain_runtime::Runtime"]}];
-if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

@@ -1,1 +1,0 @@
-initSidebarItems({"fn":[["fetch","Read datalog records from remote Robonomics node."],["submit","Sign datalog record and send using remote Robonomics node."]]});

@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["ExportGenesisStateCommand","Command for exporting the genesis state of the parachain"],["ExportGenesisWasmCommand","Command for exporting the genesis wasm file."]]});

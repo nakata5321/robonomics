@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["main_runtime"] = [{"text":"impl Contains&lt;<a class=\"enum\" href=\"main_runtime/enum.Call.html\" title=\"enum main_runtime::Call\">Call</a>&gt; for <a class=\"struct\" href=\"main_runtime/struct.BaseFilter.html\" title=\"struct main_runtime::BaseFilter\">BaseFilter</a>","synthetic":false,"types":["main_runtime::BaseFilter"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

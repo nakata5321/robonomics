@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["parse_args","Parse collator arguments and returns full node configuration."]],"struct":[["RelayChainCli",""]]});

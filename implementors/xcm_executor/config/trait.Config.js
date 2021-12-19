@@ -1,3 +1,0 @@
-(function() {var implementors = {};
-implementors["parachain_runtime"] = [{"text":"impl Config for <a class=\"struct\" href=\"parachain_runtime/struct.XcmConfig.html\" title=\"struct parachain_runtime::XcmConfig\">XcmConfig</a>","synthetic":false,"types":["parachain_runtime::XcmConfig"]}];
-if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

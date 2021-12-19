@@ -1,1 +1,0 @@
-initSidebarItems({"mod":[["error","Errors that can occur during the I/O operations."],["sink","Collections of I/O devices designed for consume data."],["source","Collection of I/O devices designed to provide some data."]]});

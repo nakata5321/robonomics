@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["Error","Robonomics CLI errors."]],"type":[["Result","Result typedef."]]});

@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["SinkCmd","Sink device commands."],["SourceCmd","Source device commands."]],"mod":[["error","Errors that can occur during the cli operations."]],"struct":[["IoCmd","Substrate friendly CLI I/O subsystem interaction."]]});
