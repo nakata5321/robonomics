@@ -344,7 +344,7 @@
         <span class="prelude-val">Ok</span>(<span class="kw">match</span> <span class="ident">id</span> {
             <span class="string">&quot;dev&quot;</span> =&gt; <span class="ident">Box::new</span>(<span class="ident">development_config</span>()),
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;parachain&quot;</span>)]</span>
-            <span class="ident">path</span> =&gt; <span class="ident">parachain::load_spec</span>(<span class="ident">path</span>, <span class="self">self</span>.<span class="ident">run</span>.<span class="ident">parachain_id</span>.<span class="ident">unwrap_or</span>(<span class="number">2077</span>).<span class="ident">into</span>())<span class="question-mark">?</span>,
+            <span class="ident">path</span> =&gt; <span class="ident">parachain::load_spec</span>(<span class="ident">path</span>, <span class="self">self</span>.<span class="ident">run</span>.<span class="ident">parachain_id</span>.<span class="ident">unwrap_or</span>(<span class="number">2048</span>).<span class="ident">into</span>())<span class="question-mark">?</span>,
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;parachain&quot;</span>))]</span>
             <span class="ident">path</span> =&gt; <span class="ident">Box::new</span>(<span class="ident"><span class="kw">crate</span>::chain_spec::ChainSpec::from_json_file</span>(
                 <span class="ident">std::path::PathBuf::from</span>(<span class="ident">path</span>),

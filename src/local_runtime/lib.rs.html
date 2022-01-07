@@ -562,6 +562,11 @@
 <span id="562">562</span>
 <span id="563">563</span>
 <span id="564">564</span>
+<span id="565">565</span>
+<span id="566">566</span>
+<span id="567">567</span>
+<span id="568">568</span>
+<span id="569">569</span>
 </pre><pre class="rust"><code><span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
 <span class="comment">//</span>
 <span class="comment">//  Copyright 2018-2021 Robonomics Network &lt;research@robonomics.network&gt;</span>
@@ -754,6 +759,8 @@
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TargetBlockFullness</span>: <span class="ident">Perquintill</span> <span class="op">=</span> <span class="ident">Perquintill::from_percent</span>(<span class="number">25</span>);
     <span class="kw">pub</span> <span class="ident">AdjustmentVariable</span>: <span class="ident">Multiplier</span> <span class="op">=</span> <span class="ident">Multiplier::saturating_from_rational</span>(<span class="number">1</span>, <span class="number">100_000</span>);
     <span class="kw">pub</span> <span class="ident">MinimumMultiplier</span>: <span class="ident">Multiplier</span> <span class="op">=</span> <span class="ident">Multiplier::saturating_from_rational</span>(<span class="number">1</span>, <span class="number">1_000_000_000u128</span>);
+    <span class="kw">pub</span> <span class="ident">OperationalFeeMultiplier</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">5</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MaxAuthorities</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">32</span>;
 }
 
 <span class="kw">impl</span> <span class="ident">pallet_transaction_payment::Config</span> <span class="kw">for</span> <span class="ident">Runtime</span> {
@@ -762,6 +769,7 @@
     <span class="kw">type</span> <span class="ident">WeightToFee</span> <span class="op">=</span> <span class="ident">IdentityFee</span><span class="op">&lt;</span><span class="ident">Balance</span><span class="op">&gt;</span>;
     <span class="kw">type</span> <span class="ident">FeeMultiplierUpdate</span> <span class="op">=</span>
         <span class="ident">TargetedFeeAdjustment</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">TargetBlockFullness</span>, <span class="ident">AdjustmentVariable</span>, <span class="ident">MinimumMultiplier</span><span class="op">&gt;</span>;
+    <span class="kw">type</span> <span class="ident">OperationalFeeMultiplier</span> <span class="op">=</span> <span class="ident">OperationalFeeMultiplier</span>;
 }
 
 <span class="macro">impl_opaque_keys!</span> {
@@ -772,6 +780,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">pallet_aura::Config</span> <span class="kw">for</span> <span class="ident">Runtime</span> {
+    <span class="kw">type</span> <span class="ident">MaxAuthorities</span> <span class="op">=</span> <span class="ident">MaxAuthorities</span>;
     <span class="kw">type</span> <span class="ident">AuthorityId</span> <span class="op">=</span> <span class="ident">AuraId</span>;
     <span class="kw">type</span> <span class="ident">DisabledValidators</span> <span class="op">=</span> ();
 }
@@ -792,6 +801,7 @@
 
     <span class="kw">type</span> <span class="ident">HandleEquivocation</span> <span class="op">=</span> ();
     <span class="kw">type</span> <span class="ident">WeightInfo</span> <span class="op">=</span> ();
+    <span class="kw">type</span> <span class="ident">MaxAuthorities</span> <span class="op">=</span> <span class="ident">MaxAuthorities</span>;
 }
 
 <span class="kw">impl</span> <span class="ident">pallet_sudo::Config</span> <span class="kw">for</span> <span class="ident">Runtime</span> {
@@ -814,7 +824,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">pallet_robonomics_launch::Config</span> <span class="kw">for</span> <span class="ident">Runtime</span> {
-    <span class="kw">type</span> <span class="ident">Parameter</span> <span class="op">=</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>;
+    <span class="kw">type</span> <span class="ident">Parameter</span> <span class="op">=</span> <span class="ident">bool</span>;
     <span class="kw">type</span> <span class="ident">Event</span> <span class="op">=</span> <span class="ident">Event</span>;
 }
 
@@ -960,7 +970,7 @@
 
     <span class="kw">impl</span> <span class="ident">sp_api::Metadata</span><span class="op">&lt;</span><span class="ident">Block</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Runtime</span> {
         <span class="kw">fn</span> <span class="ident">metadata</span>() -&gt; <span class="ident">OpaqueMetadata</span> {
-            <span class="ident">Runtime::metadata</span>().<span class="ident">into</span>()
+            <span class="ident">OpaqueMetadata::new</span>(<span class="ident">Runtime::metadata</span>().<span class="ident">into</span>())
         }
     }
 
@@ -1004,7 +1014,7 @@
         }
 
         <span class="kw">fn</span> <span class="ident">authorities</span>() -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">AuraId</span><span class="op">&gt;</span> {
-            <span class="ident">Aura::authorities</span>()
+            <span class="ident">Aura::authorities</span>().<span class="ident">into_inner</span>()
         }
     }
 

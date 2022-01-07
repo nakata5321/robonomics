@@ -398,6 +398,7 @@
 <span id="398">398</span>
 <span id="399">399</span>
 <span id="400">400</span>
+<span id="401">401</span>
 </pre><pre class="rust"><code><span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
 <span class="comment">//</span>
 <span class="comment">//  Copyright 2018-2021 Robonomics Network &lt;research@robonomics.network&gt;</span>
@@ -427,7 +428,7 @@
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::chain_spec::get_account_id_from_seed</span>;
 
 <span class="doccomment">/// Kusama parachain ID</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">KUSAMA_ID</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">2077</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">KUSAMA_ID</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">2048</span>;
 <span class="doccomment">/// Mars parachain ID</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MARS_ID</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">2000</span>;
 <span class="doccomment">/// Ipci parachain ID</span>
@@ -544,7 +545,6 @@ const IPCI_PROTOCOL_ID: &amp;str = &quot;mito&quot;;
     <span class="ident">alpha_runtime::GenesisConfig</span> {
         <span class="ident">system</span>: <span class="ident">alpha_runtime::SystemConfig</span> {
             <span class="ident">code</span>: <span class="ident">alpha_runtime::wasm_binary_unwrap</span>().<span class="ident">to_vec</span>(),
-            <span class="ident">changes_trie_config</span>: <span class="ident">Default::default</span>(),
         },
         <span class="ident">balances</span>: <span class="ident">alpha_runtime::BalancesConfig</span> { <span class="ident">balances</span> },
         <span class="ident">elections</span>: <span class="ident">Default::default</span>(),
@@ -588,26 +588,29 @@ pub fn mercury_parachain_config() -&gt; AlphaChainSpec {
         },
     )
 }
+*/</span>
 
-/// Helper function to create GenesisConfig for main parachain
-fn mk_genesis_main(
-    balances: Vec&lt;(AccountId, Balance)&gt;,
-    sudo_key: AccountId,
-    parachain_id: ParaId,
-) -&gt; main_runtime::GenesisConfig {
-    let bonus = balances.clone();
-    main_runtime::GenesisConfig {
-        system: main_runtime::SystemConfig {
-            code: main_runtime::wasm_binary_unwrap().to_vec(),
-            changes_trie_config: Default::default(),
+<span class="doccomment">/// Helper function to create GenesisConfig for main parachain</span>
+<span class="kw">fn</span> <span class="ident">mk_genesis_main</span>(
+    <span class="ident">balances</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">AccountId</span>, <span class="ident">Balance</span>)<span class="op">&gt;</span>,
+    <span class="ident">sudo_key</span>: <span class="ident">AccountId</span>,
+    <span class="ident">parachain_id</span>: <span class="ident">ParaId</span>,
+) -&gt; <span class="ident">main_runtime::GenesisConfig</span> {
+    <span class="ident">main_runtime::GenesisConfig</span> {
+        <span class="ident">system</span>: <span class="ident">main_runtime::SystemConfig</span> {
+            <span class="ident">code</span>: <span class="ident">main_runtime::wasm_binary_unwrap</span>().<span class="ident">to_vec</span>(),
         },
-        balances: main_runtime::BalancesConfig { balances },
-        staking: main_runtime::StakingConfig { bonus },
-        sudo: main_runtime::SudoConfig { key: sudo_key },
-        parachain_info: main_runtime::ParachainInfoConfig { parachain_id },
+        <span class="ident">balances</span>: <span class="ident">main_runtime::BalancesConfig</span> { <span class="ident">balances</span> },
+        <span class="ident">staking</span>: <span class="ident">main_runtime::StakingConfig</span> { <span class="ident">bonus</span>: <span class="macro">vec!</span>[] },
+        <span class="ident">sudo</span>: <span class="ident">main_runtime::SudoConfig</span> { <span class="ident">key</span>: <span class="ident">sudo_key</span> },
+        <span class="ident">parachain_info</span>: <span class="ident">main_runtime::ParachainInfoConfig</span> { <span class="ident">parachain_id</span> },
+        <span class="ident">treasury</span>: <span class="ident">Default::default</span>(),
+        <span class="ident">technical_committee</span>: <span class="ident">Default::default</span>(),
+        <span class="ident">technical_membership</span>: <span class="ident">Default::default</span>(),
     }
 }
 
+<span class="comment">/*
 fn ipci_session_keys(
     aura: ipci_runtime::AuraId,
     im_online: ipci_runtime::ImOnlineId,
@@ -626,7 +629,6 @@ fn mk_genesis_ipci(
     ipci_runtime::GenesisConfig {
         system: ipci_runtime::SystemConfig {
             code: ipci_runtime::wasm_binary_unwrap().to_vec(),
-            changes_trie_config: Default::default(),
         },
         balances: ipci_runtime::BalancesConfig { balances },
         parachain_info: ipci_runtime::ParachainInfoConfig { parachain_id },
@@ -709,7 +711,7 @@ fn kusama_parachain_genesis() -&gt; main_runtime::GenesisConfig {
     let sudo_key: AccountId =
         hex![&quot;16eb796bee0c857db3d646ee7070252707aec0c7d82b2eda856632f6a2306a58&quot;].into();
 
-    let balances = currency::STAKE_HOLDERS.clone();
+    let balances = vec![(sudo_key.clone(), 1000 * currency::XRT)];
     mk_genesis_main(balances.to_vec(), sudo_key, KUSAMA_ID.into())
 }
 

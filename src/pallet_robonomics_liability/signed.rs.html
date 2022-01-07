@@ -227,6 +227,7 @@
 <span id="227">227</span>
 <span id="228">228</span>
 <span id="229">229</span>
+<span id="230">230</span>
 </pre><pre class="rust"><code><span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
 <span class="comment">//</span>
 <span class="comment">//  Copyright 2018-2021 Robonomics Network &lt;research@robonomics.network&gt;</span>
@@ -252,6 +253,7 @@
     <span class="ident">traits</span>::{<span class="ident">BalanceStatus</span>, <span class="ident">ReservableCurrency</span>},
 };
 <span class="kw">use</span> <span class="ident">frame_system::offchain::AppCrypto</span>;
+<span class="kw">use</span> <span class="ident">scale_info::TypeInfo</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span>
 <span class="kw">use</span> <span class="ident">sp_core::crypto</span>::{<span class="ident">Pair</span>, <span class="ident">Public</span>};
 <span class="kw">use</span> <span class="ident">sp_runtime</span>::{
@@ -264,7 +266,7 @@
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::traits</span>::<span class="kw-2">*</span>;
 
 <span class="doccomment">/// Agreement that could be proven by asymmetric cryptography.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Encode</span>, <span class="ident">Decode</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">RuntimeDebug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Encode</span>, <span class="ident">Decode</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">RuntimeDebug</span>, <span class="ident">TypeInfo</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SignedAgreement</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">E</span>, <span class="ident">AccountId</span>, <span class="ident">Signature</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">technics</span>: <span class="ident">T</span>,
     <span class="kw">pub</span> <span class="ident">economics</span>: <span class="ident">E</span>,
@@ -347,7 +349,7 @@
 }
 
 <span class="doccomment">/// Report that could be proven by asymmetric cryptography.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Encode</span>, <span class="ident">Decode</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">RuntimeDebug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Encode</span>, <span class="ident">Decode</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">RuntimeDebug</span>, <span class="ident">TypeInfo</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SignedReport</span><span class="op">&lt;</span><span class="ident">Index</span>, <span class="ident">AccountId</span>, <span class="ident">Signature</span>, <span class="ident">Message</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">index</span>: <span class="ident">Index</span>,
     <span class="kw">pub</span> <span class="ident">sender</span>: <span class="ident">AccountId</span>,

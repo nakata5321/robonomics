@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["new","Create a new Robonomics service."]],"struct":[["Executor","A unit struct which implements `NativeExecutionDispatch` feeding in the hard-coded runtime."]]});
+initSidebarItems({"fn":[["new","Create a new Robonomics service."]],"struct":[["LocalExecutor",""]]});

@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["start_node","Start a normal parachain node."]],"struct":[["Executor","A unit struct which implements `NativeExecutionDispatch` feeding in the hard-coded runtime."],["RuntimeApi",""]]});
+initSidebarItems({"fn":[["start_node","Start a normal parachain node."]],"struct":[["IPCIExecutor",""],["RuntimeApi",""]]});

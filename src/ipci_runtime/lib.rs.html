@@ -857,6 +857,74 @@
 <span id="857">857</span>
 <span id="858">858</span>
 <span id="859">859</span>
+<span id="860">860</span>
+<span id="861">861</span>
+<span id="862">862</span>
+<span id="863">863</span>
+<span id="864">864</span>
+<span id="865">865</span>
+<span id="866">866</span>
+<span id="867">867</span>
+<span id="868">868</span>
+<span id="869">869</span>
+<span id="870">870</span>
+<span id="871">871</span>
+<span id="872">872</span>
+<span id="873">873</span>
+<span id="874">874</span>
+<span id="875">875</span>
+<span id="876">876</span>
+<span id="877">877</span>
+<span id="878">878</span>
+<span id="879">879</span>
+<span id="880">880</span>
+<span id="881">881</span>
+<span id="882">882</span>
+<span id="883">883</span>
+<span id="884">884</span>
+<span id="885">885</span>
+<span id="886">886</span>
+<span id="887">887</span>
+<span id="888">888</span>
+<span id="889">889</span>
+<span id="890">890</span>
+<span id="891">891</span>
+<span id="892">892</span>
+<span id="893">893</span>
+<span id="894">894</span>
+<span id="895">895</span>
+<span id="896">896</span>
+<span id="897">897</span>
+<span id="898">898</span>
+<span id="899">899</span>
+<span id="900">900</span>
+<span id="901">901</span>
+<span id="902">902</span>
+<span id="903">903</span>
+<span id="904">904</span>
+<span id="905">905</span>
+<span id="906">906</span>
+<span id="907">907</span>
+<span id="908">908</span>
+<span id="909">909</span>
+<span id="910">910</span>
+<span id="911">911</span>
+<span id="912">912</span>
+<span id="913">913</span>
+<span id="914">914</span>
+<span id="915">915</span>
+<span id="916">916</span>
+<span id="917">917</span>
+<span id="918">918</span>
+<span id="919">919</span>
+<span id="920">920</span>
+<span id="921">921</span>
+<span id="922">922</span>
+<span id="923">923</span>
+<span id="924">924</span>
+<span id="925">925</span>
+<span id="926">926</span>
+<span id="927">927</span>
 </pre><pre class="rust"><code><span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
 <span class="comment">//</span>
 <span class="comment">//  Copyright 2018-2021 Robonomics Network &lt;research@robonomics.network&gt;</span>
@@ -895,10 +963,13 @@
 
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">constants</span>;
 
-<span class="kw">use</span> <span class="ident">frame_election_provider_support::onchain::OnChainSequentialPhragmen</span>;
+<span class="doccomment">/// Generated voter bag information.</span>
+<span class="kw">mod</span> <span class="ident">voter_bags</span>;
+
+<span class="kw">use</span> <span class="ident">codec::Decode</span>;
 <span class="kw">use</span> <span class="ident">frame_support</span>::{
     <span class="ident">construct_runtime</span>, <span class="ident">parameter_types</span>,
-    <span class="ident">traits</span>::{<span class="ident">Currency</span>, <span class="ident">Imbalance</span>, <span class="ident">OnUnbalanced</span>},
+    <span class="ident">traits</span>::{<span class="ident">Currency</span>, <span class="ident">EqualPrivilegeOnly</span>, <span class="ident">Imbalance</span>, <span class="ident">OnUnbalanced</span>},
     <span class="ident">weights</span>::{
         <span class="ident">constants</span>::{<span class="ident">BlockExecutionWeight</span>, <span class="ident">ExtrinsicBaseWeight</span>, <span class="ident">RocksDbWeight</span>, <span class="ident">WEIGHT_PER_SECOND</span>},
         <span class="ident">DispatchClass</span>, <span class="ident">Weight</span>, <span class="ident">WeightToFeeCoefficient</span>, <span class="ident">WeightToFeeCoefficients</span>,
@@ -939,7 +1010,7 @@
     <span class="ident">spec_name</span>: <span class="macro">create_runtime_str!</span>(<span class="string">&quot;ipci&quot;</span>),
     <span class="ident">impl_name</span>: <span class="macro">create_runtime_str!</span>(<span class="string">&quot;ipci-airalab&quot;</span>),
     <span class="ident">authoring_version</span>: <span class="number">1</span>,
-    <span class="ident">spec_version</span>: <span class="number">5</span>,
+    <span class="ident">spec_version</span>: <span class="number">6</span>,
     <span class="ident">impl_version</span>: <span class="number">0</span>,
     <span class="ident">apis</span>: <span class="ident">RUNTIME_API_VERSIONS</span>,
     <span class="ident">transaction_version</span>: <span class="number">1</span>,
@@ -1050,6 +1121,7 @@
 <span class="kw">impl</span> <span class="ident">pallet_utility::Config</span> <span class="kw">for</span> <span class="ident">Runtime</span> {
     <span class="kw">type</span> <span class="ident">Call</span> <span class="op">=</span> <span class="ident">Call</span>;
     <span class="kw">type</span> <span class="ident">Event</span> <span class="op">=</span> <span class="ident">Event</span>;
+    <span class="kw">type</span> <span class="ident">PalletsOrigin</span> <span class="op">=</span> <span class="ident">OriginCaller</span>;
     <span class="kw">type</span> <span class="ident">WeightInfo</span> <span class="op">=</span> ();
 }
 
@@ -1115,6 +1187,7 @@
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TargetBlockFullness</span>: <span class="ident">Perquintill</span> <span class="op">=</span> <span class="ident">Perquintill::from_percent</span>(<span class="number">25</span>);
     <span class="kw">pub</span> <span class="ident">AdjustmentVariable</span>: <span class="ident">Multiplier</span> <span class="op">=</span> <span class="ident">Multiplier::saturating_from_rational</span>(<span class="number">3</span>, <span class="number">100_000</span>);
     <span class="kw">pub</span> <span class="ident">MinimumMultiplier</span>: <span class="ident">Multiplier</span> <span class="op">=</span> <span class="ident">Multiplier::saturating_from_rational</span>(<span class="number">1</span>, <span class="number">1_000_000_000u128</span>);
+    <span class="kw">pub</span> <span class="ident">OperationalFeeMultiplier</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">5</span>;
 }
 
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WeightToFee</span>;
@@ -1138,6 +1211,7 @@
     <span class="kw">type</span> <span class="ident">WeightToFee</span> <span class="op">=</span> <span class="ident">WeightToFee</span>;
     <span class="kw">type</span> <span class="ident">FeeMultiplierUpdate</span> <span class="op">=</span>
         <span class="ident">TargetedFeeAdjustment</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">TargetBlockFullness</span>, <span class="ident">AdjustmentVariable</span>, <span class="ident">MinimumMultiplier</span><span class="op">&gt;</span>;
+    <span class="kw">type</span> <span class="ident">OperationalFeeMultiplier</span> <span class="op">=</span> <span class="ident">OperationalFeeMultiplier</span>;
 }
 
 <span class="macro">parameter_types!</span> {
@@ -1172,6 +1246,7 @@
 <span class="macro">parameter_types!</span> {
     <span class="comment">// We do anything the parent chain tells us in this runtime.</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ReservedDmpWeight</span>: <span class="ident">Weight</span> <span class="op">=</span> <span class="ident">MAXIMUM_BLOCK_WEIGHT</span> <span class="op">/</span> <span class="number">2</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MaxAuthorities</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">32</span>;
 }
 
 <span class="kw">impl</span> <span class="ident">cumulus_pallet_parachain_system::Config</span> <span class="kw">for</span> <span class="ident">Runtime</span> {
@@ -1190,12 +1265,17 @@
 <span class="kw">impl</span> <span class="ident">cumulus_pallet_aura_ext::Config</span> <span class="kw">for</span> <span class="ident">Runtime</span> {}
 
 <span class="kw">impl</span> <span class="ident">pallet_aura::Config</span> <span class="kw">for</span> <span class="ident">Runtime</span> {
+    <span class="kw">type</span> <span class="ident">MaxAuthorities</span> <span class="op">=</span> <span class="ident">MaxAuthorities</span>;
     <span class="kw">type</span> <span class="ident">AuthorityId</span> <span class="op">=</span> <span class="ident">AuraId</span>;
     <span class="kw">type</span> <span class="ident">DisabledValidators</span> <span class="op">=</span> ();
 }
 
 <span class="macro">parameter_types!</span> {
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">UncleGenerations</span>: <span class="ident">BlockNumber</span> <span class="op">=</span> <span class="number">5</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MaxKeys</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">10_000</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MaxPeerInHeartbeats</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">10_000</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MaxPeerDataEncodingSize</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1_000</span>;
+
 }
 
 <span class="kw">impl</span> <span class="ident">pallet_authorship::Config</span> <span class="kw">for</span> <span class="ident">Runtime</span> {
@@ -1213,6 +1293,9 @@
     <span class="kw">type</span> <span class="ident">ReportUnresponsiveness</span> <span class="op">=</span> <span class="ident">Offences</span>;
     <span class="kw">type</span> <span class="ident">UnsignedPriority</span> <span class="op">=</span> <span class="ident">ImOnlineUnsignedPriority</span>;
     <span class="kw">type</span> <span class="ident">WeightInfo</span> <span class="op">=</span> <span class="ident">pallet_im_online::weights::SubstrateWeight</span><span class="op">&lt;</span><span class="ident">Runtime</span><span class="op">&gt;</span>;
+    <span class="kw">type</span> <span class="ident">MaxKeys</span> <span class="op">=</span> <span class="ident">MaxKeys</span>;
+    <span class="kw">type</span> <span class="ident">MaxPeerInHeartbeats</span> <span class="op">=</span> <span class="ident">MaxPeerInHeartbeats</span>;
+    <span class="kw">type</span> <span class="ident">MaxPeerDataEncodingSize</span> <span class="op">=</span> <span class="ident">MaxPeerDataEncodingSize</span>;
 }
 
 <span class="kw">impl</span> <span class="ident">pallet_offences::Config</span> <span class="kw">for</span> <span class="ident">Runtime</span> {
@@ -1236,7 +1319,6 @@
     <span class="kw">type</span> <span class="ident">SessionManager</span> <span class="op">=</span> <span class="ident">pallet_session::historical::NoteHistoricalRoot</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">Staking</span><span class="op">&gt;</span>;
     <span class="kw">type</span> <span class="ident">SessionHandler</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">SessionKeys</span> <span class="kw">as</span> <span class="ident">OpaqueKeys</span><span class="op">&gt;</span><span class="ident">::KeyTypeIdProviders</span>;
     <span class="kw">type</span> <span class="ident">Keys</span> <span class="op">=</span> <span class="ident">SessionKeys</span>;
-    <span class="kw">type</span> <span class="ident">DisabledValidatorsThreshold</span> <span class="op">=</span> <span class="ident">DisabledValidatorsThreshold</span>;
     <span class="kw">type</span> <span class="ident">WeightInfo</span> <span class="op">=</span> <span class="ident">pallet_session::weights::SubstrateWeight</span><span class="op">&lt;</span><span class="ident">Runtime</span><span class="op">&gt;</span>;
 }
 
@@ -1263,6 +1345,13 @@
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RewardCurve</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">PiecewiseLinear</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">REWARD_CURVE</span>;
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MaxNominatorRewardedPerValidator</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">256</span>;
     <span class="kw">pub</span> <span class="ident">OffchainRepeat</span>: <span class="ident">BlockNumber</span> <span class="op">=</span> <span class="number">5</span>;
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">OffendingValidatorsThreshold</span>: <span class="ident">Perbill</span> <span class="op">=</span> <span class="ident">Perbill::from_percent</span>(<span class="number">17</span>);
+}
+
+<span class="kw">use</span> <span class="ident">frame_election_provider_support::onchain</span>;
+<span class="kw">impl</span> <span class="ident">onchain::Config</span> <span class="kw">for</span> <span class="ident">Runtime</span> {
+    <span class="kw">type</span> <span class="ident">Accuracy</span> <span class="op">=</span> <span class="ident">Perbill</span>;
+    <span class="kw">type</span> <span class="ident">DataProvider</span> <span class="op">=</span> <span class="ident">Staking</span>;
 }
 
 <span class="kw">impl</span> <span class="ident">pallet_staking::Config</span> <span class="kw">for</span> <span class="ident">Runtime</span> {
@@ -1284,9 +1373,12 @@
     <span class="kw">type</span> <span class="ident">NextNewSession</span> <span class="op">=</span> <span class="ident">Session</span>;
     <span class="kw">type</span> <span class="ident">MaxNominatorRewardedPerValidator</span> <span class="op">=</span> <span class="ident">MaxNominatorRewardedPerValidator</span>;
     <span class="kw">type</span> <span class="ident">ElectionProvider</span> <span class="op">=</span> <span class="ident">ElectionProviderMultiPhase</span>;
-    <span class="kw">type</span> <span class="ident">GenesisElectionProvider</span> <span class="op">=</span>
-        <span class="ident">OnChainSequentialPhragmen</span><span class="op">&lt;</span><span class="ident">pallet_election_provider_multi_phase::OnChainConfig</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span><span class="op">&gt;</span>;
+    <span class="kw">type</span> <span class="ident">GenesisElectionProvider</span> <span class="op">=</span> <span class="ident">onchain::OnChainSequentialPhragmen</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>;
     <span class="kw">type</span> <span class="ident">WeightInfo</span> <span class="op">=</span> <span class="ident">pallet_staking::weights::SubstrateWeight</span><span class="op">&lt;</span><span class="ident">Runtime</span><span class="op">&gt;</span>;
+    <span class="kw">type</span> <span class="ident">OffendingValidatorsThreshold</span> <span class="op">=</span> <span class="ident">OffendingValidatorsThreshold</span>;
+    <span class="comment">// Alternatively, use pallet_staking::UseNominatorsMap&lt;Runtime&gt; to just use the nominators map</span>
+    <span class="comment">// Note that the aforementioned does not scale to a very large number of nominators.</span>
+    <span class="kw">type</span> <span class="ident">SortedListProvider</span> <span class="op">=</span> <span class="ident">BagsList</span>;
 }
 
 <span class="macro">parameter_types!</span> {
@@ -1300,10 +1392,6 @@
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SignedDepositBase</span>: <span class="ident">Balance</span> <span class="op">=</span> <span class="number">1</span> <span class="op">*</span> <span class="ident">MITO</span>;
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SignedDepositByte</span>: <span class="ident">Balance</span> <span class="op">=</span> <span class="number">1</span> <span class="op">*</span> <span class="ident">U_MITO</span>;
 
-    <span class="comment">// fallback: no need to do on-chain phragmen initially.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">Fallback</span>: <span class="ident">pallet_election_provider_multi_phase::FallbackStrategy</span> <span class="op">=</span>
-        <span class="ident">pallet_election_provider_multi_phase::FallbackStrategy::OnChain</span>;
-
     <span class="kw">pub</span> <span class="ident">SolutionImprovementThreshold</span>: <span class="ident">Perbill</span> <span class="op">=</span> <span class="ident">Perbill::from_rational</span>(<span class="number">1u32</span>, <span class="number">10_000</span>);
 
     <span class="comment">// miner configs</span>
@@ -1316,6 +1404,22 @@
     <span class="comment">// Solution can occupy 90% of normal block size</span>
     <span class="kw">pub</span> <span class="ident">MinerMaxLength</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">Perbill::from_rational</span>(<span class="number">9u32</span>, <span class="number">10</span>) <span class="op">*</span>
         <span class="op">*</span> <span class="ident">RuntimeBlockLength::get</span>().<span class="ident">max</span>.<span class="ident">get</span>(<span class="ident">DispatchClass::Normal</span>);
+
+    <span class="comment">// BagsList allows a practically unbounded count of nominators to participate in NPoS election</span>
+    <span class="comment">// To ensure we respect memory limits when using the BagsList this must be set to a number of</span>
+    <span class="comment">// voters we know can fit into a single vec allocation.</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VoterSnapshotPerBlock</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">10_000</span>;
+}
+
+<span class="macro">parameter_types!</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BagThresholds</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="ident">u64</span>] <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">voter_bags::THRESHOLDS</span>;
+}
+
+<span class="kw">impl</span> <span class="ident">pallet_bags_list::Config</span> <span class="kw">for</span> <span class="ident">Runtime</span> {
+    <span class="kw">type</span> <span class="ident">Event</span> <span class="op">=</span> <span class="ident">Event</span>;
+    <span class="kw">type</span> <span class="ident">VoteWeightProvider</span> <span class="op">=</span> <span class="ident">Staking</span>;
+    <span class="kw">type</span> <span class="ident">WeightInfo</span> <span class="op">=</span> <span class="ident">pallet_bags_list::weights::SubstrateWeight</span><span class="op">&lt;</span><span class="ident">Runtime</span><span class="op">&gt;</span>;
+    <span class="kw">type</span> <span class="ident">BagThresholds</span> <span class="op">=</span> <span class="ident">BagThresholds</span>;
 }
 
 <span class="macro">sp_npos_elections::generate_solution_type!</span>(
@@ -1329,6 +1433,32 @@
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MAX_NOMINATIONS</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">NposSolution16</span> <span class="kw">as</span> <span class="ident">sp_npos_elections::NposSolution</span><span class="op">&gt;</span><span class="ident">::LIMIT</span> <span class="kw">as</span> <span class="ident">u32</span>;
 
+<span class="doccomment">/// Maximum number of iterations for balancing that will be executed in the embedded OCW</span>
+<span class="doccomment">/// miner of election provider multi phase.</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MINER_MAX_ITERATIONS</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">10</span>;
+
+<span class="doccomment">/// A source of random balance for NposSolver, which is meant to be run by the OCW election miner.</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">OffchainRandomBalancing</span>;
+<span class="kw">impl</span> <span class="ident">frame_support::pallet_prelude::Get</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">usize</span>, <span class="ident">sp_npos_elections::ExtendedBalance</span>)<span class="op">&gt;</span><span class="op">&gt;</span>
+    <span class="kw">for</span> <span class="ident">OffchainRandomBalancing</span>
+{
+    <span class="kw">fn</span> <span class="ident">get</span>() -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">usize</span>, <span class="ident">sp_npos_elections::ExtendedBalance</span>)<span class="op">&gt;</span> {
+        <span class="kw">use</span> <span class="ident">sp_runtime::traits::TrailingZeroInput</span>;
+        <span class="kw">let</span> <span class="ident">iters</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">MINER_MAX_ITERATIONS</span> {
+            <span class="number">0</span> =&gt; <span class="number">0</span>,
+            <span class="ident">max</span> @ <span class="kw">_</span> =&gt; {
+                <span class="kw">let</span> <span class="ident">seed</span> <span class="op">=</span> <span class="ident">sp_io::offchain::random_seed</span>();
+                <span class="kw">let</span> <span class="ident">random</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span><span class="ident">::decode</span>(<span class="kw-2">&amp;mut</span> <span class="ident">TrailingZeroInput::new</span>(<span class="kw-2">&amp;</span><span class="ident">seed</span>))
+                    .<span class="ident">expect</span>(<span class="string">&quot;input is padded with zeroes; qed&quot;</span>)
+                    <span class="op">%</span> <span class="ident">max</span>.<span class="ident">saturating_add</span>(<span class="number">1</span>);
+                <span class="ident">random</span> <span class="kw">as</span> <span class="ident">usize</span>
+            }
+        };
+
+        <span class="prelude-val">Some</span>((<span class="ident">iters</span>, <span class="number">0</span>))
+    }
+}
+
 <span class="kw">impl</span> <span class="ident">pallet_election_provider_multi_phase::Config</span> <span class="kw">for</span> <span class="ident">Runtime</span> {
     <span class="kw">type</span> <span class="ident">Event</span> <span class="op">=</span> <span class="ident">Event</span>;
     <span class="kw">type</span> <span class="ident">Currency</span> <span class="op">=</span> <span class="ident">Balances</span>;
@@ -1337,7 +1467,6 @@
     <span class="kw">type</span> <span class="ident">UnsignedPhase</span> <span class="op">=</span> <span class="ident">UnsignedPhase</span>;
     <span class="kw">type</span> <span class="ident">SolutionImprovementThreshold</span> <span class="op">=</span> <span class="ident">SolutionImprovementThreshold</span>;
     <span class="kw">type</span> <span class="ident">OffchainRepeat</span> <span class="op">=</span> <span class="ident">OffchainRepeat</span>;
-    <span class="kw">type</span> <span class="ident">MinerMaxIterations</span> <span class="op">=</span> <span class="ident">MinerMaxIterations</span>;
     <span class="kw">type</span> <span class="ident">MinerMaxWeight</span> <span class="op">=</span> <span class="ident">MinerMaxWeight</span>;
     <span class="kw">type</span> <span class="ident">MinerMaxLength</span> <span class="op">=</span> <span class="ident">MinerMaxLength</span>;
     <span class="kw">type</span> <span class="ident">MinerTxPriority</span> <span class="op">=</span> <span class="ident">MultiPhaseUnsignedPriority</span>;
@@ -1350,12 +1479,17 @@
     <span class="kw">type</span> <span class="ident">SlashHandler</span> <span class="op">=</span> (); <span class="comment">// burn slashes</span>
     <span class="kw">type</span> <span class="ident">RewardHandler</span> <span class="op">=</span> (); <span class="comment">// nothing to do upon rewards</span>
     <span class="kw">type</span> <span class="ident">DataProvider</span> <span class="op">=</span> <span class="ident">Staking</span>;
-    <span class="kw">type</span> <span class="ident">OnChainAccuracy</span> <span class="op">=</span> <span class="ident">Perbill</span>;
     <span class="kw">type</span> <span class="ident">Solution</span> <span class="op">=</span> <span class="ident">NposSolution16</span>;
-    <span class="kw">type</span> <span class="ident">Fallback</span> <span class="op">=</span> <span class="ident">Fallback</span>;
+    <span class="kw">type</span> <span class="ident">Fallback</span> <span class="op">=</span> <span class="ident">pallet_election_provider_multi_phase::NoFallback</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>;
+    <span class="kw">type</span> <span class="ident">Solver</span> <span class="op">=</span> <span class="ident">frame_election_provider_support::SequentialPhragmen</span><span class="op">&lt;</span>
+        <span class="ident">AccountId</span>,
+        <span class="ident">pallet_election_provider_multi_phase::SolutionAccuracyOf</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
+        <span class="ident">OffchainRandomBalancing</span>,
+    <span class="op">&gt;</span>;
     <span class="kw">type</span> <span class="ident">WeightInfo</span> <span class="op">=</span> <span class="ident">pallet_election_provider_multi_phase::weights::SubstrateWeight</span><span class="op">&lt;</span><span class="ident">Runtime</span><span class="op">&gt;</span>;
     <span class="kw">type</span> <span class="ident">ForceOrigin</span> <span class="op">=</span> <span class="ident">MoreThanHalfTechnicals</span>;
     <span class="kw">type</span> <span class="ident">BenchmarkingConfig</span> <span class="op">=</span> ();
+    <span class="kw">type</span> <span class="ident">VoterSnapshotPerBlock</span> <span class="op">=</span> <span class="ident">VoterSnapshotPerBlock</span>;
 }
 
 <span class="macro">parameter_types!</span> {
@@ -1372,6 +1506,7 @@
     <span class="kw">type</span> <span class="ident">MaximumWeight</span> <span class="op">=</span> <span class="ident">MaximumSchedulerWeight</span>;
     <span class="kw">type</span> <span class="ident">ScheduleOrigin</span> <span class="op">=</span> <span class="ident">MoreThanHalfTechnicals</span>;
     <span class="kw">type</span> <span class="ident">MaxScheduledPerBlock</span> <span class="op">=</span> <span class="ident">MaxScheduledPerBlock</span>;
+    <span class="kw">type</span> <span class="ident">OriginPrivilegeCmp</span> <span class="op">=</span> <span class="ident">EqualPrivilegeOnly</span>;
     <span class="kw">type</span> <span class="ident">WeightInfo</span> <span class="op">=</span> ();
 }
 
@@ -1545,6 +1680,7 @@
         <span class="comment">// Evercity pallets.</span>
         <span class="ident">Evercity</span>: <span class="ident">pallet_evercity</span>::{<span class="ident">Pallet</span>, <span class="ident">Call</span>, <span class="ident">Storage</span>, <span class="ident">Event</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>} <span class="op">=</span> <span class="number">70</span>,
         <span class="ident">EvercityTransfer</span>: <span class="ident">pallet_evercity_transfer</span>::{<span class="ident">Pallet</span>, <span class="ident">Call</span>, <span class="ident">Storage</span>, <span class="ident">Event</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>} <span class="op">=</span> <span class="number">71</span>,
+        <span class="ident">BagsList</span>: <span class="ident">pallet_bags_list</span>::{<span class="ident">Pallet</span>, <span class="ident">Call</span>, <span class="ident">Storage</span>, <span class="ident">Event</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>},
     }
 }
 
@@ -1604,7 +1740,7 @@
 
     <span class="kw">impl</span> <span class="ident">sp_api::Metadata</span><span class="op">&lt;</span><span class="ident">Block</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Runtime</span> {
         <span class="kw">fn</span> <span class="ident">metadata</span>() -&gt; <span class="ident">OpaqueMetadata</span> {
-            <span class="ident">Runtime::metadata</span>().<span class="ident">into</span>()
+            <span class="ident">OpaqueMetadata::new</span>(<span class="ident">Runtime::metadata</span>().<span class="ident">into</span>())
         }
     }
 
@@ -1679,7 +1815,7 @@
         }
 
         <span class="kw">fn</span> <span class="ident">authorities</span>() -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">AuraId</span><span class="op">&gt;</span> {
-            <span class="ident">Aura::authorities</span>()
+            <span class="ident">Aura::authorities</span>().<span class="ident">into_inner</span>()
         }
     }
 

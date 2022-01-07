@@ -621,6 +621,7 @@
 <span class="kw">use</span> <span class="ident">frame_support::traits</span>::{
     <span class="ident">Currency</span>, <span class="ident">Imbalance</span>, <span class="ident">LockIdentifier</span>, <span class="ident">LockableCurrency</span>, <span class="ident">WithdrawReasons</span>,
 };
+<span class="kw">use</span> <span class="ident">scale_info::TypeInfo</span>;
 <span class="kw">use</span> <span class="ident">sp_runtime</span>::{
     <span class="ident">traits</span>::{<span class="ident">AtLeast32BitUnsigned</span>, <span class="ident">CheckedSub</span>, <span class="ident">Saturating</span>, <span class="ident">StaticLookup</span>, <span class="ident">Zero</span>},
     <span class="ident">Perbill</span>, <span class="ident">RuntimeDebug</span>,
@@ -639,7 +640,7 @@
 <span class="kw">const</span> <span class="ident">MAX_UNLOCKING_CHUNKS</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">32</span>;
 
 <span class="doccomment">/// Just a Balance/BlockNumber tuple to encode when a chunk of funds will be unlocked.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Clone</span>, <span class="ident">Encode</span>, <span class="ident">Decode</span>, <span class="ident">RuntimeDebug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Clone</span>, <span class="ident">Encode</span>, <span class="ident">Decode</span>, <span class="ident">RuntimeDebug</span>, <span class="ident">TypeInfo</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UnlockChunk</span><span class="op">&lt;</span><span class="ident">Balance</span>: <span class="ident">HasCompact</span>, <span class="ident">Moment</span>: <span class="ident">HasCompact</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Amount of funds to be unlocked.</span>
     <span class="attribute">#[<span class="ident">codec</span>(<span class="ident">compact</span>)]</span>
@@ -650,7 +651,7 @@
 }
 
 <span class="doccomment">/// The ledger of a (bonded) stash.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Clone</span>, <span class="ident">Encode</span>, <span class="ident">Decode</span>, <span class="ident">RuntimeDebug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Clone</span>, <span class="ident">Encode</span>, <span class="ident">Decode</span>, <span class="ident">RuntimeDebug</span>, <span class="ident">TypeInfo</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StakerLedger</span><span class="op">&lt;</span><span class="ident">AccountId</span>, <span class="ident">Balance</span>: <span class="ident">HasCompact</span>, <span class="ident">Moment</span>: <span class="ident">HasCompact</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The stash account whose balance is actually locked and at stake.</span>
     <span class="kw">pub</span> <span class="ident">stash</span>: <span class="ident">AccountId</span>,
@@ -768,7 +769,6 @@
 
     <span class="attribute">#[<span class="ident">pallet::event</span>]</span>
     <span class="attribute">#[<span class="ident">pallet::generate_deposit</span>(<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">deposit_event</span>)]</span>
-    <span class="attribute">#[<span class="ident">pallet::metadata</span>(<span class="ident">T::AccountId</span> <span class="op">=</span> <span class="string">&quot;AccountId&quot;</span>, <span class="ident">BalanceOf</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="op">=</span> <span class="string">&quot;Balance&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Event</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Config</span><span class="op">&gt;</span> {
         <span class="doccomment">/// An account has bonded this amount. \[stash, amount\]</span>
         <span class="ident">Bonded</span>(<span class="ident">T::AccountId</span>, <span class="ident">BalanceOf</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>),

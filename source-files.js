@@ -1,10 +1,9 @@
 var N = null;var sourcesIndex = {};
 sourcesIndex["alpha_runtime"] = {"name":"","files":["constants.rs","lib.rs"]};
-sourcesIndex["ipci_runtime"] = {"name":"","files":["constants.rs","lib.rs"]};
+sourcesIndex["ipci_runtime"] = {"name":"","files":["constants.rs","lib.rs","voter_bags.rs"]};
 sourcesIndex["local_runtime"] = {"name":"","files":["constants.rs","lib.rs"]};
 sourcesIndex["main_runtime"] = {"name":"","files":["constants.rs","lib.rs"]};
 sourcesIndex["pallet_robonomics_datalog"] = {"name":"","files":["lib.rs","weights.rs"]};
-sourcesIndex["pallet_robonomics_datalog_xcm"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["pallet_robonomics_digital_twin"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["pallet_robonomics_launch"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["pallet_robonomics_liability"] = {"name":"","files":["economics.rs","lib.rs","signed.rs","technics.rs","traits.rs"]};
