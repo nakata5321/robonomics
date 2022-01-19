@@ -399,6 +399,8 @@
 <span id="399">399</span>
 <span id="400">400</span>
 <span id="401">401</span>
+<span id="402">402</span>
+<span id="403">403</span>
 </pre><pre class="rust"><code><span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
 <span class="comment">//</span>
 <span class="comment">//  Copyright 2018-2021 Robonomics Network &lt;research@robonomics.network&gt;</span>
@@ -601,9 +603,11 @@ pub fn mercury_parachain_config() -&gt; AlphaChainSpec {
             <span class="ident">code</span>: <span class="ident">main_runtime::wasm_binary_unwrap</span>().<span class="ident">to_vec</span>(),
         },
         <span class="ident">balances</span>: <span class="ident">main_runtime::BalancesConfig</span> { <span class="ident">balances</span> },
+        <span class="ident">vesting</span>: <span class="ident">Default::default</span>(),
         <span class="ident">staking</span>: <span class="ident">main_runtime::StakingConfig</span> { <span class="ident">bonus</span>: <span class="macro">vec!</span>[] },
         <span class="ident">sudo</span>: <span class="ident">main_runtime::SudoConfig</span> { <span class="ident">key</span>: <span class="ident">sudo_key</span> },
         <span class="ident">parachain_info</span>: <span class="ident">main_runtime::ParachainInfoConfig</span> { <span class="ident">parachain_id</span> },
+        <span class="ident">democracy</span>: <span class="ident">main_runtime::DemocracyConfig::default</span>(),
         <span class="ident">treasury</span>: <span class="ident">Default::default</span>(),
         <span class="ident">technical_committee</span>: <span class="ident">Default::default</span>(),
         <span class="ident">technical_membership</span>: <span class="ident">Default::default</span>(),
