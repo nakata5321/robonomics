@@ -399,8 +399,6 @@
 <span id="399">399</span>
 <span id="400">400</span>
 <span id="401">401</span>
-<span id="402">402</span>
-<span id="403">403</span>
 </pre><pre class="rust"><code><span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
 <span class="comment">//</span>
 <span class="comment">//  Copyright 2018-2021 Robonomics Network &lt;research@robonomics.network&gt;</span>
@@ -440,8 +438,8 @@
 <span class="doccomment">/// Mercury parachain ID</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MERCURY_ID</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">5000</span>;
 
-<span class="kw">const</span> <span class="ident">ROBONOMICS_PROTOCOL_ID</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;xrt&quot;</span>;
 <span class="comment">/*
+const ROBONOMICS_PROTOCOL_ID: &amp;str = &quot;xrt&quot;;
 const IPCI_PROTOCOL_ID: &amp;str = &quot;mito&quot;;
 */</span>
 
@@ -590,31 +588,29 @@ pub fn mercury_parachain_config() -&gt; AlphaChainSpec {
         },
     )
 }
-*/</span>
 
-<span class="doccomment">/// Helper function to create GenesisConfig for main parachain</span>
-<span class="kw">fn</span> <span class="ident">mk_genesis_main</span>(
-    <span class="ident">balances</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">AccountId</span>, <span class="ident">Balance</span>)<span class="op">&gt;</span>,
-    <span class="ident">sudo_key</span>: <span class="ident">AccountId</span>,
-    <span class="ident">parachain_id</span>: <span class="ident">ParaId</span>,
-) -&gt; <span class="ident">main_runtime::GenesisConfig</span> {
-    <span class="ident">main_runtime::GenesisConfig</span> {
-        <span class="ident">system</span>: <span class="ident">main_runtime::SystemConfig</span> {
-            <span class="ident">code</span>: <span class="ident">main_runtime::wasm_binary_unwrap</span>().<span class="ident">to_vec</span>(),
+/// Helper function to create GenesisConfig for main parachain
+fn mk_genesis_main(
+    balances: Vec&lt;(AccountId, Balance)&gt;,
+    sudo_key: AccountId,
+    parachain_id: ParaId,
+) -&gt; main_runtime::GenesisConfig {
+    main_runtime::GenesisConfig {
+        system: main_runtime::SystemConfig {
+            code: main_runtime::wasm_binary_unwrap().to_vec(),
         },
-        <span class="ident">balances</span>: <span class="ident">main_runtime::BalancesConfig</span> { <span class="ident">balances</span> },
-        <span class="ident">vesting</span>: <span class="ident">Default::default</span>(),
-        <span class="ident">staking</span>: <span class="ident">main_runtime::StakingConfig</span> { <span class="ident">bonus</span>: <span class="macro">vec!</span>[] },
-        <span class="ident">sudo</span>: <span class="ident">main_runtime::SudoConfig</span> { <span class="ident">key</span>: <span class="ident">sudo_key</span> },
-        <span class="ident">parachain_info</span>: <span class="ident">main_runtime::ParachainInfoConfig</span> { <span class="ident">parachain_id</span> },
-        <span class="ident">democracy</span>: <span class="ident">main_runtime::DemocracyConfig::default</span>(),
-        <span class="ident">treasury</span>: <span class="ident">Default::default</span>(),
-        <span class="ident">technical_committee</span>: <span class="ident">Default::default</span>(),
-        <span class="ident">technical_membership</span>: <span class="ident">Default::default</span>(),
+        balances: main_runtime::BalancesConfig { balances },
+        vesting: Default::default(),
+        staking: main_runtime::StakingConfig { bonus: vec![] },
+        sudo: main_runtime::SudoConfig { key: sudo_key },
+        parachain_info: main_runtime::ParachainInfoConfig { parachain_id },
+        democracy: main_runtime::DemocracyConfig::default(),
+        treasury: Default::default(),
+        technical_committee: Default::default(),
+        technical_membership: Default::default(),
     }
 }
 
-<span class="comment">/*
 fn ipci_session_keys(
     aura: ipci_runtime::AuraId,
     im_online: ipci_runtime::ImOnlineId,
