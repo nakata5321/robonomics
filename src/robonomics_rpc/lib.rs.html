@@ -99,6 +99,9 @@
 <span id="99"> 99</span>
 <span id="100">100</span>
 <span id="101">101</span>
+<span id="102">102</span>
+<span id="103">103</span>
+<span id="104">104</span>
 </pre><pre class="rust"><code><span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
 <span class="comment">//</span>
 <span class="comment">//  Copyright 2018-2021 Robonomics Network &lt;research@robonomics.network&gt;</span>
@@ -136,6 +139,7 @@
 <span class="kw">use</span> <span class="ident">robonomics_primitives</span>::{<span class="ident">AccountId</span>, <span class="ident">Balance</span>, <span class="ident">Block</span>, <span class="ident">Index</span>};
 <span class="kw">use</span> <span class="ident">robonomics_protocol::pubsub::pubsubapi</span>::{<span class="ident">PubSubApi</span>, <span class="ident">PubSubT</span>};
 <span class="kw">use</span> <span class="ident">robonomics_protocol::pubsub::Gossipsub</span>;
+<span class="kw">use</span> <span class="ident">robonomics_protocol::reqres::reqresapi</span>::{<span class="ident">ReqRespApi</span>, <span class="ident">ReqRespT</span>};
 <span class="kw">use</span> <span class="ident">sc_client_api::AuxStore</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">sc_rpc_api::DenyUnsafe</span>;
 <span class="kw">use</span> <span class="ident">sc_transaction_pool_api::TransactionPool</span>;
@@ -197,6 +201,8 @@
     )));
 
     <span class="ident">io</span>.<span class="ident">extend_with</span>(<span class="ident">PubSubApi::to_delegate</span>(<span class="ident">PubSubApi::new</span>(<span class="ident">pubsub</span>)));
+
+    <span class="ident">io</span>.<span class="ident">extend_with</span>(<span class="ident">ReqRespApi::to_delegate</span>(<span class="ident">ReqRespApi</span> {}));
 
     <span class="prelude-val">Ok</span>(<span class="ident">io</span>)
 }

@@ -643,7 +643,6 @@
 <span id="643">643</span>
 <span id="644">644</span>
 <span id="645">645</span>
-<span id="646">646</span>
 </pre><pre class="rust"><code><span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
 <span class="comment">//</span>
 <span class="comment">//  Copyright 2018-2021 Robonomics Network &lt;research@robonomics.network&gt;</span>
@@ -676,9 +675,8 @@
     <span class="ident">prepare_node_config</span>, <span class="ident">start_collator</span>, <span class="ident">start_full_node</span>, <span class="ident">StartCollatorParams</span>, <span class="ident">StartFullNodeParams</span>,
 };
 <span class="kw">use</span> <span class="ident">cumulus_primitives_parachain_inherent::ParachainInherentData</span>;
-<span class="kw">use</span> <span class="ident">robonomics_primitives</span>::{<span class="ident">AccountId</span>, <span class="ident">Block</span>, <span class="ident">Hash</span>, <span class="ident">Index</span>};
+<span class="kw">use</span> <span class="ident">robonomics_primitives</span>::{<span class="ident">AccountId</span>, <span class="ident">Balance</span>, <span class="ident">Block</span>, <span class="ident">Hash</span>, <span class="ident">Index</span>};
 <span class="kw">use</span> <span class="ident">robonomics_protocol::pubsub::gossipsub::PubSub</span>;
-<span class="kw">use</span> <span class="ident">robonomics_protocol::pubsub::pubsubapi</span>::{<span class="ident">PubSubApi</span>, <span class="ident">PubSubT</span>};
 <span class="kw">use</span> <span class="ident">sc_client_api::ExecutorProvider</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">sc_executor::NativeElseWasmExecutor</span>;
 <span class="kw">use</span> <span class="ident">sc_network::NetworkService</span>;
@@ -691,7 +689,6 @@
 <span class="kw">use</span> <span class="ident">sp_trie::PrefixedMemoryDB</span>;
 <span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
 <span class="kw">use</span> <span class="ident">std::time::Duration</span>;
-<span class="kw">use</span> <span class="ident">substrate_frame_rpc_system</span>::{<span class="ident">FullSystem</span>, <span class="ident">SystemApi</span>};
 <span class="kw">use</span> <span class="ident">substrate_prometheus_endpoint::Registry</span>;
 
 <span class="kw">fn</span> <span class="ident">new_partial</span><span class="op">&lt;</span><span class="ident">RuntimeApi</span>, <span class="ident">Executor</span>, <span class="ident">BIQ</span><span class="op">&gt;</span>(
@@ -836,6 +833,7 @@
         <span class="op">&gt;</span> <span class="op">+</span> <span class="ident">sp_offchain::OffchainWorkerApi</span><span class="op">&lt;</span><span class="ident">Block</span><span class="op">&gt;</span>
         <span class="op">+</span> <span class="ident">sp_block_builder::BlockBuilder</span><span class="op">&lt;</span><span class="ident">Block</span><span class="op">&gt;</span>
         <span class="op">+</span> <span class="ident">cumulus_primitives_core::CollectCollationInfo</span><span class="op">&lt;</span><span class="ident">Block</span><span class="op">&gt;</span>
+        <span class="op">+</span> <span class="ident">pallet_transaction_payment_rpc_runtime_api::TransactionPaymentApi</span><span class="op">&lt;</span><span class="ident">Block</span>, <span class="ident">Balance</span><span class="op">&gt;</span>
         <span class="op">+</span> <span class="ident">substrate_frame_rpc_system::AccountNonceApi</span><span class="op">&lt;</span><span class="ident">Block</span>, <span class="ident">AccountId</span>, <span class="ident">Index</span><span class="op">&gt;</span>,
     <span class="ident">sc_client_api::StateBackendFor</span><span class="op">&lt;</span><span class="ident">TFullBackend</span><span class="op">&lt;</span><span class="ident">Block</span><span class="op">&gt;</span>, <span class="ident">Block</span><span class="op">&gt;</span>: <span class="ident">sp_api::StateBackend</span><span class="op">&lt;</span><span class="ident">BlakeTwo256</span><span class="op">&gt;</span>,
     <span class="ident">BIQ</span>: <span class="ident">FnOnce</span>(
@@ -921,14 +919,14 @@
 
     <span class="ident">sc_service::spawn_tasks</span>(<span class="ident">sc_service::SpawnTasksParams</span> {
         <span class="ident">rpc_extensions_builder</span>: <span class="ident">Box::new</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">deny_unsafe</span>, <span class="kw">_</span><span class="op">|</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">io</span> <span class="op">=</span> <span class="ident">jsonrpc_core::IoHandler::default</span>();
-            <span class="ident">io</span>.<span class="ident">extend_with</span>(<span class="ident">SystemApi::to_delegate</span>(<span class="ident">FullSystem::new</span>(
-                <span class="ident">rpc_client</span>.<span class="ident">clone</span>(),
-                <span class="ident">rpc_pool</span>.<span class="ident">clone</span>(),
+            <span class="kw">let</span> <span class="ident">deps</span> <span class="op">=</span> <span class="ident">robonomics_rpc::FullDeps</span> {
+                <span class="ident">client</span>: <span class="ident">rpc_client</span>.<span class="ident">clone</span>(),
+                <span class="ident">pool</span>: <span class="ident">rpc_pool</span>.<span class="ident">clone</span>(),
                 <span class="ident">deny_unsafe</span>,
-            )));
-            <span class="ident">io</span>.<span class="ident">extend_with</span>(<span class="ident">PubSubApi::to_delegate</span>(<span class="ident">PubSubApi::new</span>(<span class="ident">pubsub</span>.<span class="ident">clone</span>())));
-            <span class="prelude-val">Ok</span>(<span class="ident">io</span>)
+                <span class="ident">pubsub</span>: <span class="ident">pubsub</span>.<span class="ident">clone</span>(),
+            };
+
+            <span class="ident">robonomics_rpc::create_full</span>(<span class="ident">deps</span>).<span class="ident">map_err</span>(<span class="ident">Into::into</span>)
         }),
         <span class="ident">client</span>: <span class="ident">client</span>.<span class="ident">clone</span>(),
         <span class="ident">transaction_pool</span>: <span class="ident">transaction_pool</span>.<span class="ident">clone</span>(),
