@@ -402,6 +402,8 @@
 <span id="401">401</span>
 <span id="402">402</span>
 <span id="403">403</span>
+<span id="404">404</span>
+<span id="405">405</span>
 </pre><pre class="rust"><code><span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
 <span class="comment">//</span>
 <span class="comment">//  Copyright 2018-2021 Robonomics Network &lt;research@robonomics.network&gt;</span>
@@ -555,7 +557,9 @@ const IPCI_PROTOCOL_ID: &amp;str = &quot;mito&quot;;
         <span class="ident">council</span>: <span class="ident">Default::default</span>(),
         <span class="ident">treasury</span>: <span class="ident">Default::default</span>(),
         <span class="ident">staking</span>: <span class="ident">alpha_runtime::StakingConfig</span> { <span class="ident">bonus</span> },
-        <span class="ident">sudo</span>: <span class="ident">alpha_runtime::SudoConfig</span> { <span class="ident">key</span>: <span class="prelude-val">Some</span>(<span class="ident">sudo_key</span>) },
+        <span class="ident">sudo</span>: <span class="ident">alpha_runtime::SudoConfig</span> {
+            <span class="ident">key</span>: <span class="prelude-val">Some</span>(<span class="ident">sudo_key</span>),
+        },
         <span class="ident">parachain_info</span>: <span class="ident">alpha_runtime::ParachainInfoConfig</span> { <span class="ident">parachain_id</span> },
         <span class="ident">parachain_system</span>: <span class="ident">Default::default</span>(),
     }

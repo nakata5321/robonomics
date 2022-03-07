@@ -215,6 +215,8 @@
 <span id="214">214</span>
 <span id="215">215</span>
 <span id="216">216</span>
+<span id="217">217</span>
+<span id="218">218</span>
 </pre><pre class="rust"><code><span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
 <span class="comment">//</span>
 <span class="comment">//  Copyright 2018-2021 Robonomics Network &lt;research@robonomics.network&gt;</span>
@@ -399,7 +401,9 @@
                 .<span class="ident">map</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> (<span class="ident">x</span>.<span class="number">1</span>.<span class="ident">clone</span>(), <span class="number">1</span>))
                 .<span class="ident">collect</span>(),
         },
-        <span class="ident">sudo</span>: <span class="ident">SudoConfig</span> { <span class="ident">key</span>: <span class="prelude-val">Some</span>(<span class="ident">sudo_key</span>) },
+        <span class="ident">sudo</span>: <span class="ident">SudoConfig</span> {
+            <span class="ident">key</span>: <span class="prelude-val">Some</span>(<span class="ident">sudo_key</span>),
+        },
         <span class="ident">vesting</span>: <span class="ident">Default::default</span>(),
         <span class="ident">staking</span>: <span class="ident">StakingConfig</span> { <span class="ident">bonus</span> },
         <span class="ident">democracy</span>: <span class="ident">DemocracyConfig::default</span>(),
