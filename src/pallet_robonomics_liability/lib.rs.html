@@ -452,8 +452,6 @@
 <span id="451">451</span>
 <span id="452">452</span>
 <span id="453">453</span>
-<span id="454">454</span>
-<span id="455">455</span>
 </pre><pre class="rust"><code><span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
 <span class="comment">//</span>
 <span class="comment">//  Copyright 2018-2021 Robonomics Network &lt;research@robonomics.network&gt;</span>
@@ -636,20 +634,20 @@
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
+    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::economics::SimpleMarket</span>;
     <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::signed</span>::<span class="kw-2">*</span>;
     <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::technics::IPFS</span>;
-    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::economics::SimpleMarket</span>;
     <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::traits</span>::<span class="kw-2">*</span>;
     <span class="kw">use</span> <span class="kw">crate</span>::{<span class="self">self</span> <span class="kw">as</span> <span class="ident">liability</span>, <span class="kw-2">*</span>};
     <span class="kw">use</span> <span class="ident">frame_support</span>::{<span class="ident">assert_err</span>, <span class="ident">assert_ok</span>, <span class="ident">parameter_types</span>};
+    <span class="kw">use</span> <span class="ident">hex_literal::hex</span>;
     <span class="kw">use</span> <span class="ident">sp_core</span>::{<span class="ident">crypto::Pair</span>, <span class="ident">sr25519</span>, <span class="ident">H256</span>};
+    <span class="kw">use</span> <span class="ident">sp_keyring::AccountKeyring</span>;
     <span class="kw">use</span> <span class="ident">sp_runtime</span>::{
         <span class="ident">testing::Header</span>,
         <span class="ident">traits</span>::{<span class="ident">IdentifyAccount</span>, <span class="ident">IdentityLookup</span>, <span class="ident">Verify</span>},
         <span class="ident">AccountId32</span>, <span class="ident">MultiSignature</span>,
     };
-    <span class="kw">use</span> <span class="ident">sp_keyring::AccountKeyring</span>;
-    <span class="kw">use</span> <span class="ident">hex_literal::hex</span>;
 
     <span class="kw">type</span> <span class="ident">UncheckedExtrinsic</span> <span class="op">=</span> <span class="ident">frame_system::mocking::MockUncheckedExtrinsic</span><span class="op">&lt;</span><span class="ident">Runtime</span><span class="op">&gt;</span>;
     <span class="kw">type</span> <span class="ident">Block</span> <span class="op">=</span> <span class="ident">frame_system::mocking::MockBlock</span><span class="op">&lt;</span><span class="ident">Runtime</span><span class="op">&gt;</span>;
@@ -723,7 +721,7 @@
         <span class="kw">type</span> <span class="ident">Agreement</span> <span class="op">=</span> <span class="ident">SignedAgreement</span><span class="op">&lt;</span>
             <span class="comment">// Provide task in IPFS</span>
             <span class="ident">IPFS</span>,
-            <span class="comment">// Liability has a price </span>
+            <span class="comment">// Liability has a price</span>
             <span class="ident">SimpleMarket</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::AccountId</span>, <span class="ident">Balances</span><span class="op">&gt;</span>,
             <span class="comment">// Use standard accounts</span>
             <span class="ident"><span class="self">Self</span>::AccountId</span>,
@@ -743,7 +741,8 @@
     }
 
     <span class="comment">// IPFS raw hash (sha256)</span>
-    <span class="kw">const</span> <span class="ident">IPFS_HASH</span>: [<span class="ident">u8</span>; <span class="number">32</span>] <span class="op">=</span> <span class="macro">hex!</span>[<span class="string">&quot;30f3d649b3d140a6601e11a2cfbe3560e60dc5434f62d702ac8ceff4e1890015&quot;</span>];
+    <span class="kw">const</span> <span class="ident">IPFS_HASH</span>: [<span class="ident">u8</span>; <span class="number">32</span>] <span class="op">=</span>
+        <span class="macro">hex!</span>[<span class="string">&quot;30f3d649b3d140a6601e11a2cfbe3560e60dc5434f62d702ac8ceff4e1890015&quot;</span>];
 
     <span class="kw">fn</span> <span class="ident">new_test_ext</span>() -&gt; <span class="ident">sp_io::TestExternalities</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">storage</span> <span class="op">=</span> <span class="ident">frame_system::GenesisConfig::default</span>()
@@ -790,7 +789,6 @@
         (<span class="ident">sender</span>, <span class="ident">signature</span>)
     }
 
-
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_liability_proofs</span>() {
         <span class="kw">let</span> <span class="ident">technics</span> <span class="op">=</span> <span class="ident">IPFS</span> {
@@ -830,9 +828,7 @@
             <span class="kw">let</span> <span class="ident">technics</span> <span class="op">=</span> <span class="ident">IPFS</span> {
                 <span class="ident">hash</span>: <span class="ident">IPFS_HASH</span>.<span class="ident">into</span>(),
             };
-            <span class="kw">let</span> <span class="ident">economics</span> <span class="op">=</span> <span class="ident">SimpleMarket</span> {
-                <span class="ident">price</span>: <span class="number">10</span> <span class="op">*</span> <span class="ident">XRT</span>,
-            };
+            <span class="kw">let</span> <span class="ident">economics</span> <span class="op">=</span> <span class="ident">SimpleMarket</span> { <span class="ident">price</span>: <span class="number">10</span> <span class="op">*</span> <span class="ident">XRT</span> };
 
             <span class="kw">let</span> (<span class="ident">alice</span>, <span class="ident">promisee_signature</span>) <span class="op">=</span> <span class="ident">get_params_proof</span>(<span class="string">&quot;//Alice&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">technics</span>, <span class="kw-2">&amp;</span><span class="ident">economics</span>);
             <span class="kw">let</span> (<span class="ident">bob</span>, <span class="ident">promisor_signature</span>) <span class="op">=</span> <span class="ident">get_params_proof</span>(<span class="string">&quot;//Bob&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">technics</span>, <span class="kw-2">&amp;</span><span class="ident">economics</span>);
