@@ -1035,7 +1035,7 @@ use xcm_executor::{traits::JustTry, Config, XcmExecutor};
     <span class="ident">spec_name</span>: <span class="macro">create_runtime_str!</span>(<span class="string">&quot;robonomics-alpha&quot;</span>),
     <span class="ident">impl_name</span>: <span class="macro">create_runtime_str!</span>(<span class="string">&quot;robonomics-airalab&quot;</span>),
     <span class="ident">authoring_version</span>: <span class="number">13</span>,
-    <span class="ident">spec_version</span>: <span class="number">22</span>,
+    <span class="ident">spec_version</span>: <span class="number">23</span>,
     <span class="ident">impl_version</span>: <span class="number">0</span>,
     <span class="ident">apis</span>: <span class="ident">RUNTIME_API_VERSIONS</span>,
     <span class="ident">transaction_version</span>: <span class="number">1</span>,
@@ -1635,8 +1635,8 @@ impl cumulus_pallet_dmp_queue::Config for Runtime {
 
 <span class="kw">impl</span> <span class="ident">pallet_robonomics_liability::Config</span> <span class="kw">for</span> <span class="ident">Runtime</span> {
     <span class="kw">type</span> <span class="ident">Agreement</span> <span class="op">=</span> <span class="ident">pallet_robonomics_liability::SignedAgreement</span><span class="op">&lt;</span>
-        <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
-        (),
+        <span class="ident">pallet_robonomics_liability::technics::IPFS</span>,
+        <span class="ident">pallet_robonomics_liability::economics::SimpleMarket</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::AccountId</span>, <span class="ident">Balances</span><span class="op">&gt;</span>,
         <span class="ident"><span class="self">Self</span>::AccountId</span>,
         <span class="ident">sp_runtime::MultiSignature</span>,
     <span class="op">&gt;</span>;
@@ -1644,7 +1644,7 @@ impl cumulus_pallet_dmp_queue::Config for Runtime {
         <span class="ident"><span class="self">Self</span>::Index</span>,
         <span class="ident"><span class="self">Self</span>::AccountId</span>,
         <span class="ident">sp_runtime::MultiSignature</span>,
-        <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
+        <span class="ident">pallet_robonomics_liability::technics::IPFS</span>,
     <span class="op">&gt;</span>;
     <span class="kw">type</span> <span class="ident">Event</span> <span class="op">=</span> <span class="ident">Event</span>;
 }

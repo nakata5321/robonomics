@@ -769,6 +769,23 @@
 <span id="768">768</span>
 <span id="769">769</span>
 <span id="770">770</span>
+<span id="771">771</span>
+<span id="772">772</span>
+<span id="773">773</span>
+<span id="774">774</span>
+<span id="775">775</span>
+<span id="776">776</span>
+<span id="777">777</span>
+<span id="778">778</span>
+<span id="779">779</span>
+<span id="780">780</span>
+<span id="781">781</span>
+<span id="782">782</span>
+<span id="783">783</span>
+<span id="784">784</span>
+<span id="785">785</span>
+<span id="786">786</span>
+<span id="787">787</span>
 </pre><pre class="rust"><code><span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
 <span class="comment">//</span>
 <span class="comment">//  Copyright 2018-2021 Robonomics Network &lt;research@robonomics.network&gt;</span>
@@ -843,7 +860,7 @@
     <span class="ident">spec_name</span>: <span class="macro">create_runtime_str!</span>(<span class="string">&quot;robonomics&quot;</span>),
     <span class="ident">impl_name</span>: <span class="macro">create_runtime_str!</span>(<span class="string">&quot;robonomics-airalab&quot;</span>),
     <span class="ident">authoring_version</span>: <span class="number">1</span>,
-    <span class="ident">spec_version</span>: <span class="number">13</span>,
+    <span class="ident">spec_version</span>: <span class="number">14</span>,
     <span class="ident">impl_version</span>: <span class="number">0</span>,
     <span class="ident">apis</span>: <span class="ident">RUNTIME_API_VERSIONS</span>,
     <span class="ident">transaction_version</span>: <span class="number">1</span>,
@@ -1348,6 +1365,22 @@
     <span class="kw">type</span> <span class="ident">Event</span> <span class="op">=</span> <span class="ident">Event</span>;
 }
 
+<span class="kw">impl</span> <span class="ident">pallet_robonomics_liability::Config</span> <span class="kw">for</span> <span class="ident">Runtime</span> {
+    <span class="kw">type</span> <span class="ident">Agreement</span> <span class="op">=</span> <span class="ident">pallet_robonomics_liability::SignedAgreement</span><span class="op">&lt;</span>
+        <span class="ident">pallet_robonomics_liability::technics::IPFS</span>,
+        <span class="ident">pallet_robonomics_liability::economics::SimpleMarket</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::AccountId</span>, <span class="ident">Balances</span><span class="op">&gt;</span>,
+        <span class="ident"><span class="self">Self</span>::AccountId</span>,
+        <span class="ident">sp_runtime::MultiSignature</span>,
+    <span class="op">&gt;</span>;
+    <span class="kw">type</span> <span class="ident">Report</span> <span class="op">=</span> <span class="ident">pallet_robonomics_liability::SignedReport</span><span class="op">&lt;</span>
+        <span class="ident"><span class="self">Self</span>::Index</span>,
+        <span class="ident"><span class="self">Self</span>::AccountId</span>,
+        <span class="ident">sp_runtime::MultiSignature</span>,
+        <span class="ident">pallet_robonomics_liability::technics::IPFS</span>,
+    <span class="op">&gt;</span>;
+    <span class="kw">type</span> <span class="ident">Event</span> <span class="op">=</span> <span class="ident">Event</span>;
+}
+
 <span class="macro">construct_runtime!</span> {
     <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Runtime</span> <span class="kw">where</span>
         <span class="ident">Block</span> <span class="op">=</span> <span class="ident">Block</span>,
@@ -1385,6 +1418,7 @@
         <span class="ident">Staking</span>: <span class="ident">pallet_robonomics_staking</span>::{<span class="ident">Pallet</span>, <span class="ident">Call</span>, <span class="ident">Storage</span>, <span class="ident">Event</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">Config</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>} <span class="op">=</span> <span class="number">53</span>,
         <span class="ident">DigitalTwin</span>: <span class="ident">pallet_robonomics_digital_twin</span>::{<span class="ident">Pallet</span>, <span class="ident">Call</span>, <span class="ident">Storage</span>, <span class="ident">Event</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>} <span class="op">=</span> <span class="number">54</span>,
         <span class="ident">RWS</span>: <span class="ident">pallet_robonomics_rws</span>::{<span class="ident">Pallet</span>, <span class="ident">Call</span>, <span class="ident">Storage</span>, <span class="ident">Event</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>} <span class="op">=</span> <span class="number">55</span>,
+        <span class="ident">Liability</span>: <span class="ident">pallet_robonomics_liability</span>::{<span class="ident">Pallet</span>, <span class="ident">Call</span>, <span class="ident">Storage</span>, <span class="ident">Event</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>} <span class="op">=</span> <span class="number">56</span>,
 
         <span class="ident">Lighthouse</span>: <span class="ident">pallet_robonomics_lighthouse</span>::{<span class="ident">Pallet</span>, <span class="ident">Call</span>, <span class="ident">Storage</span>, <span class="ident">Inherent</span>, <span class="ident">Event</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>} <span class="op">=</span> <span class="number">60</span>,
     }

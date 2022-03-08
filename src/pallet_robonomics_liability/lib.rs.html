@@ -411,6 +411,49 @@
 <span id="410">410</span>
 <span id="411">411</span>
 <span id="412">412</span>
+<span id="413">413</span>
+<span id="414">414</span>
+<span id="415">415</span>
+<span id="416">416</span>
+<span id="417">417</span>
+<span id="418">418</span>
+<span id="419">419</span>
+<span id="420">420</span>
+<span id="421">421</span>
+<span id="422">422</span>
+<span id="423">423</span>
+<span id="424">424</span>
+<span id="425">425</span>
+<span id="426">426</span>
+<span id="427">427</span>
+<span id="428">428</span>
+<span id="429">429</span>
+<span id="430">430</span>
+<span id="431">431</span>
+<span id="432">432</span>
+<span id="433">433</span>
+<span id="434">434</span>
+<span id="435">435</span>
+<span id="436">436</span>
+<span id="437">437</span>
+<span id="438">438</span>
+<span id="439">439</span>
+<span id="440">440</span>
+<span id="441">441</span>
+<span id="442">442</span>
+<span id="443">443</span>
+<span id="444">444</span>
+<span id="445">445</span>
+<span id="446">446</span>
+<span id="447">447</span>
+<span id="448">448</span>
+<span id="449">449</span>
+<span id="450">450</span>
+<span id="451">451</span>
+<span id="452">452</span>
+<span id="453">453</span>
+<span id="454">454</span>
+<span id="455">455</span>
 </pre><pre class="rust"><code><span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
 <span class="comment">//</span>
 <span class="comment">//  Copyright 2018-2021 Robonomics Network &lt;research@robonomics.network&gt;</span>
@@ -595,9 +638,9 @@
 <span class="kw">mod</span> <span class="ident">tests</span> {
     <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::signed</span>::<span class="kw-2">*</span>;
     <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::technics::IPFS</span>;
+    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::economics::SimpleMarket</span>;
     <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::traits</span>::<span class="kw-2">*</span>;
     <span class="kw">use</span> <span class="kw">crate</span>::{<span class="self">self</span> <span class="kw">as</span> <span class="ident">liability</span>, <span class="kw-2">*</span>};
-    <span class="kw">use</span> <span class="ident">base58::FromBase58</span>;
     <span class="kw">use</span> <span class="ident">frame_support</span>::{<span class="ident">assert_err</span>, <span class="ident">assert_ok</span>, <span class="ident">parameter_types</span>};
     <span class="kw">use</span> <span class="ident">sp_core</span>::{<span class="ident">crypto::Pair</span>, <span class="ident">sr25519</span>, <span class="ident">H256</span>};
     <span class="kw">use</span> <span class="ident">sp_runtime</span>::{
@@ -605,9 +648,14 @@
         <span class="ident">traits</span>::{<span class="ident">IdentifyAccount</span>, <span class="ident">IdentityLookup</span>, <span class="ident">Verify</span>},
         <span class="ident">AccountId32</span>, <span class="ident">MultiSignature</span>,
     };
+    <span class="kw">use</span> <span class="ident">sp_keyring::AccountKeyring</span>;
+    <span class="kw">use</span> <span class="ident">hex_literal::hex</span>;
 
     <span class="kw">type</span> <span class="ident">UncheckedExtrinsic</span> <span class="op">=</span> <span class="ident">frame_system::mocking::MockUncheckedExtrinsic</span><span class="op">&lt;</span><span class="ident">Runtime</span><span class="op">&gt;</span>;
     <span class="kw">type</span> <span class="ident">Block</span> <span class="op">=</span> <span class="ident">frame_system::mocking::MockBlock</span><span class="op">&lt;</span><span class="ident">Runtime</span><span class="op">&gt;</span>;
+    <span class="kw">type</span> <span class="ident">Balance</span> <span class="op">=</span> <span class="ident">u128</span>;
+
+    <span class="kw">const</span> <span class="ident">XRT</span>: <span class="ident">Balance</span> <span class="op">=</span> <span class="number">1_000_000_000</span>;
 
     <span class="macro">frame_support::construct_runtime!</span>(
         <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Runtime</span> <span class="kw">where</span>
@@ -616,6 +664,7 @@
             <span class="ident">UncheckedExtrinsic</span> <span class="op">=</span> <span class="ident">UncheckedExtrinsic</span>,
         {
             <span class="ident">System</span>: <span class="ident">frame_system</span>::{<span class="ident">Pallet</span>, <span class="ident">Call</span>, <span class="ident">Config</span>, <span class="ident">Storage</span>, <span class="ident">Event</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>},
+            <span class="ident">Balances</span>: <span class="ident">pallet_balances</span>::{<span class="ident">Pallet</span>, <span class="ident">Call</span>, <span class="ident">Storage</span>, <span class="ident">Config</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">Event</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>},
             <span class="ident">Liability</span>: <span class="ident">liability</span>::{<span class="ident">Pallet</span>, <span class="ident">Call</span>, <span class="ident">Storage</span>, <span class="ident">Event</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>},
         }
     );
@@ -638,7 +687,7 @@
         <span class="kw">type</span> <span class="ident">BlockHashCount</span> <span class="op">=</span> <span class="ident">BlockHashCount</span>;
         <span class="kw">type</span> <span class="ident">Version</span> <span class="op">=</span> ();
         <span class="kw">type</span> <span class="ident">PalletInfo</span> <span class="op">=</span> <span class="ident">PalletInfo</span>;
-        <span class="kw">type</span> <span class="ident">AccountData</span> <span class="op">=</span> ();
+        <span class="kw">type</span> <span class="ident">AccountData</span> <span class="op">=</span> <span class="ident">pallet_balances::AccountData</span><span class="op">&lt;</span><span class="ident">Balance</span><span class="op">&gt;</span>;
         <span class="kw">type</span> <span class="ident">OnNewAccount</span> <span class="op">=</span> ();
         <span class="kw">type</span> <span class="ident">OnKilledAccount</span> <span class="op">=</span> ();
         <span class="kw">type</span> <span class="ident">DbWeight</span> <span class="op">=</span> ();
@@ -651,13 +700,31 @@
         <span class="kw">type</span> <span class="ident">MaxConsumers</span> <span class="op">=</span> <span class="ident">frame_support::traits::ConstU32</span><span class="op">&lt;</span><span class="number">16</span><span class="op">&gt;</span>;
     }
 
+    <span class="macro">parameter_types!</span> {
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MaxLocks</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">50</span>;
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MaxReserves</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">50</span>;
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ExistentialDeposit</span>: <span class="ident">Balance</span> <span class="op">=</span> <span class="number">10</span>;
+    }
+
+    <span class="kw">impl</span> <span class="ident">pallet_balances::Config</span> <span class="kw">for</span> <span class="ident">Runtime</span> {
+        <span class="kw">type</span> <span class="ident">MaxLocks</span> <span class="op">=</span> <span class="ident">MaxLocks</span>;
+        <span class="kw">type</span> <span class="ident">MaxReserves</span> <span class="op">=</span> <span class="ident">MaxReserves</span>;
+        <span class="kw">type</span> <span class="ident">ReserveIdentifier</span> <span class="op">=</span> [<span class="ident">u8</span>; <span class="number">8</span>];
+        <span class="kw">type</span> <span class="ident">Balance</span> <span class="op">=</span> <span class="ident">Balance</span>;
+        <span class="kw">type</span> <span class="ident">Event</span> <span class="op">=</span> <span class="ident">Event</span>;
+        <span class="kw">type</span> <span class="ident">DustRemoval</span> <span class="op">=</span> ();
+        <span class="kw">type</span> <span class="ident">ExistentialDeposit</span> <span class="op">=</span> <span class="ident">ExistentialDeposit</span>;
+        <span class="kw">type</span> <span class="ident">AccountStore</span> <span class="op">=</span> <span class="ident">System</span>;
+        <span class="kw">type</span> <span class="ident">WeightInfo</span> <span class="op">=</span> ();
+    }
+
     <span class="kw">impl</span> <span class="ident">Config</span> <span class="kw">for</span> <span class="ident">Runtime</span> {
         <span class="kw">type</span> <span class="ident">Event</span> <span class="op">=</span> <span class="ident">Event</span>;
         <span class="kw">type</span> <span class="ident">Agreement</span> <span class="op">=</span> <span class="ident">SignedAgreement</span><span class="op">&lt;</span>
             <span class="comment">// Provide task in IPFS</span>
             <span class="ident">IPFS</span>,
-            <span class="comment">// No payments</span>
-            (),
+            <span class="comment">// Liability has a price </span>
+            <span class="ident">SimpleMarket</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::AccountId</span>, <span class="ident">Balances</span><span class="op">&gt;</span>,
             <span class="comment">// Use standard accounts</span>
             <span class="ident"><span class="self">Self</span>::AccountId</span>,
             <span class="comment">// Use standard signatures</span>
@@ -675,10 +742,22 @@
         <span class="op">&gt;</span>;
     }
 
+    <span class="comment">// IPFS raw hash (sha256)</span>
+    <span class="kw">const</span> <span class="ident">IPFS_HASH</span>: [<span class="ident">u8</span>; <span class="number">32</span>] <span class="op">=</span> <span class="macro">hex!</span>[<span class="string">&quot;30f3d649b3d140a6601e11a2cfbe3560e60dc5434f62d702ac8ceff4e1890015&quot;</span>];
+
     <span class="kw">fn</span> <span class="ident">new_test_ext</span>() -&gt; <span class="ident">sp_io::TestExternalities</span> {
-        <span class="kw">let</span> <span class="ident">storage</span> <span class="op">=</span> <span class="ident">frame_system::GenesisConfig::default</span>()
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">storage</span> <span class="op">=</span> <span class="ident">frame_system::GenesisConfig::default</span>()
             .<span class="ident">build_storage</span>::<span class="op">&lt;</span><span class="ident">Runtime</span><span class="op">&gt;</span>()
             .<span class="ident">unwrap</span>();
+
+        <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">pallet_balances::GenesisConfig</span>::<span class="op">&lt;</span><span class="ident">Runtime</span><span class="op">&gt;</span> {
+            <span class="ident">balances</span>: <span class="macro">vec!</span>[
+                (<span class="ident">AccountKeyring::Alice</span>.<span class="ident">into</span>(), <span class="number">100</span> <span class="op">*</span> <span class="ident">XRT</span>),
+                (<span class="ident">AccountKeyring::Bob</span>.<span class="ident">into</span>(), <span class="number">100</span> <span class="op">*</span> <span class="ident">XRT</span>),
+            ],
+        }
+        .<span class="ident">assimilate_storage</span>(<span class="kw-2">&amp;mut</span> <span class="ident">storage</span>);
+
         <span class="ident">storage</span>.<span class="ident">into</span>()
     }
 
@@ -711,14 +790,13 @@
         (<span class="ident">sender</span>, <span class="ident">signature</span>)
     }
 
+
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_liability_proofs</span>() {
         <span class="kw">let</span> <span class="ident">technics</span> <span class="op">=</span> <span class="ident">IPFS</span> {
-            <span class="ident">hash</span>: <span class="string">&quot;QmWboFP8XeBtFMbNYK3Ne8Z3gKFBSR5iQzkKgeNgQz3dz4&quot;</span>
-                .<span class="ident">from_base58</span>()
-                .<span class="ident">unwrap</span>(),
+            <span class="ident">hash</span>: <span class="ident">IPFS_HASH</span>.<span class="ident">into</span>(),
         };
-        <span class="kw">let</span> <span class="ident">economics</span> <span class="op">=</span> ();
+        <span class="kw">let</span> <span class="ident">economics</span> <span class="op">=</span> <span class="ident">SimpleMarket</span> { <span class="ident">price</span>: <span class="number">10</span> };
         <span class="kw">let</span> (<span class="ident">sender</span>, <span class="ident">signature</span>) <span class="op">=</span> <span class="ident">get_params_proof</span>(<span class="string">&quot;//Alice&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">technics</span>, <span class="kw-2">&amp;</span><span class="ident">economics</span>);
         <span class="kw">let</span> <span class="ident">agreement</span>: <span class="op">&lt;</span><span class="ident">Runtime</span> <span class="kw">as</span> <span class="ident">Config</span><span class="op">&gt;</span><span class="ident">::Agreement</span> <span class="op">=</span> <span class="ident">SignedAgreement</span> {
             <span class="ident">technics</span>,
@@ -732,9 +810,7 @@
 
         <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="number">1</span>;
         <span class="kw">let</span> <span class="ident">payload</span> <span class="op">=</span> <span class="ident">IPFS</span> {
-            <span class="ident">hash</span>: <span class="string">&quot;QmWboFP8XeBtFMbNYK3Ne8Z3gKFBSR5iQzkKgeNgQz3dz4&quot;</span>
-                .<span class="ident">from_base58</span>()
-                .<span class="ident">unwrap</span>(),
+            <span class="ident">hash</span>: <span class="ident">IPFS_HASH</span>.<span class="ident">into</span>(),
         };
         <span class="kw">let</span> (<span class="ident">sender</span>, <span class="ident">signature</span>) <span class="op">=</span> <span class="ident">get_report_proof</span>(<span class="string">&quot;//Alice&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">index</span>, <span class="kw-2">&amp;</span><span class="ident">payload</span>);
         <span class="kw">let</span> <span class="ident">report</span> <span class="op">=</span> <span class="ident">SignedReport</span> {
@@ -752,19 +828,23 @@
             <span class="macro">assert_eq!</span>(<span class="ident">Liability::latest_index</span>(), <span class="prelude-val">None</span>);
 
             <span class="kw">let</span> <span class="ident">technics</span> <span class="op">=</span> <span class="ident">IPFS</span> {
-                <span class="ident">hash</span>: <span class="string">&quot;QmWboFP8XeBtFMbNYK3Ne8Z3gKFBSR5iQzkKgeNgQz3dz4&quot;</span>
-                    .<span class="ident">from_base58</span>()
-                    .<span class="ident">unwrap</span>(),
+                <span class="ident">hash</span>: <span class="ident">IPFS_HASH</span>.<span class="ident">into</span>(),
             };
-            <span class="kw">let</span> <span class="ident">economics</span> <span class="op">=</span> ();
+            <span class="kw">let</span> <span class="ident">economics</span> <span class="op">=</span> <span class="ident">SimpleMarket</span> {
+                <span class="ident">price</span>: <span class="number">10</span> <span class="op">*</span> <span class="ident">XRT</span>,
+            };
 
-            <span class="kw">let</span> (<span class="ident">promisee</span>, <span class="ident">promisee_signature</span>) <span class="op">=</span> <span class="ident">get_params_proof</span>(<span class="string">&quot;//Alice&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">technics</span>, <span class="kw-2">&amp;</span><span class="ident">economics</span>);
-            <span class="kw">let</span> (<span class="ident">promisor</span>, <span class="ident">promisor_signature</span>) <span class="op">=</span> <span class="ident">get_params_proof</span>(<span class="string">&quot;//Bob&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">technics</span>, <span class="kw-2">&amp;</span><span class="ident">economics</span>);
+            <span class="kw">let</span> (<span class="ident">alice</span>, <span class="ident">promisee_signature</span>) <span class="op">=</span> <span class="ident">get_params_proof</span>(<span class="string">&quot;//Alice&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">technics</span>, <span class="kw-2">&amp;</span><span class="ident">economics</span>);
+            <span class="kw">let</span> (<span class="ident">bob</span>, <span class="ident">promisor_signature</span>) <span class="op">=</span> <span class="ident">get_params_proof</span>(<span class="string">&quot;//Bob&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">technics</span>, <span class="kw-2">&amp;</span><span class="ident">economics</span>);
+
+            <span class="macro">assert_eq!</span>(<span class="ident">System::account</span>(<span class="kw-2">&amp;</span><span class="ident">alice</span>).<span class="ident">data</span>.<span class="ident">free</span>, <span class="number">100</span> <span class="op">*</span> <span class="ident">XRT</span>);
+            <span class="macro">assert_eq!</span>(<span class="ident">System::account</span>(<span class="kw-2">&amp;</span><span class="ident">bob</span>).<span class="ident">data</span>.<span class="ident">free</span>, <span class="number">100</span> <span class="op">*</span> <span class="ident">XRT</span>);
+
             <span class="kw">let</span> <span class="ident">agreement</span> <span class="op">=</span> <span class="ident">SignedAgreement</span> {
                 <span class="ident">technics</span>,
                 <span class="ident">economics</span>,
-                <span class="ident">promisee</span>,
-                <span class="ident">promisor</span>,
+                <span class="ident">promisee</span>: <span class="ident">alice</span>.<span class="ident">clone</span>(),
+                <span class="ident">promisor</span>: <span class="ident">bob</span>.<span class="ident">clone</span>(),
                 <span class="ident">promisee_signature</span>: <span class="ident">promisor_signature</span>.<span class="ident">clone</span>(),
                 <span class="ident">promisor_signature</span>,
             };
@@ -777,6 +857,8 @@
                 <span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">Runtime</span><span class="op">&gt;</span><span class="ident">::BadAgreementProof</span>,
             );
             <span class="macro">assert_eq!</span>(<span class="ident">Liability::latest_index</span>(), <span class="prelude-val">None</span>);
+            <span class="macro">assert_eq!</span>(<span class="ident">System::account</span>(<span class="kw-2">&amp;</span><span class="ident">alice</span>).<span class="ident">data</span>.<span class="ident">free</span>, <span class="number">100</span> <span class="op">*</span> <span class="ident">XRT</span>);
+            <span class="macro">assert_eq!</span>(<span class="ident">System::account</span>(<span class="kw-2">&amp;</span><span class="ident">bob</span>).<span class="ident">data</span>.<span class="ident">free</span>, <span class="number">100</span> <span class="op">*</span> <span class="ident">XRT</span>);
 
             <span class="kw">let</span> <span class="ident">agreement</span> <span class="op">=</span> <span class="ident">SignedAgreement</span> {
                 <span class="ident">promisee_signature</span>,
@@ -789,12 +871,12 @@
             <span class="macro">assert_eq!</span>(<span class="ident">Liability::latest_index</span>(), <span class="prelude-val">Some</span>(<span class="number">1</span>));
             <span class="macro">assert_eq!</span>(<span class="ident">Liability::report_of</span>(<span class="number">0</span>), <span class="prelude-val">None</span>);
             <span class="macro">assert_eq!</span>(<span class="ident">Liability::agreement_of</span>(<span class="number">0</span>), <span class="prelude-val">Some</span>(<span class="ident">agreement</span>));
+            <span class="macro">assert_eq!</span>(<span class="ident">System::account</span>(<span class="kw-2">&amp;</span><span class="ident">alice</span>).<span class="ident">data</span>.<span class="ident">free</span>, <span class="number">90</span> <span class="op">*</span> <span class="ident">XRT</span>);
+            <span class="macro">assert_eq!</span>(<span class="ident">System::account</span>(<span class="kw-2">&amp;</span><span class="ident">bob</span>).<span class="ident">data</span>.<span class="ident">free</span>, <span class="number">100</span> <span class="op">*</span> <span class="ident">XRT</span>);
 
             <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="number">0</span>;
             <span class="kw">let</span> <span class="ident">payload</span> <span class="op">=</span> <span class="ident">IPFS</span> {
-                <span class="ident">hash</span>: <span class="string">&quot;QmWboFP8XeBtFMbNYK3Ne8Z3gKFBSR5iQzkKgeNgQz3dz4&quot;</span>
-                    .<span class="ident">from_base58</span>()
-                    .<span class="ident">unwrap</span>(),
+                <span class="ident">hash</span>: <span class="ident">IPFS_HASH</span>.<span class="ident">into</span>(),
             };
             <span class="kw">let</span> (<span class="kw">_</span>, <span class="ident">bad_signature</span>) <span class="op">=</span> <span class="ident">get_report_proof</span>(<span class="string">&quot;//Alice&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">index</span>, <span class="kw-2">&amp;</span><span class="ident">payload</span>);
             <span class="kw">let</span> (<span class="ident">sender</span>, <span class="ident">signature</span>) <span class="op">=</span> <span class="ident">get_report_proof</span>(<span class="string">&quot;//Bob&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">index</span>, <span class="kw-2">&amp;</span><span class="ident">payload</span>);
@@ -810,6 +892,8 @@
                 <span class="ident">Error</span>::<span class="op">&lt;</span><span class="ident">Runtime</span><span class="op">&gt;</span><span class="ident">::BadReportProof</span>,
             );
             <span class="macro">assert_eq!</span>(<span class="ident">Liability::report_of</span>(<span class="number">0</span>), <span class="prelude-val">None</span>);
+            <span class="macro">assert_eq!</span>(<span class="ident">System::account</span>(<span class="kw-2">&amp;</span><span class="ident">alice</span>).<span class="ident">data</span>.<span class="ident">free</span>, <span class="number">90</span> <span class="op">*</span> <span class="ident">XRT</span>);
+            <span class="macro">assert_eq!</span>(<span class="ident">System::account</span>(<span class="kw-2">&amp;</span><span class="ident">bob</span>).<span class="ident">data</span>.<span class="ident">free</span>, <span class="number">100</span> <span class="op">*</span> <span class="ident">XRT</span>);
 
             <span class="kw">let</span> <span class="ident">report</span> <span class="op">=</span> <span class="ident">SignedReport</span> {
                 <span class="ident">signature</span>,
@@ -820,6 +904,8 @@
                 <span class="ident">report</span>.<span class="ident">clone</span>()
             ));
             <span class="macro">assert_eq!</span>(<span class="ident">Liability::report_of</span>(<span class="number">0</span>), <span class="prelude-val">Some</span>(<span class="ident">report</span>));
+            <span class="macro">assert_eq!</span>(<span class="ident">System::account</span>(<span class="kw-2">&amp;</span><span class="ident">alice</span>).<span class="ident">data</span>.<span class="ident">free</span>, <span class="number">90</span> <span class="op">*</span> <span class="ident">XRT</span>);
+            <span class="macro">assert_eq!</span>(<span class="ident">System::account</span>(<span class="kw-2">&amp;</span><span class="ident">bob</span>).<span class="ident">data</span>.<span class="ident">free</span>, <span class="number">110</span> <span class="op">*</span> <span class="ident">XRT</span>);
         })
     }
 }

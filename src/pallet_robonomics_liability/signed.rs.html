@@ -292,7 +292,7 @@
     <span class="ident">C</span>: <span class="ident">ReservableCurrency</span><span class="op">&lt;</span><span class="ident">A</span><span class="op">&gt;</span>,
 {
     <span class="kw">fn</span> <span class="ident">on_start</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">DispatchResult</span> {
-        <span class="ident">C::reserve</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">promisee</span>, <span class="self">self</span>.<span class="ident">economics</span>.<span class="number">0</span>)
+        <span class="ident">C::reserve</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">promisee</span>, <span class="self">self</span>.<span class="ident">economics</span>.<span class="ident">price</span>)
     }
 
     <span class="kw">fn</span> <span class="ident">on_finish</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">success</span>: <span class="ident">bool</span>) -&gt; <span class="ident">DispatchResult</span> {
@@ -300,12 +300,12 @@
             <span class="ident">C::repatriate_reserved</span>(
                 <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">promisee</span>,
                 <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">promisor</span>,
-                <span class="self">self</span>.<span class="ident">economics</span>.<span class="number">0</span>,
+                <span class="self">self</span>.<span class="ident">economics</span>.<span class="ident">price</span>,
                 <span class="ident">BalanceStatus::Free</span>,
             )
             .<span class="ident">map</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> ())
         } <span class="kw">else</span> {
-            <span class="kw">if</span> <span class="ident">C::unreserve</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">promisee</span>, <span class="self">self</span>.<span class="ident">economics</span>.<span class="number">0</span>) <span class="op">==</span> <span class="self">self</span>.<span class="ident">economics</span>.<span class="number">0</span> {
+            <span class="kw">if</span> <span class="ident">C::unreserve</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">promisee</span>, <span class="self">self</span>.<span class="ident">economics</span>.<span class="ident">price</span>) <span class="op">==</span> <span class="self">self</span>.<span class="ident">economics</span>.<span class="ident">price</span> {
                 <span class="prelude-val">Ok</span>(())
             } <span class="kw">else</span> {
                 <span class="prelude-val">Err</span>(<span class="string">&quot;reserved less than expected&quot;</span>)<span class="question-mark">?</span>
