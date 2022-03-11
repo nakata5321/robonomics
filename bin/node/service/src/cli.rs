@@ -95,6 +95,10 @@ pub enum Subcommand {
     #[cfg(feature = "robonomics-cli")]
     Io(robonomics_cli::IoCmd),
 
+    /// Robonomics Framework liability operations.
+    #[cfg(feature = "liability")]
+    Liability(robonomics_cli::Liability),
+
     /// Benchmarking runtime pallets.
     #[cfg(feature = "frame-benchmarking-cli")]
     Benchmark(frame_benchmarking_cli::BenchmarkCmd),

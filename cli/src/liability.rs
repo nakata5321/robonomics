@@ -15,17 +15,17 @@
 //  limitations under the License.
 //
 ///////////////////////////////////////////////////////////////////////////////
-//! Robonomics I/O CLI interface.
+//! Robonomics liablity CLI interface.
 
 #![deny(missing_docs)]
 
 use crate::error::Result;
-use clap::Parser
+use clap::Parser;
 
-/// Substrate friendly CLI I/O subsystem interaction.
+/// Substrate friendly CLI for pallet_liability.
 #[derive(Parser, Debug)]
-pub struct IoCmd {
-    /// I/O device operation to run.
+pub struct LiabilityCmd {
+    /// Liability operation to run.
     #[clap(subcommand)]
     pub operation: Operation,
 }
@@ -41,7 +41,7 @@ impl IoCmd {
 }
 
 /// I/O operation command.
-#[derive(Parser, Debug)]
+#[derive(structopt::StructOpt, Debug)]
 pub enum Operation {
     /// Read information from device.
     Read(super::SourceCmd),

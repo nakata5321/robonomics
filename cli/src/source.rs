@@ -27,21 +27,21 @@ use robonomics_io::source::{serial, virt};
 use robonomics_protocol::pubsub::Multiaddr;
 use sp_core::crypto::Ss58AddressFormat;
 use std::{convert::TryFrom, time::Duration};
-use structopt::clap::arg_enum;
+use clap::{Parser, arg_enum};
 
 /// Source device commands.
-#[derive(structopt::StructOpt, Clone, Debug)]
+#[derive(Parser, Clone, Debug)]
 pub enum SourceCmd {
     /// Nova SDS011 particle sensor.
     SDS011 {
         /// Serial port that sensor connected for.
-        #[structopt(long, default_value = "/dev/ttyUSB0")]
+        #[clap(long, default_value = "/dev/ttyUSB0")]
         port: String,
         /// Request interval in minutes.
-        #[structopt(long, default_value = "5")]
+        #[clap(long, default_value = "5")]
         period: u8,
         /// Source values encoding.
-        #[structopt(
+        #[clap(
             short,
             default_value = "json",
             possible_values = &Encoding::variants(),
@@ -50,34 +50,34 @@ pub enum SourceCmd {
         encoding: Encoding,
     },
     /// Subscribe for broadcasing data.
-    #[structopt(name = "pubsub")]
+    #[clap(name = "pubsub")]
     PubSub {
         /// Subscribe for given topic name and print received messages.
         topic_name: String,
         /// Listen address for incoming connections.
-        #[structopt(long, value_name = "MULTIADDR", default_value = "/ip4/0.0.0.0/tcp/0")]
+        #[clap(long, value_name = "MULTIADDR", default_value = "/ip4/0.0.0.0/tcp/0")]
         listen: Multiaddr,
         /// Indicates PubSub nodes for first connections.
-        #[structopt(long, value_name = "MULTIADDR", use_delimiter = true)]
+        #[clap(long, value_name = "MULTIADDR", use_delimiter = true)]
         bootnodes: Vec<Multiaddr>,
         /// How often node should check another nodes availability, in secs.
-        #[structopt(long, value_name = "HEARTBEAT_SECS", default_value = "5")]
+        #[clap(long, value_name = "HEARTBEAT_SECS", default_value = "5")]
         hearbeat: u64,
     },
     /// Reading datalog.
     Datalog {
         /// Robonomics node API endpoint.
-        #[structopt(long, value_name = "REMOTE_URI", default_value = "ws://127.0.0.1:9944")]
+        #[clap(long, value_name = "REMOTE_URI", default_value = "ws://127.0.0.1:9944")]
         remote: String,
         /// Reader account seed URI.
-        #[structopt(short, value_name = "ADDRESS")]
+        #[clap(short, value_name = "ADDRESS")]
         address: String,
         //TODO: follow flag
     },
     /// Download data from IPFS storage.
     Ipfs {
         /// IPFS node endpoint.
-        #[structopt(
+        #[clap(
             long,
             value_name = "REMOTE_URI",
             default_value = "http://127.0.0.1:5001"
@@ -87,10 +87,10 @@ pub enum SourceCmd {
     /// Robot launch request events.
     Launch {
         /// Robonomics node API endpoint.
-        #[structopt(long, default_value = "ws://127.0.0.1:9944")]
+        #[clap(long, default_value = "ws://127.0.0.1:9944")]
         remote: String,
         /// Output address format.
-        #[structopt(
+        #[clap(
             long,
             short = "n",
             possible_values = &Ss58AddressFormat::all_names()[..],
@@ -104,29 +104,29 @@ pub enum SourceCmd {
     /// Subscribe for data from ROS topic.
     Ros {
         /// Topic name.
-        #[structopt(value_name = "TOPIC_NAME")]
+        #[clap(value_name = "TOPIC_NAME")]
         topic_name: String,
         /// Queue size.
-        #[structopt(long, default_value = "10")]
+        #[clap(long, default_value = "10")]
         queue_size: usize,
     },
     /// request-response server
-    #[structopt(name = "reqres")]
+    #[clap(name = "reqres")]
     ReqRes {
         /// multiaddress of server, i.e. /ip4/192.168.0.102/tcp/61241
-        #[structopt(value_name = "MULTIADDR")]
+        #[clap(value_name = "MULTIADDR")]
         address: String,
 
         /// server peer ID, i.e. 12D3KooWHdqJNpszJR4na6pheUwSMNQCuGXU6sFTGDQMyQWEsszS
-        #[structopt(value_name = "PEER_ID")]
+        #[clap(value_name = "PEER_ID")]
         peerid: String,
 
         /// request type: `ping` or `get`
-        #[structopt(value_name = "METHOD")]
+        #[clap(value_name = "METHOD")]
         method: String,
 
         /// value: only required when `method` is `get`
-        #[structopt(name = "VALUE", required_if("method", "get"))]
+        #[clap(name = "VALUE", required_if("method", "get"))]
         value: Option<String>,
     },
 }
