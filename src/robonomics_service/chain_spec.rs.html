@@ -217,6 +217,10 @@
 <span id="216">216</span>
 <span id="217">217</span>
 <span id="218">218</span>
+<span id="219">219</span>
+<span id="220">220</span>
+<span id="221">221</span>
+<span id="222">222</span>
 </pre><pre class="rust"><code><span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
 <span class="comment">//</span>
 <span class="comment">//  Copyright 2018-2021 Robonomics Network &lt;research@robonomics.network&gt;</span>
@@ -246,6 +250,7 @@
 <span class="kw">use</span> <span class="ident">sc_service::ChainType</span>;
 <span class="kw">use</span> <span class="ident">sc_sync_state_rpc::LightSyncStateExtension</span>;
 <span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
+<span class="kw">use</span> <span class="ident">serde_json::map::Map</span>;
 <span class="kw">use</span> <span class="ident">sp_consensus_aura::sr25519::AuthorityId</span> <span class="kw">as</span> <span class="ident">AuraId</span>;
 <span class="kw">use</span> <span class="ident">sp_core</span>::{<span class="ident">sr25519</span>, <span class="ident">Pair</span>, <span class="ident">Public</span>};
 <span class="kw">use</span> <span class="ident">sp_finality_grandpa::AuthorityId</span> <span class="kw">as</span> <span class="ident">GrandpaId</span>;
@@ -422,6 +427,9 @@
             <span class="ident">get_account_id_from_seed</span>::<span class="op">&lt;</span><span class="ident">sr25519::Public</span><span class="op">&gt;</span>(<span class="string">&quot;Alice&quot;</span>),
         )
     };
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">properties</span> <span class="op">=</span> <span class="ident">Map::new</span>();
+    <span class="ident">properties</span>.<span class="ident">insert</span>(<span class="string">&quot;tokenSymbol&quot;</span>.<span class="ident">into</span>(), <span class="string">&quot;XRT&quot;</span>.<span class="ident">into</span>());
+    <span class="ident">properties</span>.<span class="ident">insert</span>(<span class="string">&quot;tokenDecimals&quot;</span>.<span class="ident">into</span>(), <span class="number">9</span>.<span class="ident">into</span>());
     <span class="ident">ChainSpec::from_genesis</span>(
         <span class="string">&quot;Development&quot;</span>,
         <span class="string">&quot;dev&quot;</span>,
@@ -431,7 +439,7 @@
         <span class="prelude-val">None</span>,
         <span class="prelude-val">None</span>,
         <span class="prelude-val">None</span>,
-        <span class="prelude-val">None</span>,
+        <span class="prelude-val">Some</span>(<span class="ident">properties</span>),
         <span class="ident">Default::default</span>(),
     )
 }

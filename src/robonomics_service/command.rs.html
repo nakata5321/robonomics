@@ -485,9 +485,9 @@
             <span class="kw">let</span> <span class="ident">runner</span> <span class="op">=</span> <span class="ident">cli</span>.<span class="ident">create_runner</span>(<span class="ident">subcommand</span>)<span class="question-mark">?</span>;
             <span class="kw">match</span> <span class="ident">runner</span>.<span class="ident">config</span>().<span class="ident">chain_spec</span>.<span class="ident">family</span>() {
                 <span class="ident">RobonomicsFamily::Development</span> =&gt; <span class="ident">runner</span>.<span class="ident">sync_run</span>(<span class="op">|</span><span class="ident">config</span><span class="op">|</span> {
-                    <span class="ident">subcommand</span>.<span class="ident">run</span>::<span class="op">&lt;</span><span class="ident">robonomics_primitives::Block</span>, <span class="ident">robonomics::Executor</span><span class="op">&gt;</span>(<span class="ident">config</span>)
+                    <span class="ident">subcommand</span>
+                        .<span class="ident">run</span>::<span class="op">&lt;</span><span class="ident">robonomics_primitives::Block</span>, <span class="ident">robonomics::LocalExecutor</span><span class="op">&gt;</span>(<span class="ident">config</span>)
                 }),
-                <span class="kw">_</span> =&gt; <span class="prelude-val">Err</span>(<span class="string">&quot;Unknown chain&quot;</span>)<span class="question-mark">?</span>,
             }
         }
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;parachain&quot;</span>)]</span>
