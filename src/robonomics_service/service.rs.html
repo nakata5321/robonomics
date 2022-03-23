@@ -437,7 +437,6 @@
 <span id="436">436</span>
 <span id="437">437</span>
 <span id="438">438</span>
-<span id="439">439</span>
 </pre><pre class="rust"><code><span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
 <span class="comment">//</span>
 <span class="comment">//  Copyright 2018-2021 Robonomics Network &lt;research@robonomics.network&gt;</span>
@@ -466,7 +465,6 @@
 <span class="kw">use</span> <span class="ident">sc_network::NetworkService</span>;
 <span class="kw">use</span> <span class="ident">sc_service</span>::{<span class="ident">config::Configuration</span>, <span class="ident">error::Error</span> <span class="kw">as</span> <span class="ident">ServiceError</span>, <span class="ident">TaskManager</span>};
 <span class="kw">use</span> <span class="ident">sp_api::ConstructRuntimeApi</span>;
-<span class="kw">use</span> <span class="ident">sp_consensus::SlotData</span>;
 <span class="kw">use</span> <span class="ident">sp_consensus_aura::sr25519</span>::{<span class="ident">AuthorityId</span> <span class="kw">as</span> <span class="ident">AuraId</span>, <span class="ident">AuthorityPair</span> <span class="kw">as</span> <span class="ident">AuraPair</span>};
 <span class="kw">use</span> <span class="ident">sp_runtime::traits</span>::{<span class="ident">BlakeTwo256</span>, <span class="ident">Block</span> <span class="kw">as</span> <span class="ident">BlockT</span>};
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">sync::Arc</span>, <span class="ident">time::Duration</span>};
@@ -589,9 +587,9 @@
         <span class="ident">telemetry</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">x</span>.<span class="ident">handle</span>()),
     )<span class="question-mark">?</span>;
 
-    <span class="kw">let</span> <span class="ident">slot_duration</span> <span class="op">=</span> <span class="ident">sc_consensus_aura::slot_duration</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">client</span>)<span class="question-mark">?</span>.<span class="ident">slot_duration</span>();
-    <span class="kw">let</span> <span class="ident">import_queue</span> <span class="op">=</span>
-        <span class="ident">sc_consensus_aura::import_queue</span>::<span class="op">&lt;</span><span class="ident">AuraPair</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span><span class="op">&gt;</span>(<span class="ident">ImportQueueParams</span> {
+    <span class="kw">let</span> <span class="ident">slot_duration</span> <span class="op">=</span> <span class="ident">sc_consensus_aura::slot_duration</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">client</span>)<span class="question-mark">?</span>;
+    <span class="kw">let</span> <span class="ident">import_queue</span> <span class="op">=</span> <span class="ident">sc_consensus_aura::import_queue</span>::<span class="op">&lt;</span><span class="ident">AuraPair</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span><span class="op">&gt;</span>(
+        <span class="ident">ImportQueueParams</span> {
             <span class="ident">block_import</span>: <span class="ident">grandpa_block_import</span>.<span class="ident">clone</span>(),
             <span class="ident">justification_import</span>: <span class="prelude-val">Some</span>(<span class="ident">Box::new</span>(<span class="ident">grandpa_block_import</span>.<span class="ident">clone</span>())),
             <span class="ident">client</span>: <span class="ident">client</span>.<span class="ident">clone</span>(),
@@ -599,7 +597,7 @@
                 <span class="kw">let</span> <span class="ident">timestamp</span> <span class="op">=</span> <span class="ident">sp_timestamp::InherentDataProvider::from_system_time</span>();
 
                 <span class="kw">let</span> <span class="ident">slot</span> <span class="op">=</span>
-                    <span class="ident">sp_consensus_aura::inherents::InherentDataProvider::from_timestamp_and_duration</span>(
+                    <span class="ident">sp_consensus_aura::inherents::InherentDataProvider::from_timestamp_and_slot_duration</span>(
                         <span class="kw-2">*</span><span class="ident">timestamp</span>,
                         <span class="ident">slot_duration</span>,
                     );
@@ -613,7 +611,8 @@
             <span class="ident">registry</span>: <span class="ident">config</span>.<span class="ident">prometheus_registry</span>(),
             <span class="ident">check_for_equivocation</span>: <span class="ident">Default::default</span>(),
             <span class="ident">telemetry</span>: <span class="ident">telemetry</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">x</span>.<span class="ident">handle</span>()),
-        })<span class="question-mark">?</span>;
+        },
+    )<span class="question-mark">?</span>;
 
     <span class="kw">let</span> (<span class="ident">pubsub</span>, <span class="ident">pubsub_worker</span>) <span class="op">=</span>
         <span class="ident">PubSub::new</span>(<span class="ident">Duration::from_millis</span>(<span class="ident">heartbeat_interval</span>)).<span class="ident">expect</span>(<span class="string">&quot;New PubSub&quot;</span>);
@@ -759,7 +758,6 @@
             <span class="ident">sp_consensus::CanAuthorWithNativeVersion::new</span>(<span class="ident">client</span>.<span class="ident">executor</span>().<span class="ident">clone</span>());
 
         <span class="kw">let</span> <span class="ident">slot_duration</span> <span class="op">=</span> <span class="ident">sc_consensus_aura::slot_duration</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">client</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">raw_slot_duration</span> <span class="op">=</span> <span class="ident">slot_duration</span>.<span class="ident">slot_duration</span>();
 
         <span class="kw">let</span> <span class="ident">aura</span> <span class="op">=</span> <span class="ident">sc_consensus_aura::start_aura</span>::<span class="op">&lt;</span><span class="ident">AuraPair</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span><span class="op">&gt;</span>(
             <span class="ident">StartAuraParams</span> {
@@ -772,9 +770,9 @@
                     <span class="kw">let</span> <span class="ident">timestamp</span> <span class="op">=</span> <span class="ident">sp_timestamp::InherentDataProvider::from_system_time</span>();
 
                     <span class="kw">let</span> <span class="ident">slot</span> <span class="op">=</span>
-                        <span class="ident">sp_consensus_aura::inherents::InherentDataProvider::from_timestamp_and_duration</span>(
+                        <span class="ident">sp_consensus_aura::inherents::InherentDataProvider::from_timestamp_and_slot_duration</span>(
                             <span class="kw-2">*</span><span class="ident">timestamp</span>,
-                            <span class="ident">raw_slot_duration</span>,
+                            <span class="ident">slot_duration</span>,
                         );
 
                     <span class="prelude-val">Ok</span>((<span class="ident">timestamp</span>, <span class="ident">slot</span>))

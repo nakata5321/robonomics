@@ -172,6 +172,12 @@
 <span id="171">171</span>
 <span id="172">172</span>
 <span id="173">173</span>
+<span id="174">174</span>
+<span id="175">175</span>
+<span id="176">176</span>
+<span id="177">177</span>
+<span id="178">178</span>
+<span id="179">179</span>
 </pre><pre class="rust"><code><span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
 <span class="comment">//</span>
 <span class="comment">//  Copyright 2018-2021 Robonomics Network &lt;research@robonomics.network&gt;</span>
@@ -249,6 +255,7 @@
     <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">start_node</span>(
         <span class="ident">parachain_config</span>: <span class="ident">sc_service::Configuration</span>,
         <span class="ident">polkadot_config</span>: <span class="ident">sc_service::Configuration</span>,
+        <span class="ident">collator_options</span>: <span class="ident">cumulus_client_cli::CollatorOptions</span>,
         <span class="ident">para_id</span>: <span class="ident">cumulus_primitives_core::ParaId</span>,
         <span class="ident">lighthouse_account</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">AccountId</span><span class="op">&gt;</span>,
         <span class="ident">heartbeat_interval</span>: <span class="ident">u64</span>,
@@ -256,6 +263,7 @@
         <span class="ident"><span class="kw">super</span>::service::start_node_impl</span>::<span class="op">&lt;</span><span class="ident">RuntimeApi</span>, <span class="ident">AlphaExecutor</span>, <span class="kw">_</span>, <span class="kw">_</span><span class="op">&gt;</span>(
             <span class="ident">parachain_config</span>,
             <span class="ident">polkadot_config</span>,
+            <span class="ident">collator_options</span>,
             <span class="ident">para_id</span>,
             <span class="ident">lighthouse_account</span>,
             <span class="ident"><span class="kw">super</span>::service::build_open_import_queue</span>,
@@ -289,6 +297,7 @@
     <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">start_node</span>(
         <span class="ident">parachain_config</span>: <span class="ident">sc_service::Configuration</span>,
         <span class="ident">polkadot_config</span>: <span class="ident">sc_service::Configuration</span>,
+        <span class="ident">collator_options</span>: <span class="ident">cumulus_client_cli::CollatorOptions</span>,
         <span class="ident">para_id</span>: <span class="ident">cumulus_primitives_core::ParaId</span>,
         <span class="ident">lighthouse_account</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">AccountId</span><span class="op">&gt;</span>,
         <span class="ident">heartbeat_interval</span>: <span class="ident">u64</span>,
@@ -296,6 +305,7 @@
         <span class="ident"><span class="kw">super</span>::service::start_node_impl</span>::<span class="op">&lt;</span><span class="ident">RuntimeApi</span>, <span class="ident">MainExecutor</span>, <span class="kw">_</span>, <span class="kw">_</span><span class="op">&gt;</span>(
             <span class="ident">parachain_config</span>,
             <span class="ident">polkadot_config</span>,
+            <span class="ident">collator_options</span>,
             <span class="ident">para_id</span>,
             <span class="ident">lighthouse_account</span>,
             <span class="ident"><span class="kw">super</span>::service::build_open_import_queue</span>,
@@ -329,6 +339,7 @@
     <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">start_node</span>(
         <span class="ident">parachain_config</span>: <span class="ident">sc_service::Configuration</span>,
         <span class="ident">polkadot_config</span>: <span class="ident">sc_service::Configuration</span>,
+        <span class="ident">collator_options</span>: <span class="ident">cumulus_client_cli::CollatorOptions</span>,
         <span class="ident">para_id</span>: <span class="ident">cumulus_primitives_core::ParaId</span>,
         <span class="ident">lighthouse_account</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">AccountId</span><span class="op">&gt;</span>,
         <span class="ident">heartbeat_interval</span>: <span class="ident">u64</span>,
@@ -336,6 +347,7 @@
         <span class="ident"><span class="kw">super</span>::service::start_node_impl</span>::<span class="op">&lt;</span><span class="ident">RuntimeApi</span>, <span class="ident">IPCIExecutor</span>, <span class="kw">_</span>, <span class="kw">_</span><span class="op">&gt;</span>(
             <span class="ident">parachain_config</span>,
             <span class="ident">polkadot_config</span>,
+            <span class="ident">collator_options</span>,
             <span class="ident">para_id</span>,
             <span class="ident">lighthouse_account</span>,
             <span class="ident"><span class="kw">super</span>::service::build_pos_import_queue</span>,
