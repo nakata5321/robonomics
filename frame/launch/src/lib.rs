@@ -43,7 +43,7 @@ pub mod pallet {
     #[pallet::generate_deposit(pub(super) fn deposit_event)]
     pub enum Event<T: Config> {
         /// Launch a robot with given parameter: sender, robot, parameter.
-        NewLaunch(T::AccountId, T::AccountId, T::Parameter),
+        NewLaunch(T::AccountId, T::Parameter),
     }
 
     #[pallet::hooks]
@@ -62,9 +62,10 @@ pub mod pallet {
             robot: T::AccountId,
             param: T::Parameter,
         ) -> DispatchResultWithPostInfo {
-            let sender = ensure_signed(origin)?;
+            use frame_system::RawOrigin;
+            let sender: RawOrigin<T::AccountId> = RawOrigin::Root;
             <Goal<T>>::put(param.clone()); // Update storage
-            Self::deposit_event(Event::NewLaunch(sender, robot, param));
+            Self::deposit_event(Event::NewLaunch(robot, param));
             Ok(().into())
         }
     }
