@@ -1,4 +1,4 @@
-= Hackaton
+= Hackathon WEB3 Summit
 Instructions for the hackaton you can find https://github.com/nakata5321/robonomics/tree/hackaton/hackaton_readme/README.md[here].
 
 = Robonomics

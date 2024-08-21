@@ -1,4 +1,4 @@
-# Hackaton Readme
+# Hackathon
 
 ## Install Home Assistant
 
