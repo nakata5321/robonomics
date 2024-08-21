@@ -1,3 +1,6 @@
+= Hackathon WEB3 Summit
+Instructions for the hackaton you can find https://github.com/nakata5321/robonomics/tree/hackaton/hackaton_readme/README.md[here].
+
 = Robonomics
 
 image:https://github.com/airalab/robonomics/blob/master/web3_foundation_grants_badge_black.jpg["Web3 Foundation Grants — Wave Two Recipient", link="https://medium.com/web3foundation/web3-foundation-grants-wave-two-recipients-16d9b996501d"]
